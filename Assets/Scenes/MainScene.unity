@@ -106,9 +106,9 @@ NavMeshSettings:
     serializedVersion: 2
     agentTypeID: 0
     agentRadius: 0.5
-    agentHeight: 2
-    agentSlope: 45
-    agentClimb: 0.4
+    agentHeight: 1
+    agentSlope: 60
+    agentClimb: 0.6
     ledgeDropHeight: 0
     maxJumpAcrossDistance: 0
     minRegionArea: 2
@@ -119,7 +119,7 @@ NavMeshSettings:
     accuratePlacement: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: 9c18e7e2de621d643a1784c0a82e8fe1, type: 2}
 --- !u!1001 &26361778
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -131,6 +131,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: HingeR (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5088832366745971482, guid: 1b1246633e370cd47b2ece6842a59767,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 5088832366745971481, guid: 1b1246633e370cd47b2ece6842a59767,
         type: 3}
@@ -281,6 +286,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: HingeL (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 5088832366745971482, guid: 1b1246633e370cd47b2ece6842a59767,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 5088832366745971481, guid: 1b1246633e370cd47b2ece6842a59767,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -429,6 +439,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: HingeL (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5088832366745971482, guid: 1b1246633e370cd47b2ece6842a59767,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 5088832366745971481, guid: 1b1246633e370cd47b2ece6842a59767,
         type: 3}
@@ -597,6 +612,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plank (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 6914732015056333778, guid: ff336082588361d4587066b0e79c86d3,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 6914732015056333783, guid: ff336082588361d4587066b0e79c86d3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -677,6 +697,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Plank (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6914732015056333778, guid: ff336082588361d4587066b0e79c86d3,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 6914732015056333783, guid: ff336082588361d4587066b0e79c86d3,
         type: 3}
@@ -789,6 +814,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plank (11)
       objectReference: {fileID: 0}
+    - target: {fileID: 6914732015056333778, guid: ff336082588361d4587066b0e79c86d3,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 6914732015056333783, guid: ff336082588361d4587066b0e79c86d3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -863,10 +893,15 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6504108053561774442, guid: c7567a5cd43d542448b640dd8537ad3e,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 6504108053561774446, guid: c7567a5cd43d542448b640dd8537ad3e,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -39.25
+      value: -37.09
       objectReference: {fileID: 0}
     - target: {fileID: 6504108053561774446, guid: c7567a5cd43d542448b640dd8537ad3e,
         type: 3}
@@ -962,6 +997,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plank (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6914732015056333778, guid: ff336082588361d4587066b0e79c86d3,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 6914732015056333783, guid: ff336082588361d4587066b0e79c86d3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1039,7 +1079,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &606552717
 Transform:
@@ -1104,6 +1144,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: HingeR (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5088832366745971482, guid: 1b1246633e370cd47b2ece6842a59767,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 5088832366745971481, guid: 1b1246633e370cd47b2ece6842a59767,
         type: 3}
@@ -1254,6 +1299,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: HingeR (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 5088832366745971482, guid: 1b1246633e370cd47b2ece6842a59767,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 5088832366745971481, guid: 1b1246633e370cd47b2ece6842a59767,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1403,6 +1453,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plank (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 6914732015056333778, guid: ff336082588361d4587066b0e79c86d3,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 6914732015056333783, guid: ff336082588361d4587066b0e79c86d3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1477,6 +1532,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: HingeR (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5088832366745971482, guid: 1b1246633e370cd47b2ece6842a59767,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 5088832366745971481, guid: 1b1246633e370cd47b2ece6842a59767,
         type: 3}
@@ -1627,6 +1687,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: HingeR (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 5088832366745971482, guid: 1b1246633e370cd47b2ece6842a59767,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 5088832366745971481, guid: 1b1246633e370cd47b2ece6842a59767,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1776,6 +1841,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plank (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 6914732015056333778, guid: ff336082588361d4587066b0e79c86d3,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 6914732015056333783, guid: ff336082588361d4587066b0e79c86d3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1868,6 +1938,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: HingeL (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5088832366745971482, guid: 1b1246633e370cd47b2ece6842a59767,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 5088832366745971481, guid: 1b1246633e370cd47b2ece6842a59767,
         type: 3}
@@ -2023,6 +2098,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: HingeL (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5088832366745971482, guid: 1b1246633e370cd47b2ece6842a59767,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 5088832366745971481, guid: 1b1246633e370cd47b2ece6842a59767,
         type: 3}
@@ -2190,6 +2270,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Plank
+      objectReference: {fileID: 0}
+    - target: {fileID: 6914732015056333778, guid: ff336082588361d4587066b0e79c86d3,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 6914732015056333779, guid: ff336082588361d4587066b0e79c86d3,
         type: 3}
@@ -2373,6 +2458,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: HingeR (8)
       objectReference: {fileID: 0}
+    - target: {fileID: 5088832366745971482, guid: 1b1246633e370cd47b2ece6842a59767,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 5088832366745971481, guid: 1b1246633e370cd47b2ece6842a59767,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2528,6 +2618,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: HingeR
       objectReference: {fileID: 0}
+    - target: {fileID: 5088832366745971482, guid: 1b1246633e370cd47b2ece6842a59767,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 5088832366745971481, guid: 1b1246633e370cd47b2ece6842a59767,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2677,6 +2772,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plank (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 6914732015056333778, guid: ff336082588361d4587066b0e79c86d3,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 6914732015056333783, guid: ff336082588361d4587066b0e79c86d3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2745,6 +2845,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Plank (13)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6914732015056333778, guid: ff336082588361d4587066b0e79c86d3,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 6914732015056333779, guid: ff336082588361d4587066b0e79c86d3,
         type: 3}
@@ -2854,6 +2959,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: HingeR (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5088832366745971482, guid: 1b1246633e370cd47b2ece6842a59767,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 5088832366745971481, guid: 1b1246633e370cd47b2ece6842a59767,
         type: 3}
@@ -3004,6 +3114,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: HingeR (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 5088832366745971482, guid: 1b1246633e370cd47b2ece6842a59767,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 5088832366745971481, guid: 1b1246633e370cd47b2ece6842a59767,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3152,6 +3267,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: HingeL (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5088832366745971482, guid: 1b1246633e370cd47b2ece6842a59767,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 5088832366745971481, guid: 1b1246633e370cd47b2ece6842a59767,
         type: 3}
@@ -3320,6 +3440,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: HingeL (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 5088832366745971482, guid: 1b1246633e370cd47b2ece6842a59767,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 5088832366745971481, guid: 1b1246633e370cd47b2ece6842a59767,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3469,6 +3594,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: HingeL (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5088832366745971482, guid: 1b1246633e370cd47b2ece6842a59767,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 5088832366745971481, guid: 1b1246633e370cd47b2ece6842a59767,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3617,6 +3747,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: HingeL (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5088832366745971482, guid: 1b1246633e370cd47b2ece6842a59767,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 5088832366745971481, guid: 1b1246633e370cd47b2ece6842a59767,
         type: 3}
@@ -3779,6 +3914,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: HingeR (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5088832366745971482, guid: 1b1246633e370cd47b2ece6842a59767,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 5088832366745971481, guid: 1b1246633e370cd47b2ece6842a59767,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3927,6 +4067,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: HingeL
+      objectReference: {fileID: 0}
+    - target: {fileID: 5088832366745971482, guid: 1b1246633e370cd47b2ece6842a59767,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 5088832366745971481, guid: 1b1246633e370cd47b2ece6842a59767,
         type: 3}
@@ -4095,6 +4240,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: HingeL (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 5088832366745971482, guid: 1b1246633e370cd47b2ece6842a59767,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 5088832366745971481, guid: 1b1246633e370cd47b2ece6842a59767,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4244,6 +4394,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plank (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 6914732015056333778, guid: ff336082588361d4587066b0e79c86d3,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 6914732015056333783, guid: ff336082588361d4587066b0e79c86d3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4315,7 +4470,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1702665318
 Transform:
@@ -4356,6 +4511,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Plank (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6914732015056333778, guid: ff336082588361d4587066b0e79c86d3,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 6914732015056333783, guid: ff336082588361d4587066b0e79c86d3,
         type: 3}
@@ -4425,6 +4585,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: HingeL (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5088832366745971482, guid: 1b1246633e370cd47b2ece6842a59767,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 5088832366745971481, guid: 1b1246633e370cd47b2ece6842a59767,
         type: 3}
@@ -4575,6 +4740,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plank (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 6914732015056333778, guid: ff336082588361d4587066b0e79c86d3,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 6914732015056333783, guid: ff336082588361d4587066b0e79c86d3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4643,6 +4813,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: HingeL (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5088832366745971482, guid: 1b1246633e370cd47b2ece6842a59767,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 5088832366745971481, guid: 1b1246633e370cd47b2ece6842a59767,
         type: 3}
@@ -4799,6 +4974,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: HingeL (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 5088832366745971482, guid: 1b1246633e370cd47b2ece6842a59767,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 5088832366745971481, guid: 1b1246633e370cd47b2ece6842a59767,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4947,6 +5127,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: HingeR (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5088832366745971482, guid: 1b1246633e370cd47b2ece6842a59767,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 5088832366745971481, guid: 1b1246633e370cd47b2ece6842a59767,
         type: 3}
@@ -5109,6 +5294,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plank (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 6914732015056333778, guid: ff336082588361d4587066b0e79c86d3,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 6914732015056333783, guid: ff336082588361d4587066b0e79c86d3,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5180,7 +5370,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &2010164234
 Transform:
@@ -5239,6 +5429,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: HingeR (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5088832366745971482, guid: 1b1246633e370cd47b2ece6842a59767,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 5088832366745971481, guid: 1b1246633e370cd47b2ece6842a59767,
         type: 3}
@@ -5389,6 +5584,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: HingeR (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 5088832366745971482, guid: 1b1246633e370cd47b2ece6842a59767,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 5088832366745971481, guid: 1b1246633e370cd47b2ece6842a59767,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5537,6 +5737,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Plank (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6914732015056333778, guid: ff336082588361d4587066b0e79c86d3,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 6914732015056333783, guid: ff336082588361d4587066b0e79c86d3,
         type: 3}
@@ -5731,10 +5936,15 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6504108053561774442, guid: c7567a5cd43d542448b640dd8537ad3e,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 6504108053561774446, guid: c7567a5cd43d542448b640dd8537ad3e,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -1.97
       objectReference: {fileID: 0}
     - target: {fileID: 6504108053561774446, guid: c7567a5cd43d542448b640dd8537ad3e,
         type: 3}
