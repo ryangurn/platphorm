@@ -15,8 +15,11 @@ public class Attack : MonoBehaviour
             if (Vector3.Distance(g.transform.position, transform.position) < 3)
             {
                 g.GetComponent<Health>().HealthLevel -= .015f;
+                g.GetComponent<Health>().RunDamageAnimation();
             }
         }
+
+
 
     }
 }

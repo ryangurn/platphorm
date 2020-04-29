@@ -6,9 +6,9 @@ public class Health : MonoBehaviour
 {
     public float HealthLevel;
 
+
     void Update()
     {
-
         TextMesh tm = GetComponentInChildren<TextMesh>();
         tm.text = new string('-', Mathf.FloorToInt(HealthLevel));
 
@@ -40,6 +40,8 @@ public class Health : MonoBehaviour
 
     }
 
+
+
     void LateUpdate()
     {  
         if (HealthLevel < 0.1f)
@@ -47,4 +49,15 @@ public class Health : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    public IEnumerator RunDamageAnimation()
+    {
+        GetComponent<ParticleSystem>().Play();
+
+        yield return new WaitForSeconds(1);
+
+        GetComponent<ParticleSystem>().Stop();
+
+    }
+
 }
