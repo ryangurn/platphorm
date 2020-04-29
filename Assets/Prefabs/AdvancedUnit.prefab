@@ -94,8 +94,8 @@ GameObject:
   - component: {fileID: 2356921968351508834}
   - component: {fileID: 65316954524695212}
   - component: {fileID: 4720224248707268349}
-  - component: {fileID: 1377899240955615545}
-  - component: {fileID: 28346799898833723}
+  - component: {fileID: 4530784853480812145}
+  - component: {fileID: 320390799286388189}
   m_Layer: 0
   m_Name: AdvancedUnit
   m_TagString: Player
@@ -252,7 +252,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HealthLevel: 4
---- !u!199 &1377899240955615545
+--- !u!199 &4530784853480812145
 ParticleSystemRenderer:
   serializedVersion: 6
   m_ObjectHideFlags: 0
@@ -314,7 +314,7 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!198 &28346799898833723
+--- !u!198 &320390799286388189
 ParticleSystem:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -330,7 +330,7 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -1142,7 +1142,7 @@ ParticleSystem:
           m_PostInfinity: 2
           m_RotationOrder: 4
   EmissionModule:
-    enabled: 0
+    enabled: 1
     serializedVersion: 4
     rateOverTime:
       serializedVersion: 2

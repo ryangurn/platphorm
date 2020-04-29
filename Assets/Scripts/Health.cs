@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    public float HealthLevel;
-
+    public float HealthLevel = 4;
 
     void Update()
     {
@@ -37,9 +36,7 @@ public class Health : MonoBehaviour
 
         tm.transform.forward = Camera.main.transform.forward;
 
-
     }
-
 
 
     void LateUpdate()
@@ -50,13 +47,21 @@ public class Health : MonoBehaviour
         }
     }
 
-    public IEnumerator RunDamageAnimation()
+    public void RunDamageAnimation()
+    {
+        
+        StartCoroutine(Wait());
+        
+
+
+    }
+
+    private IEnumerator Wait()
     {
         GetComponent<ParticleSystem>().Play();
-
         yield return new WaitForSeconds(1);
-
         GetComponent<ParticleSystem>().Stop();
+        yield break;
 
     }
 
