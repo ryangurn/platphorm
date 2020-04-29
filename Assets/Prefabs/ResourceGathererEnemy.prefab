@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 134855614852833372}
   - component: {fileID: 5521740317201296456}
   - component: {fileID: 8974597485301888795}
-  - component: {fileID: 9025625744329972680}
   m_Layer: 0
   m_Name: ResourceGathererEnemy
   m_TagString: Enemy
@@ -147,19 +146,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HealthLevel: 4
---- !u!114 &9025625744329972680
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3778109309519788309}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df85b408a7a687749867e62e012d1433, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MyEnemy: Player
 --- !u!1 &7375263876647192979
 GameObject:
   m_ObjectHideFlags: 0
