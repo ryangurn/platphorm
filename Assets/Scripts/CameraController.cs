@@ -6,6 +6,7 @@ public class CameraController : MonoBehaviour
 {
 	public float MouseSpeed = 3.5f;
 	public float KeyboardSpeed = 50.0f; //regular speed
+	public float ZoomSpeed = 2.0f;
 	private float m_shiftAdd = 250.0f; //multiplied by how long shift is held.  Basically running
 	private float m_maxShift = 1000.0f; //Maximum speed when holdin gshift
 	private float m_totalRun = 1.0f; 
@@ -14,7 +15,7 @@ public class CameraController : MonoBehaviour
 
 	void Update () 
 	{	   
-		if ( Input.GetMouseButton(0) ) 
+		if ( Input.GetMouseButton(0) && (Input.GetKey(KeyCode.LeftAlt) || Input.GetKey(KeyCode.RightAlt)) ) 
 		{
 			transform.Rotate(new Vector3(Input.GetAxis("Mouse Y") * MouseSpeed, -Input.GetAxis("Mouse X") * MouseSpeed, 0));
 			m_mouseX = transform.rotation.eulerAngles.x;
@@ -40,17 +41,21 @@ public class CameraController : MonoBehaviour
 	   
 		p = p * Time.deltaTime;
 		Vector3 newPosition = transform.position;
-		if (Input.GetKey(KeyCode.Space))
+		if (Input.GetAxis("Mouse ScrollWheel") > 0)
 		{ 
-			//If player wants to move on X and Z axis only
+			transform.Translate(ZoomSpeed * new Vector3(0, 0 , 1));
+		} 
+		else if (Input.GetAxis("Mouse ScrollWheel") < 0)
+		{
+			transform.Translate(ZoomSpeed * new Vector3(0, 0, -1));
+		}
+		else
+		{
+			//If player wants to move on X and Z axis only which they always do
 			transform.Translate(p);
 			newPosition.x = transform.position.x;
 			newPosition.z = transform.position.z;
 			transform.position = newPosition;
-		}
-		else
-		{
-			transform.Translate(p);
 		}
 	   
 	}
