@@ -6,11 +6,19 @@ public class Health : MonoBehaviour
 {
     public float HealthLevel = 4;
 
+
     void Update()
     {
         TextMesh tm = GetComponentInChildren<TextMesh>();
-        tm.text = new string('-', Mathf.FloorToInt(HealthLevel));
 
+        if (Mathf.FloorToInt(HealthLevel) < 0)
+        {
+            tm.text = "";
+        }
+        else
+        {
+            tm.text = new string('-', Mathf.FloorToInt(HealthLevel));
+        }
         Color color;
 
         switch (Mathf.FloorToInt(HealthLevel))
@@ -41,7 +49,7 @@ public class Health : MonoBehaviour
 
     void LateUpdate()
     {  
-        if (HealthLevel < 0.1f)
+        if (HealthLevel < 0f)
         {
             Destroy(gameObject);
         }
@@ -50,19 +58,24 @@ public class Health : MonoBehaviour
     public void RunDamageAnimation()
     {
         
-        StartCoroutine(Wait());
+        StartCoroutine(StartPS());
         
-
 
     }
 
-    private IEnumerator Wait()
+    private IEnumerator StartPS()
     {
-        GetComponent<ParticleSystem>().Play();
-        yield return new WaitForSeconds(1);
-        GetComponent<ParticleSystem>().Stop();
-        yield break;
+        MeshRenderer[] gChildren = GetComponentsInChildren<MeshRenderer>();
+        foreach (MeshRenderer mr in gChildren)
+        {
+            if (mr.gameObject.name == "Damage")
+            {
+                mr.enabled = true;
+                yield return new WaitForSeconds(1);
+                mr.enabled = false;
+            }
 
+        }
     }
 
 }
