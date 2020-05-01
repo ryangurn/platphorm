@@ -8,7 +8,7 @@ public class Selection : MonoBehaviour
 	Vector2 cur = new Vector2(0, 0);  //inits member variable to store x, y of the current position of the mouse after initial click 
 	bool visible = false;
 
-	Rect currentRect() //computes the selection rectangle
+	Rect CurrentRect() //computes the selection rectangle
 	{
 		Vector2 min = new Vector2(Mathf.Min(start.x, cur.x),  //necessary to enable player can draw the selection in any direction
 								  Mathf.Min(start.y, cur.y));
@@ -48,13 +48,13 @@ public class Selection : MonoBehaviour
 				Vector2 screenPos = new Vector2(p.x, Screen.height - p.y);
 
 				// is this inside our selection rectangle?
-				if (currentRect().Contains(screenPos))
+				if (CurrentRect().Contains(screenPos))
 				{
-					setSelectedSymbolVis(g, true); //add mesh rendering to the SelectedSymbol object of this game object
+					SetSelectedSymbolVis(g, true); //add mesh rendering to the SelectedSymbol object of this game object
 				}
 				else
 				{
-					setSelectedSymbolVis(g, false); //remove it for units no longer in the selection
+					SetSelectedSymbolVis(g, false); //remove it for units no longer in the selection
 				}       
 			}
 
@@ -62,7 +62,7 @@ public class Selection : MonoBehaviour
 		}
 	}
 
-	void setSelectedSymbolVis(GameObject g, bool visible)
+	void SetSelectedSymbolVis(GameObject g, bool visible)
 	{
 		MeshRenderer[] gChildren = g.GetComponentsInChildren<MeshRenderer>();
 		foreach (MeshRenderer mr in gChildren)
@@ -79,7 +79,7 @@ public class Selection : MonoBehaviour
 	{
 		if (visible && !cur.Equals(start)) //selection rectangle should be visible while the selection is happening & mouse has been moved from intial click
 		{
-			GUI.Box(currentRect(), "");
+			GUI.Box(CurrentRect(), "");
 		}
 	}
 }
