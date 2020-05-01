@@ -18,6 +18,18 @@ public class PlayerMove : MonoBehaviour
             
         }
 
+
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+
+        if (Vector3.Distance(GetComponent<UnityEngine.AI.NavMeshAgent>().destination, transform.position) < 6f)
+        {
+            GetComponent<UnityEngine.AI.NavMeshAgent>().destination = transform.position;
+        }
+        
+
     }
 
     // Find out if it's selected i.e. if SelectionSymbol is visible
