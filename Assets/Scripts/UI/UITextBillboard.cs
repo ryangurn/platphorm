@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class UITextBillboard : MonoBehaviour
 {
-    public Transform cameraTransform;
+    public Camera cameraTransform;
 
     // Start is called before the first frame update
     void Start()
@@ -15,6 +15,6 @@ public class UITextBillboard : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-      transform.rotation = cameraTransform.rotation;
+      transform.rotation = cameraTransform.transform.rotation;
     }
 }
