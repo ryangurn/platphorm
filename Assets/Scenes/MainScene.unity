@@ -256,6 +256,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7966224456314259592, guid: 0de0eeccd2cafd5489553e347dad783a,
+        type: 3}
+      propertyPath: cameraTransform
+      value: 
+      objectReference: {fileID: 2122543373}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0de0eeccd2cafd5489553e347dad783a, type: 3}
 --- !u!4 &66573313 stripped
@@ -337,6 +342,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 699987209849324819, guid: eeb1629bfbd4f604e8df0cc68c5dd84d,
+        type: 3}
+      propertyPath: cameraTransform
+      value: 
+      objectReference: {fileID: 2122543373}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eeb1629bfbd4f604e8df0cc68c5dd84d, type: 3}
 --- !u!1 &191686799
@@ -697,6 +707,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3717157895021738206, guid: 88e1d80468f204744a9e4fdfbb5de8a3,
+        type: 3}
+      propertyPath: cameraTransform
+      value: 
+      objectReference: {fileID: 2122543373}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 88e1d80468f204744a9e4fdfbb5de8a3, type: 3}
 --- !u!4 &681963247 stripped
@@ -1019,7 +1034,7 @@ PrefabInstance:
     - target: {fileID: 6882475918712747047, guid: 6668ae3acd57a7a428eba997c722b690,
         type: 3}
       propertyPath: m_Name
-      value: 'Ore Pile (Platform #1)'
+      value: OrePile
       objectReference: {fileID: 0}
     - target: {fileID: 6882475918712747044, guid: 6668ae3acd57a7a428eba997c722b690,
         type: 3}
@@ -1351,6 +1366,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7070139713084148907, guid: fb4d9668b1e212d4db4030d9dbb51d59,
+        type: 3}
+      propertyPath: cameraTransform
+      value: 
+      objectReference: {fileID: 2122543373}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fb4d9668b1e212d4db4030d9dbb51d59, type: 3}
 --- !u!4 &1321719856 stripped
@@ -1432,6 +1452,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6547487604532866123, guid: 26c4343f0cf72c24abb6264b322025a2,
+        type: 3}
+      propertyPath: cameraTransform
+      value: 
+      objectReference: {fileID: 2122543373}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 26c4343f0cf72c24abb6264b322025a2, type: 3}
 --- !u!1001 &1378412084
@@ -1501,6 +1526,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5400142343962447753, guid: f43973346c01c4145a10403936a047dc,
+        type: 3}
+      propertyPath: cameraTransform
+      value: 
+      objectReference: {fileID: 2122543373}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f43973346c01c4145a10403936a047dc, type: 3}
 --- !u!1 &1560502908
@@ -1705,6 +1735,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5796505898190912556, guid: 4edb12cd65c57f846bd6a4c1664112be,
+        type: 3}
+      propertyPath: cameraTransform
+      value: 
+      objectReference: {fileID: 2122543373}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4edb12cd65c57f846bd6a4c1664112be, type: 3}
 --- !u!1001 &1640636238
@@ -1774,6 +1809,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6160292545073761518, guid: f6fb3b4510814ae43af779a1b1d6fc21,
+        type: 3}
+      propertyPath: cameraTransform
+      value: 
+      objectReference: {fileID: 2122543373}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f6fb3b4510814ae43af779a1b1d6fc21, type: 3}
 --- !u!4 &1677338321 stripped
