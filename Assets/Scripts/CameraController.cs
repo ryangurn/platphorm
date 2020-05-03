@@ -4,18 +4,22 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+	public float CameraMinX = -65.0f;
+	public float CameraMinZ = -20.0f;
+	public float CameraMaxX = 20.0f;
+	public float CameraMaxZ = 20.0f;
 	public float MouseSpeed = 3.5f;
 	public float KeyboardSpeed = 50.0f; //regular speed
 	public float ZoomSpeed = 2.0f;
 	private float m_shiftAdd = 250.0f; //multiplied by how long shift is held.  Basically running
 	private float m_maxShift = 1000.0f; //Maximum speed when holdin gshift
-	private float m_totalRun = 1.0f; 
+	private float m_totalRun = 1.0f;
 	private float m_mouseX;
 	private float m_mouseY;
 
-	void Update () 
-	{	   
-		if ( Input.GetMouseButton(0) && (Input.GetKey(KeyCode.LeftAlt) || Input.GetKey(KeyCode.RightAlt)) ) 
+	void Update ()
+	{
+		if ( Input.GetMouseButton(0) && (Input.GetKey(KeyCode.LeftAlt) || Input.GetKey(KeyCode.RightAlt)) )
 		{
 			transform.Rotate(new Vector3(Input.GetAxis("Mouse Y") * MouseSpeed, -Input.GetAxis("Mouse X") * MouseSpeed, 0));
 			m_mouseX = transform.rotation.eulerAngles.x;
@@ -38,13 +42,13 @@ public class CameraController : MonoBehaviour
 			m_totalRun = Mathf.Clamp(m_totalRun * 0.5f, 1f, 1000f);
 			p = p * KeyboardSpeed;
 		}
-	   
+
 		p = p * Time.deltaTime;
 		Vector3 newPosition = transform.position;
 		if (Input.GetAxis("Mouse ScrollWheel") > 0)
-		{ 
+		{
 			transform.Translate(ZoomSpeed * new Vector3(0, 0 , 1));
-		} 
+		}
 		else if (Input.GetAxis("Mouse ScrollWheel") < 0)
 		{
 			transform.Translate(ZoomSpeed * new Vector3(0, 0, -1));
@@ -53,15 +57,19 @@ public class CameraController : MonoBehaviour
 		{
 			//If player wants to move on X and Z axis only which they always do
 			transform.Translate(p);
-			newPosition.x = transform.position.x;
-			newPosition.z = transform.position.z;
+			// 	Mathf.Clamp(transform.position.x, CameraMinX, CameraMaxX),
+			// Mathf.Clamp(transform.position.y, MIN_Y, MAX_Y),
+			// Mathf.Clamp(transform.position.z, CameraMinZ, CameraMaxZ));
+			// adding bounding?
+			newPosition.x = Mathf.Clamp(transform.position.x, CameraMinX, CameraMaxX);
+			newPosition.z = Mathf.Clamp(transform.position.z, CameraMinZ, CameraMaxZ);
 			transform.position = newPosition;
 		}
-	   
+
 	}
-	 
-	private Vector3 GetBaseInput() 
-	{ 
+
+	private Vector3 GetBaseInput()
+	{
 	//returns the basic values, if it's 0 than it's not active.
 		Vector3 p_Velocity = new Vector3();
 
