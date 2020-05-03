@@ -68,7 +68,7 @@ public class Health : MonoBehaviour
         MeshRenderer[] gChildren = GetComponentsInChildren<MeshRenderer>();
         foreach (MeshRenderer mr in gChildren)
         {
-            if (mr.gameObject.name == "Damage")
+            if (mr.gameObject.name == "Damage" && mr.enabled == false)
             {
                 mr.enabled = true;
                 yield return new WaitForSeconds(1);
