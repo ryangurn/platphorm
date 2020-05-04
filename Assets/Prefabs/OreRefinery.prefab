@@ -123,7 +123,7 @@ GameObject:
   - component: {fileID: 7261111068964398867}
   m_Layer: 0
   m_Name: OreRefinery
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
