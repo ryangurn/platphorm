@@ -16,7 +16,7 @@ public class UIPlayerHealth : MonoBehaviour
 
 	void Update()
 	{
-		players = GameObject.FindGameObjectsWithTag("Enemy");
+		players = GameObject.FindGameObjectsWithTag("Player");
 		int length = players.Length;
 		int i = 0;
 
