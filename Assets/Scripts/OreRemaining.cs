@@ -10,9 +10,10 @@ public class OreRemaining : MonoBehaviour
     {
         TextMesh tm = GetComponentInChildren<TextMesh>();
 
-        if (Mathf.FloorToInt(OreContent) < 0)
+        if (Mathf.FloorToInt(OreContent) <= 0)
         {
-            tm.text = "";
+            Destroy(gameObject);
+
         }
         else
         {

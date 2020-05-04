@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 4406988667338579520}
   m_Layer: 0
   m_Name: Ore (2)
-  m_TagString: Untagged
+  m_TagString: Ore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4864,7 +4864,7 @@ GameObject:
   - component: {fileID: 8251952204158266327}
   m_Layer: 0
   m_Name: Ore (3)
-  m_TagString: Untagged
+  m_TagString: Ore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10034,7 +10034,7 @@ GameObject:
   - component: {fileID: 4648939495780594927}
   m_Layer: 0
   m_Name: Ore (1)
-  m_TagString: Untagged
+  m_TagString: Ore
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14948,6 +14948,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Ore (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4466986750051784869, guid: dbe86260f0dfbd34dbfd2f967e893f91,
+        type: 3}
+      propertyPath: m_TagString
+      value: Ore
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dbe86260f0dfbd34dbfd2f967e893f91, type: 3}

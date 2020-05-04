@@ -120,6 +120,7 @@ GameObject:
   - component: {fileID: 3778109309519788307}
   - component: {fileID: 2219336813208719370}
   - component: {fileID: 3797451941021776585}
+  - component: {fileID: 7261111068964398867}
   m_Layer: 0
   m_Name: OreRefinery
   m_TagString: Untagged
@@ -229,5 +230,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2f8e217062fb6524f907f36eca332f92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7261111068964398867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3778109309519788309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f053a6463e2ac954a986378f436c07aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
