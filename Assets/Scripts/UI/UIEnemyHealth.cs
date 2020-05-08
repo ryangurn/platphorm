@@ -23,7 +23,7 @@ public class UIEnemyHealth : MonoBehaviour
 		float h = 0;
 		for (; i < length; i++)
 		{
-			if(enemies[i])
+			if(enemies[i].GetComponent<Health>())
 			{
 				h += enemies[i].GetComponent<Health>().HealthLevel;
 			}

@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Harvester : MonoBehaviour
+public class EnemyHarvester : MonoBehaviour
 {
     private bool isFull = false;
-    private bool hasOrePileSet = false;
 
     public string myTeam;
     private Vector3 myOrePileLocation;
@@ -21,56 +20,37 @@ public class Harvester : MonoBehaviour
                 mr.enabled = true;
             }
 
-            else if(mr.gameObject.name == "Payload")
+            else if (mr.gameObject.name == "Payload")
             {
                 mr.enabled = false;
             }
         }
 
-        if (hasOrePileSet && !isFull)
-        {
-            hasOrePileSet = false;
-            GameObject[] ores = GameObject.FindGameObjectsWithTag("Ore");
-            foreach (GameObject ore in ores)
-            {
-                if (Vector3.Distance(ore.transform.position, myOrePileLocation) < 7)
-                {
-                    hasOrePileSet = true;
-                    break;
-                }
-            }
-          
-            GetComponent<UnityEngine.AI.NavMeshAgent>().destination = myOrePileLocation;
-
-        }
-
-        if (!hasOrePileSet)
-        {
-            GameObject[] ores = GameObject.FindGameObjectsWithTag("Ore");
-            foreach (GameObject ore in ores)
-            {
-                if (Vector3.Distance(ore.transform.position, transform.position) < 3)
-                {
-                    myOrePileLocation = ore.transform.position;
-                    hasOrePileSet = true;
-                    break;
-                }
-            }
-        }
-
         if (!isFull)
         {
+            float shortestDistance = Mathf.Infinity;
+            GameObject bestOre = gameObject;
             GameObject[] ores = GameObject.FindGameObjectsWithTag("Ore");
             foreach (GameObject ore in ores)
             {
-                if (Vector3.Distance(ore.transform.position, transform.position) < 3.5)
+                if (Vector3.Distance(ore.transform.position, transform.position) < shortestDistance)
+                {
+                    shortestDistance = Vector3.Distance(ore.transform.position, transform.position);
+                    bestOre = ore;
+                }
+
+                if (Vector3.Distance(ore.transform.position, transform.position) < 3)
                 {
                     ore.GetComponent<OreRemaining>().OreContent -= 5f;
                     isFull = true;
-                    break;
+                    
                 }
             }
+
+            GetComponent<UnityEngine.AI.NavMeshAgent>().destination = bestOre.transform.position;
+
         }
+
 
         else
         {
@@ -88,8 +68,6 @@ public class Harvester : MonoBehaviour
                     }
                 }
 
-                
-                
             }
         }
 

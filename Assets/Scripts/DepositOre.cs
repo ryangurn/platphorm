@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class DepositOre : MonoBehaviour
 {
+    public string MyTeam;
     public void Deposit()
     {
-        print("deposited");
+        GameObject.FindGameObjectWithTag(MyTeam + "SupplyInventory").GetComponent<SupplyInventory>().Supplies += 100;
     }
 }

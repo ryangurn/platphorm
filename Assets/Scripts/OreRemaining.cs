@@ -14,7 +14,7 @@ public class OreRemaining : MonoBehaviour
         {
             Destroy(gameObject);
 
-        }
+        }/*
         else
         {
             tm.text = new string('-', Mathf.FloorToInt(OreContent) / 5);
@@ -42,7 +42,7 @@ public class OreRemaining : MonoBehaviour
 
         tm.GetComponent<Renderer>().material.color = color;
 
-        tm.transform.forward = Camera.main.transform.forward;
+        tm.transform.forward = Camera.main.transform.forward;*/
     }
 
 }

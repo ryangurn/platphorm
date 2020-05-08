@@ -23,7 +23,7 @@ public class UIPlayerHealth : MonoBehaviour
 		float h = 0;
 		for (; i < length; i++)
 		{
-			if(players[i])
+			if(players[i].GetComponent<Health>())
 			{
 				h += players[i].GetComponent<Health>().HealthLevel;
 			}

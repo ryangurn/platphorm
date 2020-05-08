@@ -74,7 +74,7 @@ public class TFMCamera : MonoBehaviour
 
         //this block steps the raycast's vector to the right one pixel until it's looking at a "Ground"-tagged object. This prevents the height from rising when a unit is in the middle of the screen
         int offset = 0;
-        while (hit.collider.gameObject.tag != "Ground")
+        while (hit.collider != null && hit.collider.gameObject.tag != "Ground")
         {
             ray = Camera.main.ScreenPointToRay(new Vector2(Screen.width / 2 + offset++, Screen.height / 2)); //find the ray to that point on screen 
             Physics.Raycast(ray, out hit);
