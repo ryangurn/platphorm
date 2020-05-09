@@ -21,8 +21,8 @@ public class FactoryBuildEnemy : MonoBehaviour
             float x = pos.x - Random.Range(.5f, 5f);
             float y = pos.y;
             float z = pos.z;
-            float angle = Random.Range(0.0f, 90.0f);
-            Instantiate(BasicUnit, new Vector3(x, y, z), Quaternion.Euler(0.0f, angle, 0.0f));
+
+            Instantiate(BasicUnit, new Vector3(x, y, z), Quaternion.Euler(0.0f, 0f, 0.0f));
         }
     }
 
@@ -37,8 +37,8 @@ public class FactoryBuildEnemy : MonoBehaviour
             float x = pos.x - Random.Range(.5f, 5f);
             float y = pos.y;
             float z = pos.z;
-            float angle = Random.Range(0.0f, 90.0f);
-            Instantiate(AdvancedUnit, new Vector3(x, y, z), Quaternion.Euler(0.0f, angle, 0.0f));
+
+            Instantiate(AdvancedUnit, new Vector3(x, y, z), Quaternion.Euler(0.0f, 0f, 0.0f));
         }
     }
 }

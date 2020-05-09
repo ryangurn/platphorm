@@ -11,10 +11,8 @@ GameObject:
   - component: {fileID: 4461282822026082858}
   - component: {fileID: 4461282822026082859}
   - component: {fileID: 4461282822026082860}
-  - component: {fileID: 4461282822026082857}
   - component: {fileID: 4461282822026082856}
   - component: {fileID: 5714740058528000523}
-  - component: {fileID: 6440525282614552097}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -87,25 +85,6 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4461282822026082861}
   m_Enabled: 1
---- !u!114 &4461282822026082857
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4461282822026082861}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32da1e9e963b27f4f8b9d029252b50ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CameraMinX: -65
-  CameraMinZ: -20
-  CameraMaxX: 20
-  CameraMaxZ: 20
-  MouseSpeed: 3.5
-  KeyboardSpeed: 50
-  ZoomSpeed: 2
 --- !u!114 &4461282822026082856
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -130,16 +109,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de8132add31f7e54da99a161562499ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CamHeight: 12
---- !u!114 &6440525282614552097
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4461282822026082861}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2b017350c986d0a4b9b6c4d9c463d66b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  ScrollSpeed: 1

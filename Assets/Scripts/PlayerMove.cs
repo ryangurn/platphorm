@@ -3,9 +3,21 @@ using System.Collections;
 
 public class PlayerMove : MonoBehaviour
 {
+
+
     void Update()
     {
-        if (Input.GetMouseButtonDown(1) && IsSelected()) //if the object is selected and player right clicked a location
+       
+
+
+        
+
+
+    }
+
+    public void Move()
+    {
+        if (Input.GetMouseButtonUp(1) && IsSelected()) //if the object is selected and player right clicked a location
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition); //find the ray to that point on screen
             RaycastHit hit;
@@ -15,10 +27,8 @@ public class PlayerMove : MonoBehaviour
                 return;
             else
                 GetComponent<UnityEngine.AI.NavMeshAgent>().destination = hit.point; //otherwise, go to the point
-            
+
         }
-
-
     }
 
     void OnTriggerEnter(Collider other)
