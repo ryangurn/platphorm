@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 1602918138126457843}
   - component: {fileID: 7296731015453117478}
   - component: {fileID: 4967605814816480633}
-  - component: {fileID: 3774971826255103990}
+  - component: {fileID: 8219423559488893173}
   m_Layer: 0
   m_Name: Factory
   m_TagString: Player
@@ -145,7 +145,7 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0.7, y: 1.5, z: 0}
   m_TimeToStationary: 0.5
---- !u!114 &3774971826255103990
+--- !u!114 &8219423559488893173
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -154,13 +154,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 2334531832694450656}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ce19a77ba2a7f04da44bbe257d67db8, type: 3}
+  m_Script: {fileID: 11500000, guid: f677760460bd3f1459a06dd52ef8fcba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  basicUnit: {fileID: 3778109309519788309, guid: f5edeb32540d90c4e9c8e62206353001,
-    type: 3}
-  advancedUnit: {fileID: 3778109309519788309, guid: b5b482753d155ff46ad08c4b75304d77,
-    type: 3}
+  BasicUnit: {fileID: 0}
+  AdvancedUnit: {fileID: 0}
+  Harvester: {fileID: 0}
 --- !u!1 &5973197385539741359
 GameObject:
   m_ObjectHideFlags: 0

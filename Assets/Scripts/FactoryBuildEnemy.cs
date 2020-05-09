@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FactoryBuild : MonoBehaviour
+public class FactoryBuildEnemy : MonoBehaviour
 {
-    public GameObject basicUnit, advancedUnit;
+    public GameObject BasicUnit, AdvancedUnit, Harvester;
 
     void Start()
     {
@@ -22,7 +22,7 @@ public class FactoryBuild : MonoBehaviour
             float y = pos.y;
             float z = pos.z;
             float angle = Random.Range(0.0f, 90.0f);
-            Instantiate(basicUnit, new Vector3(x, y, z), Quaternion.Euler(0.0f, angle, 0.0f));
+            Instantiate(BasicUnit, new Vector3(x, y, z), Quaternion.Euler(0.0f, angle, 0.0f));
         }
     }
 
@@ -38,7 +38,7 @@ public class FactoryBuild : MonoBehaviour
             float y = pos.y;
             float z = pos.z;
             float angle = Random.Range(0.0f, 90.0f);
-            Instantiate(advancedUnit, new Vector3(x, y, z), Quaternion.Euler(0.0f, angle, 0.0f));
+            Instantiate(AdvancedUnit, new Vector3(x, y, z), Quaternion.Euler(0.0f, angle, 0.0f));
         }
     }
 }
