@@ -597,7 +597,7 @@ PrefabInstance:
     - target: {fileID: 3778109309519788308, guid: 88e1d80468f204744a9e4fdfbb5de8a3,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.4999995
+      value: 4.96
       objectReference: {fileID: 0}
     - target: {fileID: 3778109309519788308, guid: 88e1d80468f204744a9e4fdfbb5de8a3,
         type: 3}
@@ -1310,7 +1310,7 @@ PrefabInstance:
     - target: {fileID: 6882475918712747044, guid: 6668ae3acd57a7a428eba997c722b690,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.3199997
+      value: 5.15
       objectReference: {fileID: 0}
     - target: {fileID: 6882475918712747044, guid: 6668ae3acd57a7a428eba997c722b690,
         type: 3}
@@ -1604,7 +1604,7 @@ PrefabInstance:
     - target: {fileID: 3778109309519788308, guid: f43973346c01c4145a10403936a047dc,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7
+      value: 4.97
       objectReference: {fileID: 0}
     - target: {fileID: 3778109309519788308, guid: f43973346c01c4145a10403936a047dc,
         type: 3}
@@ -1813,7 +1813,7 @@ PrefabInstance:
     - target: {fileID: 3778109309519788308, guid: 4edb12cd65c57f846bd6a4c1664112be,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.49
+      value: 4.965
       objectReference: {fileID: 0}
     - target: {fileID: 3778109309519788308, guid: 4edb12cd65c57f846bd6a4c1664112be,
         type: 3}
@@ -1887,12 +1887,12 @@ PrefabInstance:
     - target: {fileID: 3778109309519788308, guid: f6fb3b4510814ae43af779a1b1d6fc21,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -47.700005
+      value: -45.71
       objectReference: {fileID: 0}
     - target: {fileID: 3778109309519788308, guid: f6fb3b4510814ae43af779a1b1d6fc21,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.45
+      value: 4.98
       objectReference: {fileID: 0}
     - target: {fileID: 3778109309519788308, guid: f6fb3b4510814ae43af779a1b1d6fc21,
         type: 3}
@@ -2114,11 +2114,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5714740058528000523, guid: 332da4f06e14c0543bffc1497112ea1b,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4461282822026082861, guid: 332da4f06e14c0543bffc1497112ea1b,
         type: 3}
       propertyPath: m_Name
@@ -2178,6 +2173,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5714740058528000523, guid: 332da4f06e14c0543bffc1497112ea1b,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 332da4f06e14c0543bffc1497112ea1b, type: 3}
@@ -2532,21 +2532,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1751950288}
     m_Modifications:
-    - target: {fileID: 8219423559488893173, guid: 0de0eeccd2cafd5489553e347dad783a,
-        type: 3}
-      propertyPath: BasicUnit
-      value: 
-      objectReference: {fileID: 422549470}
-    - target: {fileID: 8219423559488893173, guid: 0de0eeccd2cafd5489553e347dad783a,
-        type: 3}
-      propertyPath: AdvancedUnit
-      value: 
-      objectReference: {fileID: 1917257114}
-    - target: {fileID: 8219423559488893173, guid: 0de0eeccd2cafd5489553e347dad783a,
-        type: 3}
-      propertyPath: Harvester
-      value: 
-      objectReference: {fileID: 1193062209}
     - target: {fileID: 2334531832694450656, guid: 0de0eeccd2cafd5489553e347dad783a,
         type: 3}
       propertyPath: m_Name
@@ -2607,6 +2592,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8219423559488893173, guid: 0de0eeccd2cafd5489553e347dad783a,
+        type: 3}
+      propertyPath: BasicUnit
+      value: 
+      objectReference: {fileID: 422549470}
+    - target: {fileID: 8219423559488893173, guid: 0de0eeccd2cafd5489553e347dad783a,
+        type: 3}
+      propertyPath: AdvancedUnit
+      value: 
+      objectReference: {fileID: 1917257114}
+    - target: {fileID: 8219423559488893173, guid: 0de0eeccd2cafd5489553e347dad783a,
+        type: 3}
+      propertyPath: Harvester
+      value: 
+      objectReference: {fileID: 1193062209}
     - target: {fileID: 5592974932907101855, guid: 0de0eeccd2cafd5489553e347dad783a,
         type: 3}
       propertyPath: cameraTransform
