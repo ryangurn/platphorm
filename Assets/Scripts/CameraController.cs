@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+	// TODOS: Add in 7 pixel movement controls. (add a public var if desired for this, so that we can have a GUI option for it.)
+	// Move over height controls
 	public float CameraMinX = -65.0f;
 	public float CameraMinZ = -20.0f;
+	public float CameraMinY = 10.0f; // remove this once todo's are complete
 	public float CameraMaxX = 20.0f;
 	public float CameraMaxZ = 20.0f;
+	public float CameraMaxY = 50.0f;
 	public float MouseSpeed = 3.5f;
 	public float KeyboardSpeed = 50.0f; //regular speed
 	public float ZoomSpeed = 2.0f;
@@ -19,7 +23,7 @@ public class CameraController : MonoBehaviour
 
 	void Update ()
 	{
-		if ( Input.GetMouseButton(0) && (Input.GetKey(KeyCode.LeftAlt) || Input.GetKey(KeyCode.RightAlt)) )
+		if ( Input.GetMouseButton(1) )
 		{
 			transform.Rotate(new Vector3(Input.GetAxis("Mouse Y") * MouseSpeed, -Input.GetAxis("Mouse X") * MouseSpeed, 0));
 			m_mouseX = transform.rotation.eulerAngles.x;
@@ -47,21 +51,18 @@ public class CameraController : MonoBehaviour
 		Vector3 newPosition = transform.position;
 		if (Input.GetAxis("Mouse ScrollWheel") > 0)
 		{
-			transform.Translate(ZoomSpeed * new Vector3(0, 0 , 1));
+			transform.Translate(ZoomSpeed * new Vector3(0, 0 , 3f));
 		}
 		else if (Input.GetAxis("Mouse ScrollWheel") < 0)
 		{
-			transform.Translate(ZoomSpeed * new Vector3(0, 0, -1));
+			transform.Translate(ZoomSpeed * new Vector3(0, 0, -3f));
 		}
 		else
 		{
-			//If player wants to move on X and Z axis only which they always do
 			transform.Translate(p);
-			// 	Mathf.Clamp(transform.position.x, CameraMinX, CameraMaxX),
-			// Mathf.Clamp(transform.position.y, MIN_Y, MAX_Y),
-			// Mathf.Clamp(transform.position.z, CameraMinZ, CameraMaxZ));
-			// adding bounding?
 			newPosition.x = Mathf.Clamp(transform.position.x, CameraMinX, CameraMaxX);
+			//TODO: replace CameraMinY with thomases min height.
+			newPosition.y = Mathf.Clamp(transform.position.y, CameraMinY, CameraMaxY);
 			newPosition.z = Mathf.Clamp(transform.position.z, CameraMinZ, CameraMaxZ);
 			transform.position = newPosition;
 		}
