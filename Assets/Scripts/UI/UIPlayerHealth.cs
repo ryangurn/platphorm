@@ -7,25 +7,27 @@ public class UIPlayerHealth : MonoBehaviour
 {
 	GameObject[] players;
 	Text health;
-	float total;
+	
 
 	void Start()
 	{
 		health = GetComponent<Text>();
 	}
 
-	void Update()
+	void FixedUpdate()
 	{
 		players = GameObject.FindGameObjectsWithTag("Player");
-		int length = players.Length;
-		int i = 0;
+        int length = 0;
+        float total;
+        int h = 0;
 
-		float h = 0;
-		for (; i < length; i++)
+
+        foreach (GameObject g in players)
 		{
-			if(players[i].GetComponent<Health>())
+			if(g.GetComponent<Health>())
 			{
-				h += players[i].GetComponent<Health>().HealthLevel;
+                length++;
+                h += Mathf.FloorToInt(g.GetComponent<Health>().HealthLevel);
 			}
 		}
 

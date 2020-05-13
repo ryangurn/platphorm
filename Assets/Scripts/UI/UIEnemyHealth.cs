@@ -3,31 +3,39 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
 public class UIEnemyHealth : MonoBehaviour
 {
 	GameObject[] enemies;
 	Text health;
-	float total;
+    public bool HasUnits = true;
 
-	void Start()
+    void Start()
 	{
 		health = GetComponent<Text>();
 	}
 
-	void Update()
+	void FixedUpdate()
 	{
+        HasUnits = true;
 		enemies = GameObject.FindGameObjectsWithTag("Enemy");
-		int length = enemies.Length;
-		int i = 0;
+        int length = 0;
+        float total = 0;
+        int h = 0;
 
-		float h = 0;
-		for (; i < length; i++)
-		{
-			if(enemies[i].GetComponent<Health>())
+
+        foreach (GameObject g in enemies)
+        {
+			if(g.GetComponent<Health>())
 			{
-				h += enemies[i].GetComponent<Health>().HealthLevel;
+                length++;
+				h += Mathf.FloorToInt(g.GetComponent<Health>().HealthLevel);
 			}
 		}
+
+        if (length == 0)
+            HasUnits = false;
 
 		total = length * 4;
 

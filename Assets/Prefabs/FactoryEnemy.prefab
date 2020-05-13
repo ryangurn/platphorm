@@ -340,6 +340,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ce19a77ba2a7f04da44bbe257d67db8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BasicUnit: {fileID: 0}
-  AdvancedUnit: {fileID: 0}
-  Harvester: {fileID: 0}
+  BasicUnit: {fileID: 3778109309519788309, guid: 9517a9999bab42a4f83df7b6c33ab3e7,
+    type: 3}
+  AdvancedUnit: {fileID: 3778109309519788309, guid: 4576eb3ae18665b4c8987cebd341e7e8,
+    type: 3}
+  Harvester: {fileID: 3778109309519788309, guid: 0226ab5856352f44c82f9f1e16dedee5,
+    type: 3}

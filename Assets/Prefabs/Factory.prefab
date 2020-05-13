@@ -157,9 +157,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f677760460bd3f1459a06dd52ef8fcba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BasicUnit: {fileID: 0}
-  AdvancedUnit: {fileID: 0}
-  Harvester: {fileID: 0}
+  BasicUnit: {fileID: 3778109309519788309, guid: f5edeb32540d90c4e9c8e62206353001,
+    type: 3}
+  AdvancedUnit: {fileID: 3778109309519788309, guid: b5b482753d155ff46ad08c4b75304d77,
+    type: 3}
+  Harvester: {fileID: 3778109309519788309, guid: 3dabb8bb6df37cb43980c67b5db354c3,
+    type: 3}
 --- !u!1 &5973197385539741359
 GameObject:
   m_ObjectHideFlags: 0
