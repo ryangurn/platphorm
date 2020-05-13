@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 3778109309519788305}
   - component: {fileID: 3778109309519788307}
   - component: {fileID: 8962587472063959138}
-  - component: {fileID: 2925485477280017384}
   - component: {fileID: 6933485353448648475}
   - component: {fileID: 1050091299138386570}
   - component: {fileID: 1554850759068327800}
@@ -33,9 +32,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3778109309519788309}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.5, z: 0}
-  m_LocalScale: {x: 0.5, y: 1, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2298383773585955297}
   - {fileID: 1307647784857875203}
@@ -107,7 +106,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 3778109309519788309}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 1
+  m_Radius: 0.5
   m_Speed: 3
   m_Acceleration: 1
   avoidancePriority: 50
@@ -120,18 +119,6 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &2925485477280017384
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3778109309519788309}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f8e217062fb6524f907f36eca332f92, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &6933485353448648475
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -157,6 +144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HealthLevel: 4
+  damage: {fileID: 5846620230464262042}
 --- !u!114 &1554850759068327800
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -196,6 +184,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HealthLevel: 4
+  damage: {fileID: 5846620230464262042}
 --- !u!65 &917511366220852925
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -386,8 +375,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 620472208552657114}
-  - component: {fileID: 7264553152786751493}
-  - component: {fileID: 133758303585872582}
   m_Layer: 0
   m_Name: Damage
   m_TagString: Untagged
@@ -409,51 +396,6 @@ Transform:
   m_Father: {fileID: 3778109309519788308}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &7264553152786751493
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5846620230464262042}
-  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &133758303585872582
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5846620230464262042}
-  m_Enabled: 0
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 0a2721fa018f0da4c81cc57e64ccb277, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
 --- !u!1 &7655664976026216264
 GameObject:
   m_ObjectHideFlags: 0
@@ -601,6 +543,16 @@ PrefabInstance:
     - target: {fileID: -4216859302048453862, guid: 316ed3cc5734e17469ea8d6bce168954,
         type: 3}
       propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 316ed3cc5734e17469ea8d6bce168954,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -4216859302048453862, guid: 316ed3cc5734e17469ea8d6bce168954,
+        type: 3}
+      propertyPath: m_LocalScale.z
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: -113181020801827196, guid: 316ed3cc5734e17469ea8d6bce168954,
