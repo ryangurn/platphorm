@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class OreRemaining : MonoBehaviour
 {
-    public float OreContent = 20f;
+    public float OreContent;
+
+    void Start()
+    {
+      OreContent = Random.Range(100f, 1000f);
+    }
 
     void FixedUpdate()
     {
