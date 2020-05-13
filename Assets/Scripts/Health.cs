@@ -48,7 +48,7 @@ public class Health : MonoBehaviour
 
 
     void LateUpdate()
-    {  
+    {
         if (HealthLevel < 0f)
         {
             Destroy(gameObject);
@@ -57,25 +57,25 @@ public class Health : MonoBehaviour
 
     public void RunDamageAnimation()
     {
-        
-        StartCoroutine(StartPS());
-        
+
+        // StartCoroutine(StartPS());
+
 
     }
 
-    private IEnumerator StartPS()
-    {
-        MeshRenderer[] gChildren = GetComponentsInChildren<MeshRenderer>();
-        foreach (MeshRenderer mr in gChildren)
-        {
-            if (mr.gameObject.name == "Damage" && mr.enabled == false)
-            {
-                mr.enabled = true;
-                yield return new WaitForSeconds(1);
-                mr.enabled = false;
-            }
-
-        }
-    }
+    // private IEnumerator StartPS()
+    // {
+    //     // MeshRenderer[] gChildren = GetComponentsInChildren<MeshRenderer>();
+    //     // foreach (MeshRenderer mr in gChildren)
+    //     // {
+    //     //     if (mr.gameObject.name == "Damage" && mr.enabled == false)
+    //     //     {
+    //     //         mr.enabled = true;
+    //     //         yield return new WaitForSeconds(1);
+    //     //         mr.enabled = false;
+    //     //     }
+    //     //
+    //     // }
+    // }
 
 }
