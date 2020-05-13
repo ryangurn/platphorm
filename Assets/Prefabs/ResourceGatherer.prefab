@@ -226,7 +226,6 @@ GameObject:
   - component: {fileID: 831712699331856146}
   - component: {fileID: 1293869046989290286}
   - component: {fileID: 8943113355809975187}
-  - component: {fileID: 3835049919528677161}
   - component: {fileID: 5189536514368371355}
   m_Layer: 0
   m_Name: ResourceGatherer
@@ -281,7 +280,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 1
-  m_Speed: 2
+  m_Speed: 4
   m_Acceleration: 1
   avoidancePriority: 50
   m_AngularSpeed: 500
@@ -318,19 +317,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HealthLevel: 4
---- !u!65 &3835049919528677161
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3778109309519788309}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2, y: 0.5, z: 2}
-  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!114 &5189536514368371355
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -505,6 +491,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3778109309519788308}
     m_Modifications:
+    - target: {fileID: -927199367670048503, guid: 49dc9451b7a1a8b4189a836e9876684e,
+        type: 3}
+      propertyPath: m_Name
+      value: Harvester
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 49dc9451b7a1a8b4189a836e9876684e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -564,11 +555,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.y
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: -927199367670048503, guid: 49dc9451b7a1a8b4189a836e9876684e,
-        type: 3}
-      propertyPath: m_Name
-      value: Harvester
       objectReference: {fileID: 0}
     - target: {fileID: -113181020801827196, guid: 49dc9451b7a1a8b4189a836e9876684e,
         type: 3}

@@ -92,7 +92,6 @@ GameObject:
   - component: {fileID: 5197563475772405582}
   - component: {fileID: 65316954524695212}
   - component: {fileID: 4720224248707268349}
-  - component: {fileID: 7127767632252953061}
   m_Layer: 0
   m_Name: AdvancedUnit
   m_TagString: Player
@@ -232,20 +231,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HealthLevel: 4
-  damage: {fileID: 8636297550271224640}
---- !u!65 &7127767632252953061
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3778109309519788309}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2, y: 0.5, z: 2}
-  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1 &4153052551458617287
 GameObject:
   m_ObjectHideFlags: 0
@@ -526,7 +511,7 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: -2397996973257786244, guid: 7cc104c7909759c42b0cf85841836b34,
+    - target: {fileID: 1066910053003865102, guid: 7cc104c7909759c42b0cf85841836b34,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -536,7 +521,7 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: bd12ea0071eaf5c4680d5e8500c31733, type: 2}
-    - target: {fileID: 1066910053003865102, guid: 7cc104c7909759c42b0cf85841836b34,
+    - target: {fileID: -2397996973257786244, guid: 7cc104c7909759c42b0cf85841836b34,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
