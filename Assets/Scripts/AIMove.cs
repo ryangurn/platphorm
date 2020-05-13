@@ -25,7 +25,7 @@ public class AIMove : MonoBehaviour
 
         float distanceToPlayerUnit;
 
-        if (inPursuit)
+        if (inPursuit && pursuing != null)
         {
             distanceToPlayerUnit = Vector3.Distance(pursuing.transform.position, transform.position);
 
