@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 6655247039396229098}
   - component: {fileID: 1571068118498993903}
   - component: {fileID: 2233681429435432142}
+  - component: {fileID: 2099232029951579460}
   m_Layer: 0
   m_Name: BasicUnitEnemy
   m_TagString: Enemy
@@ -133,7 +134,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3
+  m_Speed: 3.5
   m_Acceleration: 3
   avoidancePriority: 50
   m_AngularSpeed: 500
@@ -171,7 +172,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HealthLevel: 4
-  damage: {fileID: 259044215790318997}
 --- !u!114 &2233681429435432142
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,6 +185,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MyEnemy: Player
+--- !u!65 &2099232029951579460
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3778109309519788309}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 0.5, z: 2}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1 &5784009098488266987
 GameObject:
   m_ObjectHideFlags: 0

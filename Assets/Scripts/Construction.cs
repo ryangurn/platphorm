@@ -104,13 +104,13 @@ public class Construction : MonoBehaviour
         else
         {
 
-            GUILayout.BeginArea(new Rect(Screen.width / 2 - 225,
+            GUILayout.BeginArea(new Rect(Screen.width / 2 - 260,
                                          Screen.height - 70,
-                                         140,
+                                         170,
                                          30), "", "box");
 
 
-            if (GUILayout.Button("Construct Basic Unit"))
+            if (GUILayout.Button("Construct Basic Unit-$300"))
             {
 
                 StartCoroutine(buildBasic());
@@ -120,11 +120,11 @@ public class Construction : MonoBehaviour
 
             GUILayout.BeginArea(new Rect(Screen.width / 2 - 75,
                                          Screen.height - 70,
-                                         170,
+                                         200,
                                          30), "", "box");
 
 
-            if (GUILayout.Button("Construct Advanced Unit"))
+            if (GUILayout.Button("Construct Advanced Unit-$800"))
             {
 
                 StartCoroutine(buildAdvanced());
@@ -132,13 +132,13 @@ public class Construction : MonoBehaviour
 
             GUILayout.EndArea();
 
-            GUILayout.BeginArea(new Rect(Screen.width / 2 + 105,
+            GUILayout.BeginArea(new Rect(Screen.width / 2 + 135,
                                          Screen.height - 70,
-                                         140,
+                                         170,
                                          30), "", "box");
 
 
-            if (GUILayout.Button("Construct Harvester"))
+            if (GUILayout.Button("Construct Harvester-$500"))
             {
                 StartCoroutine(buildHarvester());
             }

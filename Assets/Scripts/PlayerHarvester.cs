@@ -81,7 +81,7 @@ public class PlayerHarvester : MonoBehaviour
                 {
                     GetComponent<UnityEngine.AI.NavMeshAgent>().destination = g.transform.position;
 
-                    if (Vector3.Distance(g.transform.position, transform.position) < 4)
+                    if (Vector3.Distance(g.transform.position, transform.position) < 5)
                     {
                         isFull = false;
                         g.GetComponent<DepositOre>().Deposit();

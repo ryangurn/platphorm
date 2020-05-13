@@ -5,16 +5,6 @@ public class PlayerMove : MonoBehaviour
 {
 
 
-    void Update()
-    {
-       
-
-
-        
-
-
-    }
-
     public void Move()
     {
         if (Input.GetMouseButtonUp(1) && IsSelected()) //if the object is selected and player right clicked a location

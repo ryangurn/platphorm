@@ -122,6 +122,7 @@ GameObject:
   - component: {fileID: 6073981305308843984}
   - component: {fileID: 7733140779523302072}
   - component: {fileID: 6654872180268300523}
+  - component: {fileID: 1844696440143919172}
   m_Layer: 0
   m_Name: AdvancedUnitEnemy
   m_TagString: Enemy
@@ -210,7 +211,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3
+  m_Speed: 4.5
   m_Acceleration: 3
   avoidancePriority: 50
   m_AngularSpeed: 500
@@ -235,7 +236,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HealthLevel: 4
-  damage: {fileID: 1317295484637167755}
 --- !u!114 &7733140779523302072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -262,6 +262,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MyEnemy: Player
+--- !u!65 &1844696440143919172
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3778109309519788309}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 0.5, z: 2}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1 &5437671046649021206
 GameObject:
   m_ObjectHideFlags: 0

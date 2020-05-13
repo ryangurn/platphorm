@@ -244,7 +244,7 @@ Transform:
   m_GameObject: {fileID: 3778109309519788309}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0.5, z: 0}
-  m_LocalScale: {x: 0.5, y: 1, z: 0.5}
+  m_LocalScale: {x: 0.75, y: 1, z: 0.75}
   m_Children:
   - {fileID: 1728691382285674694}
   - {fileID: 5957710156593603733}
@@ -281,7 +281,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 1
-  m_Speed: 1
+  m_Speed: 2
   m_Acceleration: 1
   avoidancePriority: 50
   m_AngularSpeed: 500
@@ -505,11 +505,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3778109309519788308}
     m_Modifications:
-    - target: {fileID: -927199367670048503, guid: 49dc9451b7a1a8b4189a836e9876684e,
-        type: 3}
-      propertyPath: m_Name
-      value: Harvester
-      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 49dc9451b7a1a8b4189a836e9876684e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -569,6 +564,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: 49dc9451b7a1a8b4189a836e9876684e,
+        type: 3}
+      propertyPath: m_Name
+      value: Harvester
       objectReference: {fileID: 0}
     - target: {fileID: -113181020801827196, guid: 49dc9451b7a1a8b4189a836e9876684e,
         type: 3}
