@@ -342,9 +342,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 191686799}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ddafd1ad788a603408ea94dd76336de6, type: 3}
+  m_Script: {fileID: 11500000, guid: 01f07b13574e67d4cbf0cab11048712c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myTeam: Player
+  HasUnits: 1
 --- !u!1 &255922526
 GameObject:
   m_ObjectHideFlags: 0
@@ -2327,6 +2329,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4461282822026082861, guid: 332da4f06e14c0543bffc1497112ea1b,
+        type: 3}
+      propertyPath: m_Name
+      value: Main Camera
+      objectReference: {fileID: 0}
     - target: {fileID: 4461282822026082858, guid: 332da4f06e14c0543bffc1497112ea1b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2381,11 +2388,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4461282822026082861, guid: 332da4f06e14c0543bffc1497112ea1b,
-        type: 3}
-      propertyPath: m_Name
-      value: Main Camera
       objectReference: {fileID: 0}
     - target: {fileID: 5714740058528000523, guid: 332da4f06e14c0543bffc1497112ea1b,
         type: 3}
@@ -2483,7 +2485,7 @@ GameObject:
   - component: {fileID: 2044707347}
   m_Layer: 5
   m_Name: EnemyHealth
-  m_TagString: Untagged
+  m_TagString: EnemyHealth
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2563,6 +2565,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01f07b13574e67d4cbf0cab11048712c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  myTeam: Enemy
   HasUnits: 1
 --- !u!1 &2065987930
 GameObject:
