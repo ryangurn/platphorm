@@ -2,17 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//attaches to canvas
 public class UITextBillboard : MonoBehaviour
 {
     public Camera cameraTransform;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
     void Update()
     {
       transform.rotation = cameraTransform.transform.rotation;

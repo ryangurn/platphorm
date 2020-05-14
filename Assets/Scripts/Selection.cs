@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+//Attaches to camera. The selection box on screen: is represented with a GUI rectangle
 public class Selection : MonoBehaviour
 {
-
-	Vector2 start = new Vector2(0, 0); //this inits the member variable to store the x, y of the initial click of the selection
-	Vector2 cur = new Vector2(0, 0);  //inits member variable to store x, y of the current position of the mouse after initial click 
-	bool visible = false;
+	private Vector2 start = new Vector2(0, 0); //this inits the member variable to store the x, y of the initial click of the selection
+	private Vector2 cur = new Vector2(0, 0);  //inits member variable to store x, y of the current position of the mouse after initial click 
+	private bool visible = false;
 
 	Rect CurrentRect() //computes the selection rectangle
 	{

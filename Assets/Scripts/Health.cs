@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    public float HealthLevel = 4;
-
+    public float HealthLevel = 4; //everything has a default health level of 4
 
     void Update()
     {
@@ -17,11 +16,11 @@ public class Health : MonoBehaviour
         }
         else
         {
-            tm.text = new string('-', Mathf.FloorToInt(HealthLevel));
+            tm.text = new string('-', Mathf.FloorToInt(HealthLevel)); //print a bar for each unit of health remaining
         }
         Color color;
 
-        switch (Mathf.FloorToInt(HealthLevel))
+        switch (Mathf.FloorToInt(HealthLevel)) //change the "text" color depending on damage level
         {
             default:
                 color = Color.green;
@@ -43,11 +42,9 @@ public class Health : MonoBehaviour
         tm.GetComponent<Renderer>().material.color = color;
 
         tm.transform.forward = Camera.main.transform.forward;
-
     }
 
-
-    void LateUpdate()
+    void LateUpdate() //it's dead, get rid of the object
     {
         if (HealthLevel < 0f)
         {
@@ -55,11 +52,10 @@ public class Health : MonoBehaviour
         }
     }
 
-    public void RunDamageAnimation()
+    public void RunDamageAnimation() //my teammates have opted to not show this damage "animation" script I have created for the alpha build. I will work with them on a solution we can agree on for future builds
     {
 
         // StartCoroutine(StartPS());
-
 
     }
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Prototype camera that isn't currently used
 public class TFMCamera : MonoBehaviour
 {
     public bool InvertedPan = false;

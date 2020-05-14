@@ -9,6 +9,8 @@ TagManager:
   - Ground
   - PlayerSupplyInventory
   - EnemySupplyInventory
+  - Refinery
+  - EnemyHealth
   layers:
   - Default
   - TransparentFX

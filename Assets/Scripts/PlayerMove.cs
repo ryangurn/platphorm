@@ -1,13 +1,26 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+//attaches to player units
 public class PlayerMove : MonoBehaviour
 {
+    private MeshRenderer selectedSymbol;
 
-
-    public void Move()
+    void Awake()
     {
-        if (Input.GetMouseButtonUp(1) && IsSelected()) //if the object is selected and player right clicked a location
+        MeshRenderer[] children = GetComponentsInChildren<MeshRenderer>();
+        foreach (MeshRenderer mr in children) //check each mesh renderer to see if it's the selected symbol
+        {
+            if (mr.gameObject.name == "SelectedSymbol") //if it is, that's what we'll use for this unit instance 
+            {
+                selectedSymbol = mr;
+            }
+        }
+    }
+
+    public void Move() //this is called from the Camera.cs script
+    {
+        if (selectedSymbol.enabled) //if the object is selected, move to requested click location
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition); //find the ray to that point on screen
             RaycastHit hit;
@@ -17,32 +30,15 @@ public class PlayerMove : MonoBehaviour
                 return;
             else
                 GetComponent<UnityEngine.AI.NavMeshAgent>().destination = hit.point; //otherwise, go to the point
-
         }
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other) //prevents units from bumping into eachother when mulliple are ordered to the same location at the same time. Stop when close enough and close to another unit
     {
-
         if (Vector3.Distance(GetComponent<UnityEngine.AI.NavMeshAgent>().destination, transform.position) < 6f)
         {
             GetComponent<UnityEngine.AI.NavMeshAgent>().destination = transform.position;
-        }
-        
-
+        }      
     }
 
-    // Find out if it's selected i.e. if SelectionSymbol is visible
-    bool IsSelected()
-    {
-        MeshRenderer[] children = GetComponentsInChildren<MeshRenderer>();
-        foreach (MeshRenderer mr in children) //check each mesh renderer to see if it's the selected symbol
-        {
-            if (mr.gameObject.name == "SelectedSymbol" && mr.enabled) //if it is, and it's being displayed to the player, the object is selected
-            {
-                return true;
-            }
-        }
-        return false;
-    }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//This script isn't used anymore since Sam created good models of everything in Blender
 public class GenericCubeUVMap : MonoBehaviour
 {
     // Start is called before the first frame update

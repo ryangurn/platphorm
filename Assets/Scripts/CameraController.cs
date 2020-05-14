@@ -15,25 +15,25 @@ public class CameraController : MonoBehaviour
 	public float KeyboardSpeed = 50.0f; //regular speed
 	public float ScrollSpeed = 1.0f;
 	private float m_shiftAdd = 250.0f; //multiplied by how long shift is held.  Basically running
-	private float m_maxShift = 1000.0f; //Maximum speed when holdin gshift
+	private float m_maxShift = 1000.0f; //Maximum speed when holding shift
 	private float m_totalRun = 1.0f;
 	private float m_mouseX;
 	private float m_mouseY;
 	public bool isPanning = false;
-	private float CameraHeight = 12.0f;
-	private Quaternion originalPan;
+	private float CameraHeight = 12.0f; //cam height relative to ground
+	private Quaternion originalPan; //this keeps track of where we were before we started panning. If the pan wasn't that much, the user probably meant to move a unit
 
 	void Update ()
 	{
-		if (Input.GetKeyUp(KeyCode.Escape))
+		if (Input.GetKeyUp(KeyCode.Escape)) //escape menu
 		{
 			SceneManager.LoadScene("Menu");
 		}
 
 		//right click panning
-		if (Input.GetMouseButtonDown(1))  //start panning and initiate scroll lock
+		if (Input.GetMouseButtonDown(1))  //start panning and lock scrolling
 		{
-			originalPan = transform.rotation; //referenced later to see if we were panning or ordering a unit
+			originalPan = transform.rotation; //referenced to later to see if we were panning or just ordering a unit by right-click
 			isPanning = true;
 		}
 
@@ -61,8 +61,9 @@ public class CameraController : MonoBehaviour
 			StartCoroutine(EdgeScrollLockout());
 		}
 
-		//other camera movement
-		Vector3 p = GetBaseInput();
+		//camera movement besides panning
+		Vector3 p = GetBaseInput(); //base input is wasd and edge scroll
+
 		if (Input.GetKey (KeyCode.LeftShift))  //use left shift to slow movement
 		{
 			m_totalRun += Time.deltaTime;
@@ -81,18 +82,17 @@ public class CameraController : MonoBehaviour
 		Vector3 newPosition = transform.position;
 
 		//translation from GetBaseInput
-		transform.Translate(p);
+		transform.Translate(p); //add in the wasd and edge scrol input
 
 
 		//clamp
-		newPosition.x = Mathf.Clamp(transform.position.x, CameraMinX, CameraMaxX);
+		newPosition.x = Mathf.Clamp(transform.position.x, CameraMinX, CameraMaxX); //bounds checking and adjustment is oob
 		newPosition.z = Mathf.Clamp(transform.position.z, CameraMinZ, CameraMaxZ);
-		//newPosition.y = CameraHeight + GetGroundHeight();
 		transform.position = newPosition;
 
-		Vector3 priorPosition = transform.position;
+		Vector3 priorPosition = transform.position; //take note of the position before we do scrolling adjustment. a simple clamp won't work now since the camera height is relative
 
-		transform.Translate(new Vector3(0, 0, HeightAdjust()));
+		transform.Translate(new Vector3(0, 0, HeightAdjust())); //HeightAdjust() function takes mousewheel input
 
 		//if any parameters are exceeded, return to prior otherwise keep new y difference and add it to camera height
 		if (transform.position.x < CameraMinX || transform.position.x > CameraMaxX)
@@ -116,31 +116,28 @@ public class CameraController : MonoBehaviour
 
 	private Vector3 GetBaseInput()
 	{
-		//returns the basic values, if it's 0 than it's not active.
+		//returns wasd and edge scroll values
 		Vector3 p_Velocity = new Vector3();
 
-		if (isPanning)
-		{
-			return p_Velocity;
-		}
+		//if you're panning (or had just been panning .5 or so seconds ago), it doesn't allow movement. This is in case your mouse leaves the screen, you want edge scrolling locked out. 
+		
 
-
-		if (Input.GetKey(KeyCode.W) || Input.mousePosition.y > Screen.height - 7)
+		if (Input.GetKey(KeyCode.W) || (Input.mousePosition.y > Screen.height - 7 && !isPanning)) //7 pixels seems to be a good screen edge for scrolling. 
 		{
 			p_Velocity += new Vector3(0, 0, 1) * ScrollSpeed;
 		}
 
-		if (Input.GetKey(KeyCode.S) || Input.mousePosition.y < 7)
+		if (Input.GetKey(KeyCode.S) || (Input.mousePosition.y < 7 && !isPanning))
 		{
 			p_Velocity += new Vector3(0, 0, -1) * ScrollSpeed;
 		}
 
-		if (Input.GetKey(KeyCode.A) || Input.mousePosition.x < 7)
+		if (Input.GetKey(KeyCode.A) || (Input.mousePosition.x < 7 && !isPanning))
 		{
 			p_Velocity += new Vector3(-1, 0, 0) * ScrollSpeed;
 		}
 
-		if (Input.GetKey(KeyCode.D) || Input.mousePosition.x > Screen.width - 7)
+		if (Input.GetKey(KeyCode.D) || (Input.mousePosition.x > Screen.width - 7 && !isPanning))
 		{
 			p_Velocity += new Vector3(1, 0, 0) * ScrollSpeed;
 		}
@@ -148,7 +145,7 @@ public class CameraController : MonoBehaviour
 		return p_Velocity;
 	}
 
-	private float HeightAdjust()
+	private float HeightAdjust() //mouse scroll wheel input
 	{
 		if (Input.GetAxis("Mouse ScrollWheel") > 0)
 		{
@@ -164,25 +161,22 @@ public class CameraController : MonoBehaviour
 		}
 	}
 
-
-
 	private IEnumerator EdgeScrollLockout()
 	{
-		yield return new WaitForSeconds(.1f);
-		isPanning = false;
+		yield return new WaitForSeconds(.5f); //this is the delay to allow your mouse cursor to return to the screen after panning without immediate scrolling. 
+		isPanning = false;                   
 	}
 
-	private float GetGroundHeight()
+	private float GetGroundHeight() //this does the raycasting for figuring out the ground height
 	{
-
 		RaycastHit hit;
 		int[] offsetContainer = new int[2];
 
 		//starting offset at 1, to prevent redundant calculations
-		for (int offset = 1; offset < 2000; offset++ )
+		for (int offset = 1; offset < 2000; offset++ ) //we limit the possible places a "Ground" object can be to 2000 pixels in each direction
 		{
 
-			for (int i = 0; i < 8; i++)
+			for (int i = 0; i < 8; i++) //this stages the offsetContainer for which of the 8 directions we check for ground in
 			{
 				switch (i)
 				{
@@ -220,8 +214,8 @@ public class CameraController : MonoBehaviour
 					break;
 
 				}
-
-				Ray ray = Camera.main.ScreenPointToRay(new Vector2(Screen.width / 2 + offsetContainer[0], Screen.height * transform.rotation.eulerAngles[0] / 90 + offsetContainer[1])); //find the ray to that point on screen
+                //the height component is ajusted based on how steep the camera angel is in euler angels
+				Ray ray = Camera.main.ScreenPointToRay(new Vector2(Screen.width / 2 + offsetContainer[0], Screen.height * transform.rotation.eulerAngles[0] / 90 + offsetContainer[1])); 
 				Physics.Raycast(ray, out hit);
 
 				//if we're looking at the ground, that's it. Otherwise, keep looking
@@ -232,11 +226,9 @@ public class CameraController : MonoBehaviour
 
 			}
 		}
-		return 0.0f;
+		return 0.0f; //this shouldn't happen as there should always be a ground object the raycast can find
 
 	}
-
-
 
 
 

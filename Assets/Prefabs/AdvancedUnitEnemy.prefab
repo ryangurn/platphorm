@@ -122,6 +122,7 @@ GameObject:
   - component: {fileID: 6073981305308843984}
   - component: {fileID: 7733140779523302072}
   - component: {fileID: 6654872180268300523}
+  - component: {fileID: 3780129813691440}
   m_Layer: 0
   m_Name: AdvancedUnitEnemy
   m_TagString: Enemy
@@ -260,7 +261,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df85b408a7a687749867e62e012d1433, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MyEnemy: Player
+--- !u!65 &3780129813691440
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3778109309519788309}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2, y: 0.5, z: 2}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1 &5437671046649021206
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,18 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//this script attaches to the camera
 public class Construction : MonoBehaviour
 {
-    private FactoryBuildPlayer fbp;
-    private bool busy = false;
+    private FactoryBuildPlayer fbp; //this holds the factory for the player
+    private bool busy = false; //can't build if we're busy, so we keep track
     private bool sufficientFunds = true;
     private GameObject playerSupplyInventory;
 
+    //this starting function locates the player factory
     void Start()
     {
         playerSupplyInventory = GameObject.FindGameObjectWithTag("PlayerSupplyInventory");
         GameObject[] playerUnits = GameObject.FindGameObjectsWithTag("Player");
-
 
         foreach (GameObject g in playerUnits)
         {
@@ -24,12 +25,13 @@ public class Construction : MonoBehaviour
         }
     }
 
-    private IEnumerator buildBasic()
+    //all of these functions check if you have the right amount of money, and "build" the units if you do, set the NSF flag is you're out of funding
+    private IEnumerator BuildBasic()
     {
         busy = true;
         if (playerSupplyInventory.GetComponent<SupplyInventory>().Supplies - 300 < 0)
         {
-            StartCoroutine(notSufficientFunds());
+            StartCoroutine(NotSufficientFunds());
             yield break;
         }
         playerSupplyInventory.GetComponent<SupplyInventory>().Supplies -= 300;
@@ -38,12 +40,12 @@ public class Construction : MonoBehaviour
         busy = false;
     }
 
-    private IEnumerator buildAdvanced()
+    private IEnumerator BuildAdvanced()
     {
         busy = true;
         if (playerSupplyInventory.GetComponent<SupplyInventory>().Supplies - 800 < 0)
         {
-            StartCoroutine(notSufficientFunds());
+            StartCoroutine(NotSufficientFunds());
             yield break;
         }
         playerSupplyInventory.GetComponent<SupplyInventory>().Supplies -= 800;
@@ -53,12 +55,12 @@ public class Construction : MonoBehaviour
 
     }
 
-    private IEnumerator buildHarvester()
+    private IEnumerator BuildHarvester()
     {
         busy = true;
         if (playerSupplyInventory.GetComponent<SupplyInventory>().Supplies - 500 < 0)
         {
-            StartCoroutine(notSufficientFunds());
+            StartCoroutine(NotSufficientFunds());
             yield break;
         }
         playerSupplyInventory.GetComponent<SupplyInventory>().Supplies -= 500;
@@ -67,7 +69,7 @@ public class Construction : MonoBehaviour
         busy = false;
     }
 
-    private IEnumerator notSufficientFunds()
+    private IEnumerator NotSufficientFunds()
     {
         sufficientFunds = false;
         yield return new WaitForSeconds(2);
@@ -75,7 +77,7 @@ public class Construction : MonoBehaviour
         busy = false;
     }
 
-    void OnGUI()
+    void OnGUI() //GUI objects
     {
 
         if (busy && sufficientFunds)
@@ -84,8 +86,6 @@ public class Construction : MonoBehaviour
                                          Screen.height - 70,
                                          220,
                                          25), "Please Wait. Under Construction.", "box");
-
-
             
             GUILayout.EndArea();
         }
@@ -96,7 +96,6 @@ public class Construction : MonoBehaviour
                                          Screen.height - 70,
                                          170,
                                          25), "Insufficient Funds.", "box");
-
 
             GUILayout.EndArea();
         }
@@ -109,11 +108,10 @@ public class Construction : MonoBehaviour
                                          170,
                                          30), "", "box");
 
-
             if (GUILayout.Button("Construct Basic Unit-$300"))
             {
 
-                StartCoroutine(buildBasic());
+                StartCoroutine(BuildBasic());
             }
 
             GUILayout.EndArea();
@@ -123,11 +121,10 @@ public class Construction : MonoBehaviour
                                          200,
                                          30), "", "box");
 
-
             if (GUILayout.Button("Construct Advanced Unit-$800"))
             {
 
-                StartCoroutine(buildAdvanced());
+                StartCoroutine(BuildAdvanced());
             }
 
             GUILayout.EndArea();
@@ -137,16 +134,13 @@ public class Construction : MonoBehaviour
                                          170,
                                          30), "", "box");
 
-
             if (GUILayout.Button("Construct Harvester-$500"))
             {
-                StartCoroutine(buildHarvester());
+                StartCoroutine(BuildHarvester());
             }
 
             GUILayout.EndArea();
-
         }
-
 
     }
 }

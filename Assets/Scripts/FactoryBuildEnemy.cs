@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//attached to enemy factory. This is more fully-featured than the player version of the script since th eplayer one gets "help" from the Construction.cs attached to the camera
 public class FactoryBuildEnemy : MonoBehaviour
 {
-    public GameObject BasicUnit, AdvancedUnit, Harvester;
-    private GameObject enemySupplyInventory;
+    public GameObject BasicUnit, AdvancedUnit, Harvester; //these are links to prefab objects
+    private GameObject enemySupplyInventory; 
     private bool busy = false;
 
     void Start()
@@ -15,7 +16,7 @@ public class FactoryBuildEnemy : MonoBehaviour
 
     void FixedUpdate()
     {
-        GameObject[] enemyUnits = GameObject.FindGameObjectsWithTag("Enemy");
+        GameObject[] enemyUnits = GameObject.FindGameObjectsWithTag("Enemy"); //make sure we have an enemy harvester
 
         bool haveHarvester = false;
         foreach (GameObject g in enemyUnits)
@@ -27,13 +28,13 @@ public class FactoryBuildEnemy : MonoBehaviour
             }
         }
 
-        if (!haveHarvester && enemySupplyInventory.GetComponent<SupplyInventory>().Supplies >= 500 && !busy)
+        if (!haveHarvester && enemySupplyInventory.GetComponent<SupplyInventory>().Supplies >= 500 && !busy) //if we don't and we can afford it, make one
         {
             enemySupplyInventory.GetComponent<SupplyInventory>().Supplies -= 500;
             StartCoroutine(SpawnHarvester());
         }
 
-        if (!busy && enemySupplyInventory.GetComponent<SupplyInventory>().Supplies >= 800)
+        if (!busy && enemySupplyInventory.GetComponent<SupplyInventory>().Supplies >= 800) //if we can afford an advanced unit, 50/50 chance we make one (or we make a basic unit)
         {
             if (Mathf.FloorToInt(Random.Range(0f, 100f)) % 2 == 0)
             {
@@ -46,7 +47,7 @@ public class FactoryBuildEnemy : MonoBehaviour
                 StartCoroutine(SpawnBasic());
             }
         }
-        else if (!busy && enemySupplyInventory.GetComponent<SupplyInventory>().Supplies >= 300)
+        else if (!busy && enemySupplyInventory.GetComponent<SupplyInventory>().Supplies >= 300) //couldn't afford advanced, so make basic
         {
             enemySupplyInventory.GetComponent<SupplyInventory>().Supplies -= 300;
             StartCoroutine(SpawnBasic());
@@ -56,7 +57,7 @@ public class FactoryBuildEnemy : MonoBehaviour
 
 
 
-    public IEnumerator SpawnBasic()
+    public IEnumerator SpawnBasic() //this is used for creating a delay before making a unit
     {
         busy = true;
         yield return new WaitForSeconds(5);

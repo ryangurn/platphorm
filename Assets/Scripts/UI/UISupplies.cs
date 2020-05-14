@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+//attaches to child of canvas
 public class UISupplies : MonoBehaviour
 {
-    public string MyTeam;
+    public string MyTeam; //used for both teams, so this is necessary
     Text supplies;
 
     void Start()

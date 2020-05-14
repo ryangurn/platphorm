@@ -4,34 +4,41 @@ using UnityEngine;
 
 public class EnemyHarvester : MonoBehaviour
 {
-    private bool isFull = false;
+    private MeshRenderer fullSymbol;
+    private GameObject refinery;
 
-    public string myTeam;
-    private Vector3 myOrePileLocation;
-
-    void FixedUpdate()
+    void Awake() //locate the unit's fullSymbol and refinery when it's instantiated
     {
-        MeshRenderer[] ChildrenMR = GetComponentsInChildren<MeshRenderer>();
+        MeshRenderer[] ChildrenMR = GetComponentsInChildren<MeshRenderer>(); //this is for the unit's own full symbol
         foreach (MeshRenderer mr in ChildrenMR)
         {
-            if (mr.gameObject.name == "Payload" && isFull)
+            if (mr.gameObject.name == "Payload")
             {
-                // Make the selected symbol mesh visible or not
-                mr.enabled = true;
-            }
-
-            else if (mr.gameObject.name == "Payload")
-            {
-                mr.enabled = false;
+                fullSymbol = mr;
             }
         }
 
-        if (!isFull)
+        GameObject[] friendlies = GameObject.FindGameObjectsWithTag("Enemy"); //this is for the refinery
+        foreach (GameObject g in friendlies)
+        {
+            if (g.GetComponent<DepositOre>())
+            {
+                refinery = g;
+            }
+
+        }
+
+    }
+
+    void FixedUpdate()
+    {    
+
+        if (!fullSymbol.enabled) //if harvester is empty,
         {
             float shortestDistance = Mathf.Infinity;
             GameObject bestOre = gameObject;
             GameObject[] ores = GameObject.FindGameObjectsWithTag("Ore");
-            foreach (GameObject ore in ores)
+            foreach (GameObject ore in ores) //get the best piece of ore available. I.e. the shortest distance to one
             {
                 if (Vector3.Distance(ore.transform.position, transform.position) < shortestDistance)
                 {
@@ -39,39 +46,28 @@ public class EnemyHarvester : MonoBehaviour
                     bestOre = ore;
                 }
 
-                if (Vector3.Distance(ore.transform.position, transform.position) < 3)
+                if (Vector3.Distance(ore.transform.position, transform.position) < 3) //pick ore up if you're close enough
                 {
-                    ore.GetComponent<OreRemaining>().OreContent -= 5f;
-                    isFull = true;
+                    ore.GetComponent<OreRemaining>().OreContent -= 1;
+                    fullSymbol.enabled = true;
                     
                 }
             }
 
             GetComponent<UnityEngine.AI.NavMeshAgent>().destination = bestOre.transform.position;
-
         }
 
-
+        //if full
         else
         {
-            GameObject[] friendlies = GameObject.FindGameObjectsWithTag(myTeam);
-            foreach (GameObject g in friendlies)
+            GetComponent<UnityEngine.AI.NavMeshAgent>().destination = refinery.transform.position;
+
+            if (Vector3.Distance(refinery.transform.position, transform.position) < 5)
             {
-                if (g.GetComponent<DepositOre>())
-                {
-                    GetComponent<UnityEngine.AI.NavMeshAgent>().destination = g.transform.position;
-
-                    if (Vector3.Distance(g.transform.position, transform.position) < 5)
-                    {
-                        isFull = false;
-                        g.GetComponent<DepositOre>().Deposit();
-                    }
-                }
-
+                fullSymbol.enabled = false;
+                refinery.GetComponent<DepositOre>().Deposit();
             }
         }
-
-
 
 
     }
