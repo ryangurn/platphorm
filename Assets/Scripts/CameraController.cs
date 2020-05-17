@@ -36,7 +36,7 @@ public class CameraController : MonoBehaviour
 
 	void Update ()
 	{
-		if (Input.GetKeyUp(KeyCode.Escape)) //escape menu
+		if (Input.GetKeyUp(KeyCode.P)) //escape menu
 		{
 			if (isLocked) {
 				Unlock();
