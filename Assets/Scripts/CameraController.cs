@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class CameraController : MonoBehaviour
 {
+
 	public float CameraMinX = -65.0f;
 	public float CameraMinHeight = 5.0f;
 	public float CameraMinZ = -20.0f;
@@ -20,6 +21,9 @@ public class CameraController : MonoBehaviour
 	private float m_mouseX;
 	private float m_mouseY;
 	public bool isPanning = false;
+
+	public GameObject PauseMenu;
+
 	private float CameraHeight = 12.0f; //cam height relative to ground
 	private Quaternion originalPan; //this keeps track of where we were before we started panning. If the pan wasn't that much, the user probably meant to move a unit
 
@@ -27,17 +31,17 @@ public class CameraController : MonoBehaviour
 	{
 		if (Input.GetKeyUp(KeyCode.Escape)) //escape menu
 		{
-			SceneManager.LoadScene("Menu");
+			PauseMenu.SetActive(!PauseMenu.activeSelf);
 		}
 
 		//right click panning
-		if (Input.GetMouseButtonDown(1))  //start panning and lock scrolling
+		if (Input.GetMouseButtonDown(1) && !PauseMenu.activeSelf)  //start panning and lock scrolling
 		{
 			originalPan = transform.rotation; //referenced to later to see if we were panning or just ordering a unit by right-click
 			isPanning = true;
 		}
 
-		if ( Input.GetMouseButton(1)) //panning work
+		if ( Input.GetMouseButton(1) && !PauseMenu.activeSelf) //panning work
 		{
 			transform.Rotate(new Vector3(Input.GetAxis("Mouse Y") * MouseSpeed, -Input.GetAxis("Mouse X") * MouseSpeed, 0));
 			m_mouseX = transform.rotation.eulerAngles.x;
@@ -45,7 +49,7 @@ public class CameraController : MonoBehaviour
 			transform.rotation = Quaternion.Euler(m_mouseX, m_mouseY, 0);
 		}
 
-		if (Input.GetMouseButtonUp(1) && Quaternion.Angle(transform.rotation, originalPan) < 5f) //we didn't really pan, so we order a unit instead
+		if ( (Input.GetMouseButtonUp(1) && Quaternion.Angle(transform.rotation, originalPan) < 5f ) && !PauseMenu.activeSelf) //we didn't really pan, so we order a unit instead
 		{
 			isPanning = false;
 			GameObject[] playerUnits = GameObject.FindGameObjectsWithTag("Player");
@@ -56,7 +60,7 @@ public class CameraController : MonoBehaviour
 			}
 		}
 
-		else if (Input.GetMouseButtonUp(1)) //done panning, countdown to scrolling enabled again
+		else if (Input.GetMouseButtonUp(1) && !PauseMenu.activeSelf) //done panning, countdown to scrolling enabled again
 		{
 			StartCoroutine(EdgeScrollLockout());
 		}
@@ -119,25 +123,25 @@ public class CameraController : MonoBehaviour
 		//returns wasd and edge scroll values
 		Vector3 p_Velocity = new Vector3();
 
-		//if you're panning (or had just been panning .5 or so seconds ago), it doesn't allow movement. This is in case your mouse leaves the screen, you want edge scrolling locked out. 
-		
+		//if you're panning (or had just been panning .5 or so seconds ago), it doesn't allow movement. This is in case your mouse leaves the screen, you want edge scrolling locked out.
 
-		if (Input.GetKey(KeyCode.W) || (Input.mousePosition.y > Screen.height - 7 && !isPanning)) //7 pixels seems to be a good screen edge for scrolling. 
+
+		if ((Input.GetKey(KeyCode.W) || (Input.mousePosition.y > Screen.height - 7 && !isPanning)) && !PauseMenu.activeSelf ) //7 pixels seems to be a good screen edge for scrolling.
 		{
 			p_Velocity += new Vector3(0, 0, 1) * ScrollSpeed;
 		}
 
-		if (Input.GetKey(KeyCode.S) || (Input.mousePosition.y < 7 && !isPanning))
+		if ((Input.GetKey(KeyCode.S) || (Input.mousePosition.y < 7 && !isPanning)) && !PauseMenu.activeSelf)
 		{
 			p_Velocity += new Vector3(0, 0, -1) * ScrollSpeed;
 		}
 
-		if (Input.GetKey(KeyCode.A) || (Input.mousePosition.x < 7 && !isPanning))
+		if ((Input.GetKey(KeyCode.A) || (Input.mousePosition.x < 7 && !isPanning)) && !PauseMenu.activeSelf)
 		{
 			p_Velocity += new Vector3(-1, 0, 0) * ScrollSpeed;
 		}
 
-		if (Input.GetKey(KeyCode.D) || (Input.mousePosition.x > Screen.width - 7 && !isPanning))
+		if ((Input.GetKey(KeyCode.D) || (Input.mousePosition.x > Screen.width - 7 && !isPanning)) && !PauseMenu.activeSelf)
 		{
 			p_Velocity += new Vector3(1, 0, 0) * ScrollSpeed;
 		}
@@ -163,8 +167,8 @@ public class CameraController : MonoBehaviour
 
 	private IEnumerator EdgeScrollLockout()
 	{
-		yield return new WaitForSeconds(.5f); //this is the delay to allow your mouse cursor to return to the screen after panning without immediate scrolling. 
-		isPanning = false;                   
+		yield return new WaitForSeconds(.5f); //this is the delay to allow your mouse cursor to return to the screen after panning without immediate scrolling.
+		isPanning = false;
 	}
 
 	private float GetGroundHeight() //this does the raycasting for figuring out the ground height
@@ -215,7 +219,7 @@ public class CameraController : MonoBehaviour
 
 				}
                 //the height component is ajusted based on how steep the camera angel is in euler angels
-				Ray ray = Camera.main.ScreenPointToRay(new Vector2(Screen.width / 2 + offsetContainer[0], Screen.height * transform.rotation.eulerAngles[0] / 90 + offsetContainer[1])); 
+				Ray ray = Camera.main.ScreenPointToRay(new Vector2(Screen.width / 2 + offsetContainer[0], Screen.height * transform.rotation.eulerAngles[0] / 90 + offsetContainer[1]));
 				Physics.Raycast(ray, out hit);
 
 				//if we're looking at the ground, that's it. Otherwise, keep looking
