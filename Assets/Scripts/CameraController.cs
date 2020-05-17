@@ -151,11 +151,11 @@ public class CameraController : MonoBehaviour
 
 	private float HeightAdjust() //mouse scroll wheel input
 	{
-		if (Input.GetAxis("Mouse ScrollWheel") > 0)
+		if ( (Input.GetAxis("Mouse ScrollWheel") > 0) && !PauseMenu.activeSelf )
 		{
 			return 3f;
 		}
-		else if (Input.GetAxis("Mouse ScrollWheel") < 0)
+		else if ( (Input.GetAxis("Mouse ScrollWheel") < 0) && !PauseMenu.activeSelf)
 		{
 			return -3f;
 		}
