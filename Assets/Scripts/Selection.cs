@@ -4,7 +4,7 @@ using System.Collections;
 //Attaches to camera. The selection box on screen: is represented with a GUI rectangle
 public class Selection : MonoBehaviour
 {
-	public GameObject PauseMenu;
+	public bool isLocked = false;
 
 	private Vector2 start = new Vector2(0, 0); //this inits the member variable to store the x, y of the initial click of the selection
 	private Vector2 cur = new Vector2(0, 0);  //inits member variable to store x, y of the current position of the mouse after initial click
@@ -21,7 +21,7 @@ public class Selection : MonoBehaviour
 
 	void Update()
 	{
-		if (PauseMenu.activeSelf) { return; }
+		if (isLocked) { return; }
 
 		//start selection when left button clicked
 		if (Input.GetMouseButtonDown(0) && !(Input.GetKey(KeyCode.LeftAlt) || Input.GetKey(KeyCode.RightAlt)))
@@ -85,5 +85,15 @@ public class Selection : MonoBehaviour
 		{
 			GUI.Box(CurrentRect(), "");
 		}
+	}
+
+	public void Lock()
+	{
+		isLocked = true;
+	}
+
+	public void Unlock()
+	{
+		isLocked = false;
 	}
 }
