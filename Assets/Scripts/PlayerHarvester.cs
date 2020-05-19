@@ -21,7 +21,7 @@ public class PlayerHarvester : MonoBehaviour
             }
         }
 
-        GameObject[] friendlies = GameObject.FindGameObjectsWithTag("Player"); //this is for the refinery
+        GameObject[] friendlies = GameObject.FindGameObjectsWithTag("PlayerBuilding"); //this is for the refinery
         foreach (GameObject g in friendlies)
         {
             if (g.GetComponent<DepositOre>())

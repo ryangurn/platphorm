@@ -11,6 +11,8 @@ TagManager:
   - EnemySupplyInventory
   - Refinery
   - EnemyHealth
+  - PlayerBuilding
+  - EnemyBuilding
   layers:
   - Default
   - TransparentFX

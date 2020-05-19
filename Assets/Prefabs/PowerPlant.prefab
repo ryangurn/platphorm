@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 2267604019236630605}
   m_Layer: 0
   m_Name: PowerPlant
-  m_TagString: Player
+  m_TagString: PlayerBuilding
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
