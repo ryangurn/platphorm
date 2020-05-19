@@ -6,13 +6,16 @@ using UnityEngine;
 public class Construction : MonoBehaviour
 {
     private FactoryBuildPlayer fbp; //this holds the factory for the player
-    private bool busy = false; //can't build if we're busy, so we keep track
+    private bool queueFull = false; //can't build if we're busy, so we keep track
     private bool sufficientFunds = true;
     private GameObject playerSupplyInventory;
+    private Queue<string> buildQueue = new Queue<string>();
+    private bool busy = false;
 
     //this starting function locates the player factory
     void Start()
     {
+
         playerSupplyInventory = GameObject.FindGameObjectWithTag("PlayerSupplyInventory");
         GameObject[] playerUnits = GameObject.FindGameObjectsWithTag("PlayerBuilding");
 
@@ -25,17 +28,75 @@ public class Construction : MonoBehaviour
         }
     }
 
+    void FixedUpdate() //basic handler to check for work and update queue Count/size
+    {
+        queueFull = buildQueue.Count > 5; //this is not a mistake. A queue size of 5 should be compared without equality because the current building one immediately reduces Count by 1
+        string currentWork;
+
+
+        if (busy || buildQueue.Count == 0) //if we're busy, nothing else we can do
+            return;
+
+        currentWork = buildQueue.Dequeue(); //there's work to do
+        busy = true;
+
+
+        if (currentWork == "Basic")
+        {
+            StartCoroutine(BuildBasic());
+        }
+        else if (currentWork == "Advanced")
+        {
+            StartCoroutine(BuildAdvanced());
+        }
+        else
+        {
+            StartCoroutine(BuildHarvester());
+        }
+
+    }
+
+    private void haveSufficientFunds(string unitType) //this enqueues, as well as determines sufficient funding
+    {
+        if (unitType == "Basic")
+        {
+            if (playerSupplyInventory.GetComponent<SupplyInventory>().Supplies >= 300)
+            {
+                playerSupplyInventory.GetComponent<SupplyInventory>().Supplies -= 300;
+                buildQueue.Enqueue("Basic");
+            }
+            else
+                StartCoroutine(NotSufficientFunds());
+        }
+        else if (unitType == "Advanced")
+        {
+            if (playerSupplyInventory.GetComponent<SupplyInventory>().Supplies >= 800)
+            {
+                playerSupplyInventory.GetComponent<SupplyInventory>().Supplies -= 800;
+                buildQueue.Enqueue("Advanced");
+
+            }
+            else
+                StartCoroutine(NotSufficientFunds());
+        }
+        else //Harvester
+        {
+            if (playerSupplyInventory.GetComponent<SupplyInventory>().Supplies >= 500)
+            {
+                playerSupplyInventory.GetComponent<SupplyInventory>().Supplies -= 500;
+                buildQueue.Enqueue("Harvester");
+
+            }
+            else
+                StartCoroutine(NotSufficientFunds());
+        }
+    }
+
 
     //all of these functions check if you have the right amount of money, and "build" the units if you do, set the NSF flag is you're out of funding
     private IEnumerator BuildBasic()
     {
-        busy = true;
-        if (playerSupplyInventory.GetComponent<SupplyInventory>().Supplies - 300 < 0)
-        {
-            StartCoroutine(NotSufficientFunds());
-            yield break;
-        }
-        playerSupplyInventory.GetComponent<SupplyInventory>().Supplies -= 300;
+
         yield return new WaitForSeconds(3);
         fbp.SpawnBasic();
         busy = false;
@@ -43,28 +104,15 @@ public class Construction : MonoBehaviour
 
     private IEnumerator BuildAdvanced()
     {
-        busy = true;
-        if (playerSupplyInventory.GetComponent<SupplyInventory>().Supplies - 800 < 0)
-        {
-            StartCoroutine(NotSufficientFunds());
-            yield break;
-        }
-        playerSupplyInventory.GetComponent<SupplyInventory>().Supplies -= 800;
+
         yield return new WaitForSeconds(10);
         fbp.SpawnAdvanced();
         busy = false;
-
     }
 
     private IEnumerator BuildHarvester()
     {
-        busy = true;
-        if (playerSupplyInventory.GetComponent<SupplyInventory>().Supplies - 500 < 0)
-        {
-            StartCoroutine(NotSufficientFunds());
-            yield break;
-        }
-        playerSupplyInventory.GetComponent<SupplyInventory>().Supplies -= 500;
+
         yield return new WaitForSeconds(5);
         fbp.SpawnHarvester();
         busy = false;
@@ -75,7 +123,6 @@ public class Construction : MonoBehaviour
         sufficientFunds = false;
         yield return new WaitForSeconds(2);
         sufficientFunds = true;
-        busy = false;
     }
 
     void OnGUI() //GUI objects
@@ -85,17 +132,17 @@ public class Construction : MonoBehaviour
         if (!fbp.isSelected)
             return;
 
-        if (busy && sufficientFunds)
+        if (queueFull && sufficientFunds)
         {
             GUILayout.BeginArea(new Rect(Screen.width / 2 - 110,
                                          Screen.height - 70,
                                          220,
-                                         25), "Please Wait. Under Construction.", "box");
+                                         25), "Please Wait. Queue Full.", "box");
             
             GUILayout.EndArea();
         }
 
-        else if (busy && !sufficientFunds)
+        else if (!queueFull && !sufficientFunds)
         {
             GUILayout.BeginArea(new Rect(Screen.width / 2 - 85,
                                          Screen.height - 70,
@@ -116,7 +163,7 @@ public class Construction : MonoBehaviour
             if (GUILayout.Button("Construct Basic Unit-$300"))
             {
 
-                StartCoroutine(BuildBasic());
+                haveSufficientFunds("Basic");
             }
 
             GUILayout.EndArea();
@@ -129,7 +176,7 @@ public class Construction : MonoBehaviour
             if (GUILayout.Button("Construct Advanced Unit-$800"))
             {
 
-                StartCoroutine(BuildAdvanced());
+                haveSufficientFunds("Advanced");
             }
 
             GUILayout.EndArea();
@@ -141,7 +188,7 @@ public class Construction : MonoBehaviour
 
             if (GUILayout.Button("Construct Harvester-$500"))
             {
-                StartCoroutine(BuildHarvester());
+                haveSufficientFunds("Harvester");
             }
 
             GUILayout.EndArea();
