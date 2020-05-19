@@ -107,6 +107,18 @@ public class CameraController : MonoBehaviour
 		newPosition.z = Mathf.Clamp(transform.position.z, CameraMinZ, CameraMaxZ);
 		transform.position = newPosition;
 
+        //rotation clamp
+        Vector3 rotation = transform.rotation.eulerAngles;
+
+        if (200f < rotation.x && rotation.x < 360f)
+            rotation.x = Mathf.Clamp(rotation.x, 360f, Mathf.Infinity);
+        else
+            rotation.x = Mathf.Clamp(rotation.x, 0f, 40f);
+
+        transform.rotation = Quaternion.Euler(rotation);
+
+     
+
 		Vector3 priorPosition = transform.position; //take note of the position before we do scrolling adjustment. a simple clamp won't work now since the camera height is relative
 
 		transform.Translate(new Vector3(0, 0, HeightAdjust())); //HeightAdjust() function takes mousewheel input
