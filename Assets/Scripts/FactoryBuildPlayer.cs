@@ -6,6 +6,7 @@ using UnityEngine;
 public class FactoryBuildPlayer : MonoBehaviour
 {
     public GameObject BasicUnit, AdvancedUnit, Harvester;
+    public bool isSelected;
 
     public void SpawnBasic()
     {

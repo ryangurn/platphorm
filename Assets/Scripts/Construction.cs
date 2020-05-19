@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//this script attaches to the camera
+//this script attaches to the canvas
 public class Construction : MonoBehaviour
 {
     private FactoryBuildPlayer fbp; //this holds the factory for the player
@@ -14,7 +14,7 @@ public class Construction : MonoBehaviour
     void Start()
     {
         playerSupplyInventory = GameObject.FindGameObjectWithTag("PlayerSupplyInventory");
-        GameObject[] playerUnits = GameObject.FindGameObjectsWithTag("Player");
+        GameObject[] playerUnits = GameObject.FindGameObjectsWithTag("PlayerBuilding");
 
         foreach (GameObject g in playerUnits)
         {
@@ -24,6 +24,7 @@ public class Construction : MonoBehaviour
             }
         }
     }
+
 
     //all of these functions check if you have the right amount of money, and "build" the units if you do, set the NSF flag is you're out of funding
     private IEnumerator BuildBasic()
@@ -79,6 +80,10 @@ public class Construction : MonoBehaviour
 
     void OnGUI() //GUI objects
     {
+        //don't paint the building gui if factory isn't selected
+
+        if (!fbp.isSelected)
+            return;
 
         if (busy && sufficientFunds)
         {
