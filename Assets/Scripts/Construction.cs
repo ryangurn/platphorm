@@ -42,7 +42,7 @@ public class Construction : MonoBehaviour
     if (busy || buildQueue.Count == 0) //if we're busy, nothing else we can do
     return;
 
-    currentWork = buildQueue.Dequeue(); //there's work to do
+    currentWork = buildQueue.Peek(); //there's work to do
     busy = true;
 
     if (currentWork == "Basic")
@@ -58,6 +58,40 @@ public class Construction : MonoBehaviour
       StartCoroutine(BuildHarvester());
     }
 
+  }
+
+  void Update()
+  {
+
+    // toggle the display of the UI
+    string[] queueArr = buildQueue.ToArray();
+    for (int i = 0; i < queueArr.Length; i++)
+    {
+      print(queueArr[i] + " slot: "+ i);
+
+      if(queueArr[i] == "Advanced")
+      {
+        slots[i].transform.GetChild(0).gameObject.SetActive(true);
+        slots[i].transform.GetChild(1).gameObject.SetActive(false);
+        slots[i].transform.GetChild(2).gameObject.SetActive(false);
+      }
+      else if (queueArr[i] == "Basic")
+      {
+        slots[i].transform.GetChild(0).gameObject.SetActive(false);
+        slots[i].transform.GetChild(1).gameObject.SetActive(true);
+        slots[i].transform.GetChild(2).gameObject.SetActive(false);
+      }
+      else if (queueArr[i] == "Harvester")
+      {
+        slots[i].transform.GetChild(0).gameObject.SetActive(false);
+        slots[i].transform.GetChild(1).gameObject.SetActive(false);
+        slots[i].transform.GetChild(2).gameObject.SetActive(true);
+      }
+
+
+
+    }
+    // print(slots[i] + " " + i);
   }
 
   private void haveSufficientFunds(string unitType) //this enqueues, as well as determines sufficient funding
@@ -103,6 +137,7 @@ public class Construction : MonoBehaviour
 
     yield return new WaitForSeconds(3);
     fbp.SpawnBasic();
+    buildQueue.Dequeue();
     busy = false;
   }
 
@@ -111,6 +146,7 @@ public class Construction : MonoBehaviour
 
     yield return new WaitForSeconds(10);
     fbp.SpawnAdvanced();
+    buildQueue.Dequeue();
     busy = false;
   }
 
@@ -119,6 +155,7 @@ public class Construction : MonoBehaviour
 
     yield return new WaitForSeconds(5);
     fbp.SpawnHarvester();
+    buildQueue.Dequeue();
     busy = false;
   }
 
