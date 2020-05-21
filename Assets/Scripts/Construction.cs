@@ -9,7 +9,7 @@ public class Construction : MonoBehaviour
   private bool queueFull = false; //can't build if we're busy, so we keep track
   private bool sufficientFunds = true;
   private GameObject playerSupplyInventory;
-  private Queue<string> buildQueue = new Queue<string>();
+  private List<string> buildQueue = new List<string>();
   private GameObject[] slots;
   private bool busy = false;
 
@@ -19,6 +19,7 @@ public class Construction : MonoBehaviour
   {
     // get slots
     slots = GameObject.FindGameObjectsWithTag("PlayerSlots");
+
 
     // get buildings
     playerSupplyInventory = GameObject.FindGameObjectWithTag("PlayerSupplyInventory");
@@ -35,14 +36,14 @@ public class Construction : MonoBehaviour
 
   void FixedUpdate() //basic handler to check for work and update queue Count/size
   {
-    queueFull = buildQueue.Count > 5; //this is not a mistake. A queue size of 5 should be compared without equality because the current building one immediately reduces Count by 1
+    queueFull = buildQueue.Count > 4; //if it's 5, it's full
     string currentWork;
 
 
     if (busy || buildQueue.Count == 0) //if we're busy, nothing else we can do
     return;
 
-    currentWork = buildQueue.Peek(); //there's work to do
+    currentWork = buildQueue[0]; //there's work to do
     busy = true;
 
     if (currentWork == "Basic")
@@ -63,45 +64,48 @@ public class Construction : MonoBehaviour
   void Update()
   {
 
-    // toggle the display of the UI
-    string[] queueArr = buildQueue.ToArray();
-    for (int i = 0; i < queueArr.Length; i++)
+    int i = 0; //we're sharing the iterator through two loops
+    for (; i < buildQueue.Count; i++) //go up to the places in the queue that are actually in use, and update the slots accordingly
     {
-      print(queueArr[i] + " slot: "+ i);
 
-      if(queueArr[i] == "Advanced")
+      if(buildQueue[i] == "Advanced")
       {
         slots[i].transform.GetChild(0).gameObject.SetActive(true);
         slots[i].transform.GetChild(1).gameObject.SetActive(false);
         slots[i].transform.GetChild(2).gameObject.SetActive(false);
       }
-      else if (queueArr[i] == "Basic")
+      else if (buildQueue[i] == "Basic")
       {
         slots[i].transform.GetChild(0).gameObject.SetActive(false);
         slots[i].transform.GetChild(1).gameObject.SetActive(true);
         slots[i].transform.GetChild(2).gameObject.SetActive(false);
       }
-      else if (queueArr[i] == "Harvester")
+      else //if (buildQueue[i] == "Harvester")
       {
         slots[i].transform.GetChild(0).gameObject.SetActive(false);
         slots[i].transform.GetChild(1).gameObject.SetActive(false);
         slots[i].transform.GetChild(2).gameObject.SetActive(true);
       }
 
-
-
     }
-    // print(slots[i] + " " + i);
+
+    for (; i < 5; i++) //for the rest of the slots, make them blank
+    {
+        slots[i].transform.GetChild(0).gameObject.SetActive(false);
+        slots[i].transform.GetChild(1).gameObject.SetActive(false);
+        slots[i].transform.GetChild(2).gameObject.SetActive(false);
+    }
+
   }
 
-  private void haveSufficientFunds(string unitType) //this enqueues, as well as determines sufficient funding
+  private void HaveSufficientFunds(string unitType) //this enqueues, as well as determines sufficient funding
   {
     if (unitType == "Basic")
     {
       if (playerSupplyInventory.GetComponent<SupplyInventory>().Supplies >= 300)
       {
         playerSupplyInventory.GetComponent<SupplyInventory>().Supplies -= 300;
-        buildQueue.Enqueue("Basic");
+        buildQueue.Add("Basic");
       }
       else
       StartCoroutine(NotSufficientFunds());
@@ -111,7 +115,7 @@ public class Construction : MonoBehaviour
       if (playerSupplyInventory.GetComponent<SupplyInventory>().Supplies >= 800)
       {
         playerSupplyInventory.GetComponent<SupplyInventory>().Supplies -= 800;
-        buildQueue.Enqueue("Advanced");
+        buildQueue.Add("Advanced");
 
       }
       else
@@ -122,7 +126,7 @@ public class Construction : MonoBehaviour
       if (playerSupplyInventory.GetComponent<SupplyInventory>().Supplies >= 500)
       {
         playerSupplyInventory.GetComponent<SupplyInventory>().Supplies -= 500;
-        buildQueue.Enqueue("Harvester");
+        buildQueue.Add("Harvester");
 
       }
       else
@@ -137,7 +141,8 @@ public class Construction : MonoBehaviour
 
     yield return new WaitForSeconds(3);
     fbp.SpawnBasic();
-    buildQueue.Dequeue();
+    buildQueue.RemoveAt(0);
+
     busy = false;
   }
 
@@ -146,7 +151,7 @@ public class Construction : MonoBehaviour
 
     yield return new WaitForSeconds(10);
     fbp.SpawnAdvanced();
-    buildQueue.Dequeue();
+    buildQueue.RemoveAt(0);
     busy = false;
   }
 
@@ -155,7 +160,7 @@ public class Construction : MonoBehaviour
 
     yield return new WaitForSeconds(5);
     fbp.SpawnHarvester();
-    buildQueue.Dequeue();
+    buildQueue.RemoveAt(0);
     busy = false;
   }
 
@@ -204,7 +209,7 @@ public class Construction : MonoBehaviour
       if (GUILayout.Button("Construct Basic Unit-$300"))
       {
 
-        haveSufficientFunds("Basic");
+        HaveSufficientFunds("Basic");
       }
 
       GUILayout.EndArea();
@@ -217,7 +222,7 @@ public class Construction : MonoBehaviour
       if (GUILayout.Button("Construct Advanced Unit-$800"))
       {
 
-        haveSufficientFunds("Advanced");
+        HaveSufficientFunds("Advanced");
       }
 
       GUILayout.EndArea();
@@ -229,7 +234,7 @@ public class Construction : MonoBehaviour
 
       if (GUILayout.Button("Construct Harvester-$500"))
       {
-        haveSufficientFunds("Harvester");
+        HaveSufficientFunds("Harvester");
       }
 
       GUILayout.EndArea();
