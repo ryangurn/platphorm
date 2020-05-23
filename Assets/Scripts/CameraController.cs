@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class CameraController : MonoBehaviour
 {
@@ -117,7 +118,7 @@ public class CameraController : MonoBehaviour
 
         transform.rotation = Quaternion.Euler(rotation);
 
-     
+
 
 		Vector3 priorPosition = transform.position; //take note of the position before we do scrolling adjustment. a simple clamp won't work now since the camera height is relative
 
@@ -275,5 +276,9 @@ public class CameraController : MonoBehaviour
 		SelectionLocked.isLocked = false;
 	}
 
+	public void UpdateScrollSpeed(GameObject slide)
+	{
+		ScrollSpeed = slide.GetComponent<Slider>().value;
+	}
 
 }
