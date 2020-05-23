@@ -18,17 +18,17 @@ public class FactoryBuildEnemy : MonoBehaviour
     {
         GameObject[] enemyUnits = GameObject.FindGameObjectsWithTag("Enemy"); //make sure we have an enemy harvester
 
-        bool haveHarvester = false;
+        int harvesterCount = 0;
+
         foreach (GameObject g in enemyUnits)
         {
             if (g.GetComponent<EnemyHarvester>() != null)
             {
-                haveHarvester = true;
-                break;
+                harvesterCount++;
             }
         }
 
-        if (!haveHarvester && enemySupplyInventory.GetComponent<SupplyInventory>().Supplies >= 500 && !busy) //if we don't and we can afford it, make one
+        if (harvesterCount < 1 && enemySupplyInventory.GetComponent<SupplyInventory>().Supplies >= 500 && !busy) //if we don't and we can afford it, make one
         {
             enemySupplyInventory.GetComponent<SupplyInventory>().Supplies -= 500;
             StartCoroutine(SpawnHarvester());
@@ -36,10 +36,17 @@ public class FactoryBuildEnemy : MonoBehaviour
 
         if (!busy && enemySupplyInventory.GetComponent<SupplyInventory>().Supplies >= 800) //if we can afford an advanced unit, 50/50 chance we make one (or we make a basic unit)
         {
-            if (Mathf.FloorToInt(Random.Range(0f, 100f)) % 2 == 0)
+            int randomNum = Mathf.FloorToInt(Random.Range(0f, 100f));
+
+            if (randomNum < 50)
             {
                 enemySupplyInventory.GetComponent<SupplyInventory>().Supplies -= 800;
                 StartCoroutine(SpawnAdvanced());
+            }
+            else if (harvesterCount < 3)
+            {
+                enemySupplyInventory.GetComponent<SupplyInventory>().Supplies -= 500;
+                StartCoroutine(SpawnHarvester());              
             }
             else
             {

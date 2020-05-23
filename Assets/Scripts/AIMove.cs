@@ -6,8 +6,9 @@ public class AIMove : MonoBehaviour
 {
     private Vector3 rallyPoint;  //this is the bridge they defend. In later builds, this will be public, and different enemy bases will have their own rally points we'll set from Unity
     private bool inPursuit = false; //we keep track of this so that we know if we're in a guarding or more offensive state
+    private bool offensiveMode = false;
     private GameObject pursuing; //this is the immediate adversary of the enemy unit
-    private float pursueDistance = 7;
+    public float searchAndDestroyDistance = 7f;
 
     void Start()
     {
@@ -49,7 +50,7 @@ public class AIMove : MonoBehaviour
         {
             distanceToPlayerUnit = Vector3.Distance(g.transform.position, transform.position);
 
-            if (distanceToPlayerUnit < pursueDistance && distanceToPlayerUnit < shortestDistance)
+            if (distanceToPlayerUnit < searchAndDestroyDistance && distanceToPlayerUnit < shortestDistance)
                 closestUnit = g;
 
         }
@@ -82,13 +83,13 @@ public class AIMove : MonoBehaviour
             }
         }
         //if we are in a group, rally at the player's base and aggressively pursue units
-        if (nearbyCt > 6)
+        if (nearbyCt > 6 && !offensiveMode) //we don't want this to continue looping after it's already offensive because we don't want to to continuously return to the new rally point
         {
             rallyPoint = new Vector3(0f, 2f, 0f);
             GetComponent<UnityEngine.AI.NavMeshAgent>().destination = rallyPoint;
-            pursueDistance = Mathf.Infinity;
+            offensiveMode = true;
+            searchAndDestroyDistance = 60f;
         }
-
     }
 
     void OnTriggerEnter(Collider other) //prevents bumping around when there's a common target
@@ -97,8 +98,8 @@ public class AIMove : MonoBehaviour
         if (Vector3.Distance(GetComponent<UnityEngine.AI.NavMeshAgent>().destination, transform.position) < 6f) //if you bump into a trigger, which are on all units, and you're close enough to your destination, stop trying to go there
         {
             GetComponent<UnityEngine.AI.NavMeshAgent>().destination = transform.position;
-        }
 
+        }
 
     }
 }
