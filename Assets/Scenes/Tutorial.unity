@@ -7603,9 +7603,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32da1e9e963b27f4f8b9d029252b50ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CameraMinX: -65
+  CameraMinX: -20
   CameraMinHeight: 5
-  CameraMinZ: -20
+  CameraMinZ: -60
   CameraMaxX: 20
   CameraMaxHeight: 40
   CameraMaxZ: 60
