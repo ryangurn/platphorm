@@ -12,7 +12,7 @@ public class CameraController : MonoBehaviour
 	public float CameraMinZ = -20.0f;
 	public float CameraMaxX = 20.0f;
 	public float CameraMaxHeight = 40.0f;
-	public float CameraMaxZ = 10.0f;
+	public float CameraMaxZ = 60.0f;
 	public float MouseSpeed = 3.5f;
 	public float KeyboardSpeed = 50.0f; //regular speed
 	public float ScrollSpeed = 1.0f;
