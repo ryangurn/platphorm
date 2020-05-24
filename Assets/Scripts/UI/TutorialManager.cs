@@ -52,6 +52,13 @@ public class TutorialManager : MonoBehaviour
           popupIndex++;
         }
       }
+      else if (popupIndex == 3)
+      {
+        if ( Input.GetMouseButton(1) )
+        {
+          popupIndex++;
+        }
+      }
 
     }
 }
