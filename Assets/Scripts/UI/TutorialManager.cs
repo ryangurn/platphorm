@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class TutorialManager : MonoBehaviour
 {
+    public GameObject Camera;
+
     public GameObject[] popups;
     private int popupIndex;
 
@@ -16,7 +18,6 @@ public class TutorialManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
       for (int i = 0; i < popups.Length; i++)
       {
         if (i == popupIndex)
@@ -32,7 +33,7 @@ public class TutorialManager : MonoBehaviour
 
       if (popupIndex == 0)
       {
-        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S))
+        if (Camera.GetComponent<CameraController>().CameraFrontBack)
         {
           popupIndex++;
         }
@@ -40,7 +41,7 @@ public class TutorialManager : MonoBehaviour
       }
       else if (popupIndex == 1)
       {
-        if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D))
+        if (Camera.GetComponent<CameraController>().CameraLeftRight)
         {
           popupIndex++;
         }
@@ -54,7 +55,7 @@ public class TutorialManager : MonoBehaviour
       }
       else if (popupIndex == 3)
       {
-        if ( Input.GetMouseButton(1) )
+        if (Camera.GetComponent<CameraController>().isPanning)
         {
           popupIndex++;
         }

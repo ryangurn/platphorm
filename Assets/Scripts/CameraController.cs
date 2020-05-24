@@ -16,6 +16,11 @@ public class CameraController : MonoBehaviour
 	public float MouseSpeed = 3.5f;
 	public float KeyboardSpeed = 50.0f; //regular speed
 	public float ScrollSpeed = 1.0f;
+
+	public bool CameraLeftRight = false;
+	public bool CameraFrontBack = false;
+	public bool CameraZoom = false;
+
 	private float m_shiftAdd = 250.0f; //multiplied by how long shift is held.  Basically running
 	private float m_maxShift = 1000.0f; //Maximum speed when holding shift
 	private float m_totalRun = 1.0f;
@@ -154,21 +159,29 @@ public class CameraController : MonoBehaviour
 
 		if ((Input.GetKey(KeyCode.W) || (Input.mousePosition.y > Screen.height - 7 && !isPanning)) && !isLocked ) //7 pixels seems to be a good screen edge for scrolling.
 		{
+			CameraFrontBack = true;
+			CameraLeftRight = false;
 			p_Velocity += new Vector3(0, 0, 1) * ScrollSpeed;
 		}
 
 		if ((Input.GetKey(KeyCode.S) || (Input.mousePosition.y < 7 && !isPanning)) && !isLocked)
 		{
+			CameraFrontBack = true;
+			CameraLeftRight = false;
 			p_Velocity += new Vector3(0, 0, -1) * ScrollSpeed;
 		}
 
 		if ((Input.GetKey(KeyCode.A) || (Input.mousePosition.x < 7 && !isPanning)) && !isLocked)
 		{
+			CameraFrontBack = false;
+			CameraLeftRight = true;
 			p_Velocity += new Vector3(-1, 0, 0) * ScrollSpeed;
 		}
 
 		if ((Input.GetKey(KeyCode.D) || (Input.mousePosition.x > Screen.width - 7 && !isPanning)) && !isLocked)
 		{
+			CameraFrontBack = false;
+			CameraLeftRight = true;
 			p_Velocity += new Vector3(1, 0, 0) * ScrollSpeed;
 		}
 
