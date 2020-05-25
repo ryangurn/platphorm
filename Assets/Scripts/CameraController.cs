@@ -20,6 +20,7 @@ public class CameraController : MonoBehaviour
 	public bool CameraLeftRight = false;
 	public bool CameraFrontBack = false;
 	public bool CameraZoom = false;
+	public bool EdgeControl = true;
 
 	private float m_shiftAdd = 250.0f; //multiplied by how long shift is held.  Basically running
 	private float m_maxShift = 1000.0f; //Maximum speed when holding shift
@@ -157,28 +158,28 @@ public class CameraController : MonoBehaviour
 		//if you're panning (or had just been panning .5 or so seconds ago), it doesn't allow movement. This is in case your mouse leaves the screen, you want edge scrolling locked out.
 
 
-		if ((Input.GetKey(KeyCode.W) || (Input.mousePosition.y > Screen.height - 7 && !isPanning)) && !isLocked ) //7 pixels seems to be a good screen edge for scrolling.
+		if ((Input.GetKey(KeyCode.W) || (Input.mousePosition.y > Screen.height - 7 && !isPanning && EdgeControl)) && !isLocked ) //7 pixels seems to be a good screen edge for scrolling.
 		{
 			CameraFrontBack = true;
 			CameraLeftRight = false;
 			p_Velocity += new Vector3(0, 0, 1) * ScrollSpeed;
 		}
 
-		if ((Input.GetKey(KeyCode.S) || (Input.mousePosition.y < 7 && !isPanning)) && !isLocked)
+		if ((Input.GetKey(KeyCode.S) || (Input.mousePosition.y < 7 && !isPanning && EdgeControl)) && !isLocked)
 		{
 			CameraFrontBack = true;
 			CameraLeftRight = false;
 			p_Velocity += new Vector3(0, 0, -1) * ScrollSpeed;
 		}
 
-		if ((Input.GetKey(KeyCode.A) || (Input.mousePosition.x < 7 && !isPanning)) && !isLocked)
+		if ((Input.GetKey(KeyCode.A) || (Input.mousePosition.x < 7 && !isPanning && EdgeControl)) && !isLocked)
 		{
 			CameraFrontBack = false;
 			CameraLeftRight = true;
 			p_Velocity += new Vector3(-1, 0, 0) * ScrollSpeed;
 		}
 
-		if ((Input.GetKey(KeyCode.D) || (Input.mousePosition.x > Screen.width - 7 && !isPanning)) && !isLocked)
+		if ((Input.GetKey(KeyCode.D) || (Input.mousePosition.x > Screen.width - 7 && !isPanning && EdgeControl)) && !isLocked)
 		{
 			CameraFrontBack = false;
 			CameraLeftRight = true;
@@ -292,6 +293,18 @@ public class CameraController : MonoBehaviour
 	public void UpdateScrollSpeed(GameObject slide)
 	{
 		ScrollSpeed = slide.GetComponent<Slider>().value;
+	}
+
+	public void ToggleEdgeControls(GameObject slide)
+	{
+		if(slide.GetComponent<Slider>().value == 0.0f)
+		{
+			EdgeControl = false;
+		}
+		else
+		{
+			EdgeControl = true;
+		}
 	}
 
 }
