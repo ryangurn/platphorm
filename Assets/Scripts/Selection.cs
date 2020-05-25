@@ -1,10 +1,13 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+using UnityEngine.UI;
 
 //Attaches to camera. The selection box on screen: is represented with a GUI rectangle
 public class Selection : MonoBehaviour
 {
 	public bool isLocked = false;
+	public GameObject TechCenterUI;
 
 	private Vector2 start = new Vector2(0, 0); //this inits the member variable to store the x, y of the initial click of the selection
 	private Vector2 cur = new Vector2(0, 0);  //inits member variable to store x, y of the current position of the mouse after initial click
@@ -140,16 +143,21 @@ public class Selection : MonoBehaviour
 		{
 			if (mr.gameObject.name == "SelectedSymbol")
 			{
+
 				// Make the selected symbol mesh visible or not
 				mr.enabled = selected;
 			}
-
 		}
 
 		//for player factory at the moment
 		if (g == playerFactory)
-		g.GetComponent<FactoryBuildPlayer>().isSelected = selected;
-
+		{
+			g.GetComponent<FactoryBuildPlayer>().isSelected = selected;
+		}
+		else if (g == playerTechCenter)
+		{
+			TechCenterUI.SetActive(selected);
+		}
 	}
 
 	void OnGUI()
