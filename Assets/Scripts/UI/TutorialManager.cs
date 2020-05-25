@@ -7,6 +7,7 @@ public class TutorialManager : MonoBehaviour
 {
   public GameObject Camera;
   public GameObject TimeObject;
+  public GameObject NextSound;
   public GameObject[] popups;
   private int popupIndex;
   private int changeCountHarvester;
@@ -207,6 +208,9 @@ public class TutorialManager : MonoBehaviour
     TimeObject.GetComponent<Text>().text = time.ToString("F1");
     if (time < 0)
     {
+      // Play the ping
+      AudioSource audio = NextSound.GetComponent<AudioSource>();
+      audio.Play();
       popupIndex++;
       time = 2.5f;
     }
