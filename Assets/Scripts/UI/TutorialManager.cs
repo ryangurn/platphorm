@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TutorialManager : MonoBehaviour
 {
   public GameObject Camera;
-
+  public GameObject TimeObject;
   public GameObject[] popups;
   private int popupIndex;
   private int changeCountHarvester;
@@ -14,6 +15,10 @@ public class TutorialManager : MonoBehaviour
   private GameObject[] units;
   private List<GameObject> harvesters = new List<GameObject>();
   private List<GameObject> attackingUnits = new List<GameObject>();
+  private bool IsRunning = false;
+  private bool PanLock = false;
+  private bool ScrollLock = false;
+  float time = 2.5f;
 
   void UpdateUnits()
   {
@@ -59,7 +64,7 @@ public class TutorialManager : MonoBehaviour
     {
       if (Camera.GetComponent<CameraController>().CameraFrontBack)
       {
-        popupIndex++;
+        StartCoroutine(wait());
       }
 
     }
@@ -67,35 +72,45 @@ public class TutorialManager : MonoBehaviour
     {
       if (Camera.GetComponent<CameraController>().CameraLeftRight)
       {
-        popupIndex++;
+        StartCoroutine(wait());
       }
     }
     else if (popupIndex == 2)
     {
       if ( Input.GetAxis("Mouse ScrollWheel") > 0f || Input.GetAxis("Mouse ScrollWheel") < 0f)
       {
-        popupIndex++;
+        ScrollLock = true;
+      }
+
+      if (ScrollLock)
+      {
+        StartCoroutine(wait());
       }
     }
     else if (popupIndex == 3)
     {
       if (Camera.GetComponent<CameraController>().isPanning)
       {
-        popupIndex++;
+        PanLock = true;
+      }
+
+      if (PanLock)
+      {
+        StartCoroutine(wait());
       }
     }
     else if (popupIndex == 4)
     {
       if (Camera.GetComponent<CameraController>().isLocked)
       {
-        popupIndex++;
+        StartCoroutine(wait());
       }
     }
     else if (popupIndex == 5)
     {
       if (!Camera.GetComponent<CameraController>().isLocked)
       {
-        popupIndex++;
+        StartCoroutine(wait());
       }
     }
     else if (popupIndex == 6)
@@ -120,7 +135,7 @@ public class TutorialManager : MonoBehaviour
 
       if(move)
       {
-        popupIndex++;
+        StartCoroutine(wait());
       }
     }
     else if (popupIndex == 7)
@@ -145,7 +160,7 @@ public class TutorialManager : MonoBehaviour
 
       if(unselected)
       {
-        popupIndex++;
+        StartCoroutine(wait());
       }
     }
     else if (popupIndex == 8)
@@ -162,7 +177,7 @@ public class TutorialManager : MonoBehaviour
 
       if (changeCountHarvester >= 100)
       {
-        popupIndex++;
+        StartCoroutine(wait());
       }
     }
     else if (popupIndex == 9)
@@ -179,10 +194,22 @@ public class TutorialManager : MonoBehaviour
 
       if (changeCountAttack >= 100)
       {
-        popupIndex++;
+        StartCoroutine(wait());
       }
     }
 
     UpdateUnits();
+  }
+
+  IEnumerator wait()
+  {
+    time -= Time.deltaTime;
+    TimeObject.GetComponent<Text>().text = time.ToString("F1");
+    if (time < 0)
+    {
+      popupIndex++;
+      time = 2.5f;
+    }
+    yield return new WaitForSeconds(0.0f);
   }
 }
