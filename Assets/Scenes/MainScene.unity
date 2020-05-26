@@ -5341,6 +5341,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c7567a5cd43d542448b640dd8537ad3e, type: 3}
+--- !u!1 &1245378001 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 529349638144764775, guid: 9a954680e701bd745a96fa977dc0d306,
+    type: 3}
+  m_PrefabInstance: {fileID: 5119175160287200062}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1255040000
 GameObject:
   m_ObjectHideFlags: 0
@@ -5985,7 +5991,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1422145836}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1430248920}
+        m_MethodName: AddMultiplierToHarvester
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!1 &1423917600
@@ -6114,15 +6131,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerResources: {fileID: 47141255}
+  PlayerRefinery: {fileID: 1245378001}
   RangeDelta: 1
-  RangeLimit: 2
-  RangePerCost: 300
+  RangeLimit: 3
+  RangePerCost: 500
   SpeedDelta: 1.5
-  SpeedLimit: 2
-  SpeedPerCost: 300
+  SpeedLimit: 5
+  SpeedPerCost: 350
   StrengthDelta: 2
-  StrengthLimit: 2
-  StrengthPerCost: 800
+  StrengthLimit: 3
+  StrengthPerCost: 600
+  HarvestDelta: 1
+  HarvestLimit: 2
+  HarvestPerCost: 850
 --- !u!1 &1437384240
 GameObject:
   m_ObjectHideFlags: 0
