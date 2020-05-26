@@ -7,6 +7,8 @@ public class DepositOre : MonoBehaviour
 {
     public string MyTeam; //shared enemy/player script
 
+    public int HarvesterMultiplier = 1;
+
     private SupplyInventory MySupplyInventory;
 
     void Start()
@@ -16,6 +18,6 @@ public class DepositOre : MonoBehaviour
     //called by harvester
     public void Deposit()
     {   //look for refinery's team's supply inventory and put the supplies in the inventory. There's an element of randomness here to keep the game more interensting
-        MySupplyInventory.Supplies += Mathf.FloorToInt(Random.Range(50f, 500f));
+        MySupplyInventory.Supplies += HarvesterMultiplier*Mathf.FloorToInt(Random.Range(50f, 500f));
     }
 }

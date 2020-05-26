@@ -7,6 +7,7 @@ public class TechCenterController : MonoBehaviour
 {
 
   public GameObject PlayerResources;
+  public GameObject PlayerRefinery;
 
   public int RangeDelta = 1;
   public int RangeLimit = 2;
@@ -20,9 +21,14 @@ public class TechCenterController : MonoBehaviour
   public int StrengthLimit = 2;
   public int StrengthPerCost = 800;
 
+  public int HarvestDelta = 1;
+  public int HarvestLimit = 2;
+  public int HarvestPerCost = 250;
+
   private int RangeCounter = 0;
   private int SpeedCounter = 0;
   private int StrengthCounter = 0;
+  private int HarvestCounter = 0;
 
 
   private GameObject[] units;
@@ -48,11 +54,11 @@ public class TechCenterController : MonoBehaviour
 
   public void ChangeRangeOfAttack()
   {
-    if (RangeCounter == RangeLimit) return;
-
+    if (RangeCounter >= RangeLimit) return;
     if (PlayerResources.GetComponent<SupplyInventory>().Supplies < RangePerCost) return;
 
     PlayerResources.GetComponent<SupplyInventory>().Supplies -= RangePerCost;
+    RangeCounter++;
 
     foreach (GameObject attack in attackUnits)
     {
@@ -63,11 +69,11 @@ public class TechCenterController : MonoBehaviour
 
   public void ChangeSpeedOfUnits()
   {
-    if (SpeedCounter == SpeedLimit) return;
-
+    if (SpeedCounter >= SpeedLimit) return;
     if (PlayerResources.GetComponent<SupplyInventory>().Supplies < SpeedPerCost) return;
 
     PlayerResources.GetComponent<SupplyInventory>().Supplies -= SpeedPerCost;
+    SpeedCounter++;
 
     foreach (GameObject unit in units)
     {
@@ -78,11 +84,11 @@ public class TechCenterController : MonoBehaviour
 
   public void ChangeStrengthOfUnits()
   {
-    if (StrengthCounter == StrengthLimit) return;
-
+    if (StrengthCounter >= StrengthLimit) return;
     if (PlayerResources.GetComponent<SupplyInventory>().Supplies < StrengthPerCost) return;
 
     PlayerResources.GetComponent<SupplyInventory>().Supplies -= StrengthPerCost;
+    StrengthCounter++;
 
     foreach (GameObject unit in units)
     {
@@ -91,8 +97,16 @@ public class TechCenterController : MonoBehaviour
     return;
   }
 
-  public void AddSlotToHarvester()
+  public void AddMultiplierToHarvester()
   {
-    // todo
+    if (HarvestCounter >= HarvestLimit) return;
+    if (PlayerResources.GetComponent<SupplyInventory>().Supplies < HarvestPerCost) return;
+
+    PlayerResources.GetComponent<SupplyInventory>().Supplies -= HarvestPerCost;
+    HarvestCounter++;
+
+    PlayerRefinery.GetComponent<DepositOre>().HarvesterMultiplier += HarvestDelta;
+
+    return;
   }
 }
