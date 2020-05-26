@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class TechCenterController : MonoBehaviour
 {
@@ -31,6 +32,10 @@ public class TechCenterController : MonoBehaviour
   private int StrengthCounter = 0;
   private int HarvestCounter = 0;
 
+  public GameObject RangeText;
+  public GameObject SpeedText;
+  public GameObject StrengthText;
+  public GameObject HarvesterText;
 
   private GameObject[] units;
   private List<GameObject> harvesters = new List<GameObject>();
@@ -38,7 +43,7 @@ public class TechCenterController : MonoBehaviour
 
   void Start()
   {
-
+    UpdateText();
     units = GameObject.FindGameObjectsWithTag("Player");
     foreach (GameObject unit in units)
     {
@@ -51,6 +56,20 @@ public class TechCenterController : MonoBehaviour
       }
 
     }
+  }
+
+  void UpdateText()
+  {
+    RangeText.GetComponent<Text>().text = "+ RANGE OF ATTACK ("+RangePerCost+")";
+    SpeedText.GetComponent<Text>().text = "+ SPEED OF UNITS ("+SpeedPerCost+")";
+    StrengthText.GetComponent<Text>().text = "+ STRENGTH OF UNITS ("+StrengthPerCost+")";
+    HarvesterText.GetComponent<Text>().text = "+ 1 SLOT IN HARVESTER ("+HarvestPerCost+")";
+  }
+
+
+  void FixedUpdate()
+  {
+    UpdateText();
   }
 
   public void ChangeRangeOfAttack()

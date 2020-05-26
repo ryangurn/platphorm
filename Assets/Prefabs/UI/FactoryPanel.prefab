@@ -352,7 +352,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: HARVESTER (500)
+  m_Text: HARVESTER
 --- !u!1 &8850358384466836106
 GameObject:
   m_ObjectHideFlags: 0
@@ -640,7 +640,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: ADVANCED UNIT (800)
+  m_Text: ADVANCED UNIT
 --- !u!1 &8850358385255058300
 GameObject:
   m_ObjectHideFlags: 0
@@ -719,7 +719,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: BASIC UNIT (300)
+  m_Text: BASIC UNIT
 --- !u!1 &8850358385474339411
 GameObject:
   m_ObjectHideFlags: 0

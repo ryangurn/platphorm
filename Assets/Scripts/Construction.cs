@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 //this script attaches to the canvas
 public class Construction : MonoBehaviour
@@ -14,6 +15,10 @@ public class Construction : MonoBehaviour
   public int BasicCost = 300;
   public int AdvancedCost = 800;
 
+  public GameObject HarvesterText;
+  public GameObject BasicText;
+  public GameObject AdvancedText;
+
 
   private FactoryBuildPlayer fbp; //this holds the factory for the player
   private bool queueFull = false; //can't build if we're busy, so we keep track
@@ -23,10 +28,19 @@ public class Construction : MonoBehaviour
   private GameObject[] slots;
   private bool busy = false;
 
+  void UpdateText()
+  {
+    HarvesterText.GetComponent<Text>().text = "HARVESTER ("+HarvesterCost+")";
+    BasicText.GetComponent<Text>().text = "BASIC UNIT ("+BasicCost+")";
+    AdvancedText.GetComponent<Text>().text = "ADVANCED UNIT ("+AdvancedCost+")";
+  }
 
   //this starting function locates the player factory
   void Start()
   {
+
+    UpdateText();
+
     // get slots
     slots = GameObject.FindGameObjectsWithTag("PlayerSlots");
 
@@ -45,6 +59,8 @@ public class Construction : MonoBehaviour
 
   void FixedUpdate() //basic handler to check for work and update queue Count/size
   {
+    UpdateText();
+
     queueFull = buildQueue.Count > 4; //if it's 5, it's full
     string currentWork;
 

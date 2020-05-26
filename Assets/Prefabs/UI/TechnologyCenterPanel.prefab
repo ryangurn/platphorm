@@ -565,6 +565,10 @@ MonoBehaviour:
   HarvestDelta: 1
   HarvestLimit: 2
   HarvestPerCost: 850
+  RangeText: {fileID: 5411448628412134257}
+  SpeedText: {fileID: 5411448628625212500}
+  StrengthText: {fileID: 5411448628179906783}
+  HarvesterText: {fileID: 5411448628438387879}
 --- !u!1 &5411448628085319993
 GameObject:
   m_ObjectHideFlags: 0

@@ -93,6 +93,9 @@ MonoBehaviour:
   Canvas: {fileID: 0}
   PlayerResources: {fileID: 0}
   Funds: {fileID: 3534034401622886527}
+  SpeedText: {fileID: 3534034401678729733}
+  EfficiencyText: {fileID: 3534034401354735091}
+  TaskText: {fileID: 3534034401750188737}
   SpeedDelta: 1
   SpeedLimit: 2
   SpeedPerCost: 750

@@ -884,6 +884,9 @@ MonoBehaviour:
   Canvas: {fileID: 0}
   PlayerResources: {fileID: 0}
   Funds: {fileID: 0}
+  SpeedText: {fileID: 0}
+  EfficiencyText: {fileID: 0}
+  TaskText: {fileID: 0}
   SpeedDelta: 1
   SpeedLimit: 2
   SpeedPerCost: 300
@@ -898,6 +901,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3778109309519788308, guid: 9517a9999bab42a4f83df7b6c33ab3e7,
     type: 3}
   m_PrefabInstance: {fileID: 2114142578}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &433382715 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8850358384190019319, guid: 90dcf600651425c418d9dbf6263136f8,
+    type: 3}
+  m_PrefabInstance: {fileID: 8850358385580413688}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &464858427 stripped
 Transform:
@@ -1118,6 +1127,9 @@ MonoBehaviour:
   HarvesterCost: 500
   BasicCost: 300
   AdvancedCost: 800
+  HarvesterText: {fileID: 433382715}
+  BasicText: {fileID: 1487980764}
+  AdvancedText: {fileID: 1053176675}
 --- !u!114 &508002704
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2531,6 +2543,12 @@ MonoBehaviour:
   m_Script: {fileID: -113659843, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1053176675 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8850358384691190905, guid: 90dcf600651425c418d9dbf6263136f8,
+    type: 3}
+  m_PrefabInstance: {fileID: 8850358385580413688}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1113598066 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8850358384466836106, guid: 90dcf600651425c418d9dbf6263136f8,
@@ -2922,6 +2940,12 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5411448628075498950, guid: 8bb409beb65c17e4db4414758b37df44,
     type: 3}
   m_PrefabInstance: {fileID: 5411448629364314131}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1487980764 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8850358385255058300, guid: 90dcf600651425c418d9dbf6263136f8,
+    type: 3}
+  m_PrefabInstance: {fileID: 8850358385580413688}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1537712190
 GameObject:

@@ -1,12 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PowerPlantController : MonoBehaviour
 {
     public GameObject Canvas;
     public GameObject PlayerResources;
     public GameObject Funds;
+
+    public GameObject SpeedText;
+    public GameObject EfficiencyText;
+    public GameObject TaskText;
 
     public int SpeedDelta = 1;
     public int SpeedLimit = 2;
@@ -23,6 +28,22 @@ public class PowerPlantController : MonoBehaviour
     public int TaskPerCost = 300;
     private int TaskCounter = 0;
 
+    void UpdateText()
+    {
+      SpeedText.GetComponent<Text>().text = "+ FACTORY SPEED ("+SpeedPerCost+")";
+      EfficiencyText.GetComponent<Text>().text = "+ FACTORY SPEED ("+EfficiencyPerCost+")";
+      TaskText.GetComponent<Text>().text = "FACTORY MULTITASK ("+TaskPerCost+")";
+    }
+
+    void Start()
+    {
+      UpdateText();
+    }
+
+    void FixedUpdate()
+    {
+      UpdateText();
+    }
 
     public void ChangeSpeedOfFactory()
     {
