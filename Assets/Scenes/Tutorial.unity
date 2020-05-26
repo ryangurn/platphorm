@@ -1667,6 +1667,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Funds: {fileID: 1290747100}
+  Upgraded: {fileID: 1940272924}
+  Completed: {fileID: 2123867208}
   ConstructionSpeedMulti: 1
   ConstructionEfficiencyMulti: 1
   ConstructionTaskMulti: 1
@@ -4648,6 +4650,12 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 5178945585046596352, guid: 332da4f06e14c0543bffc1497112ea1b, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 332da4f06e14c0543bffc1497112ea1b, type: 3}
+--- !u!1 &1940272924 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3013429363326811766, guid: 90dcf600651425c418d9dbf6263136f8,
+    type: 3}
+  m_PrefabInstance: {fileID: 246981535}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1940753564
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5281,6 +5289,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2105017737}
   m_CullTransparentMesh: 0
+--- !u!1 &2123867208 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8487671901092681790, guid: 90dcf600651425c418d9dbf6263136f8,
+    type: 3}
+  m_PrefabInstance: {fileID: 246981535}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2140302291
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -7,6 +7,8 @@ using UnityEngine.UI;
 public class Construction : MonoBehaviour
 {
   public GameObject Funds;
+  public GameObject Upgraded;
+  public GameObject Completed;
 
   public float ConstructionSpeedMulti = 1;
   public float ConstructionEfficiencyMulti = 1;
@@ -131,9 +133,10 @@ public class Construction : MonoBehaviour
       {
         playerSupplyInventory.GetComponent<SupplyInventory>().Supplies -= (int)ConstructionEfficiencyMulti*BasicCost;
         buildQueue.Add("Basic");
+        StartCoroutine(CompletedAlready());
       }
       else
-      StartCoroutine(NotSufficientFunds());
+      StartCoroutine(InsufficientFunds());
     }
     else if (unitType == "Advanced")
     {
@@ -141,10 +144,10 @@ public class Construction : MonoBehaviour
       {
         playerSupplyInventory.GetComponent<SupplyInventory>().Supplies -= (int)ConstructionEfficiencyMulti*AdvancedCost;
         buildQueue.Add("Advanced");
-
+        StartCoroutine(CompletedAlready());
       }
       else
-      StartCoroutine(NotSufficientFunds());
+      StartCoroutine(InsufficientFunds());
     }
     else //Harvester
     {
@@ -152,10 +155,10 @@ public class Construction : MonoBehaviour
       {
         playerSupplyInventory.GetComponent<SupplyInventory>().Supplies -= (int)ConstructionEfficiencyMulti*HarvesterCost;
         buildQueue.Add("Harvester");
-
+        StartCoroutine(CompletedAlready());
       }
       else
-      StartCoroutine(NotSufficientFunds());
+      StartCoroutine(InsufficientFunds());
     }
   }
 
@@ -189,11 +192,31 @@ public class Construction : MonoBehaviour
     busy = false;
   }
 
-  private IEnumerator NotSufficientFunds()
+  IEnumerator InsufficientFunds()
   {
+    Upgraded.SetActive(false);
+    Completed.SetActive(false);
     Funds.SetActive(true);
     yield return new WaitForSeconds(2);
     Funds.SetActive(false);
+  }
+
+  IEnumerator UpgradedAlready()
+  {
+    Funds.SetActive(false);
+    Completed.SetActive(false);
+    Upgraded.SetActive(true);
+    yield return new WaitForSeconds(1);
+    Upgraded.SetActive(false);
+  }
+
+  IEnumerator CompletedAlready()
+  {
+    Funds.SetActive(false);
+    Upgraded.SetActive(false);
+    Completed.SetActive(true);
+    yield return new WaitForSeconds(1);
+    Completed.SetActive(false);
   }
   /*
   void OnGUI() //GUI objects

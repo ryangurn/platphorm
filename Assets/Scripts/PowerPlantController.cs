@@ -8,6 +8,8 @@ public class PowerPlantController : MonoBehaviour
     public GameObject Canvas;
     public GameObject PlayerResources;
     public GameObject Funds;
+    public GameObject Upgraded;
+    public GameObject Completed;
 
     public GameObject SpeedText;
     public GameObject EfficiencyText;
@@ -47,7 +49,11 @@ public class PowerPlantController : MonoBehaviour
 
     public void ChangeSpeedOfFactory()
     {
-      if (SpeedCounter >= SpeedLimit) return;
+      if (SpeedCounter >= SpeedLimit)
+      {
+        StartCoroutine(UpgradedAlready());
+        return;
+      }
       if (PlayerResources.GetComponent<SupplyInventory>().Supplies < SpeedPerCost)
       {
         StartCoroutine(InsufficientFunds());
@@ -59,11 +65,17 @@ public class PowerPlantController : MonoBehaviour
 
 
       Canvas.GetComponent<Construction>().ConstructionSpeedMulti += SpeedDelta;
+      StartCoroutine(CompletedAlready());
+      return;
     }
 
     public void ChangeEfficiencyOfFactory()
     {
-      if (EfficiencyCounter >= EfficiencyLimit) return;
+      if (EfficiencyCounter >= EfficiencyLimit)
+      {
+        StartCoroutine(UpgradedAlready());
+        return;
+      }
       if (PlayerResources.GetComponent<SupplyInventory>().Supplies < EfficiencyPerCost)
       {
         StartCoroutine(InsufficientFunds());
@@ -75,6 +87,8 @@ public class PowerPlantController : MonoBehaviour
 
 
       Canvas.GetComponent<Construction>().ConstructionEfficiencyMulti += EfficiencyDelta;
+      StartCoroutine(CompletedAlready());
+      return;
     }
 
     public void ChangeMultitaskingOfFactory()
@@ -84,8 +98,28 @@ public class PowerPlantController : MonoBehaviour
 
     IEnumerator InsufficientFunds()
     {
+      Upgraded.SetActive(false);
+      Completed.SetActive(false);
       Funds.SetActive(true);
       yield return new WaitForSeconds(2);
       Funds.SetActive(false);
+    }
+
+    IEnumerator UpgradedAlready()
+    {
+      Funds.SetActive(false);
+      Completed.SetActive(false);
+      Upgraded.SetActive(true);
+      yield return new WaitForSeconds(1);
+      Upgraded.SetActive(false);
+    }
+
+    IEnumerator CompletedAlready()
+    {
+      Funds.SetActive(false);
+      Upgraded.SetActive(false);
+      Completed.SetActive(true);
+      yield return new WaitForSeconds(1);
+      Completed.SetActive(false);
     }
 }

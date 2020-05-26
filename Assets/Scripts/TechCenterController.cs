@@ -10,6 +10,8 @@ public class TechCenterController : MonoBehaviour
   public GameObject PlayerResources;
   public GameObject PlayerRefinery;
   public GameObject Funds;
+  public GameObject Upgraded;
+  public GameObject Completed;
 
   public int RangeDelta = 1;
   public int RangeLimit = 2;
@@ -74,7 +76,11 @@ public class TechCenterController : MonoBehaviour
 
   public void ChangeRangeOfAttack()
   {
-    if (RangeCounter >= RangeLimit) return;
+    if (RangeCounter >= RangeLimit)
+    {
+      StartCoroutine(UpgradedAlready());
+      return;
+    }
     if (PlayerResources.GetComponent<SupplyInventory>().Supplies < RangePerCost)
     {
         StartCoroutine(InsufficientFunds());
@@ -88,12 +94,17 @@ public class TechCenterController : MonoBehaviour
     {
       attack.GetComponent<Attack>().AttackRange = attack.GetComponent<Attack>().AttackRange + RangeDelta;
     }
+    StartCoroutine(CompletedAlready());
     return;
   }
 
   public void ChangeSpeedOfUnits()
   {
-    if (SpeedCounter >= SpeedLimit) return;
+    if (SpeedCounter >= SpeedLimit)
+    {
+      StartCoroutine(UpgradedAlready());
+      return;
+    }
     if (PlayerResources.GetComponent<SupplyInventory>().Supplies < SpeedPerCost)
     {
       StartCoroutine(InsufficientFunds());
@@ -107,12 +118,17 @@ public class TechCenterController : MonoBehaviour
     {
       unit.GetComponent<NavMeshAgent>().speed = unit.GetComponent<NavMeshAgent>().speed + SpeedDelta;
     }
+    StartCoroutine(CompletedAlready());
     return;
   }
 
   public void ChangeStrengthOfUnits()
   {
-    if (StrengthCounter >= StrengthLimit) return;
+    if (StrengthCounter >= StrengthLimit)
+    {
+      StartCoroutine(UpgradedAlready());
+      return;
+    }
     if (PlayerResources.GetComponent<SupplyInventory>().Supplies < StrengthPerCost)
     {
       StartCoroutine(InsufficientFunds());
@@ -126,12 +142,17 @@ public class TechCenterController : MonoBehaviour
     {
       unit.GetComponent<Health>().HealthLevel = unit.GetComponent<Health>().HealthLevel + StrengthDelta;
     }
+    StartCoroutine(CompletedAlready());
     return;
   }
 
   public void AddMultiplierToHarvester()
   {
-    if (HarvestCounter >= HarvestLimit) return;
+    if (HarvestCounter >= HarvestLimit)
+    {
+      StartCoroutine(UpgradedAlready());
+      return;
+    }
     if (PlayerResources.GetComponent<SupplyInventory>().Supplies < HarvestPerCost)
     {
       StartCoroutine(InsufficientFunds());
@@ -142,14 +163,34 @@ public class TechCenterController : MonoBehaviour
     HarvestCounter++;
 
     PlayerRefinery.GetComponent<DepositOre>().HarvesterMultiplier += HarvestDelta;
-
+    StartCoroutine(CompletedAlready());
     return;
   }
 
   IEnumerator InsufficientFunds()
   {
+    Upgraded.SetActive(false);
+    Completed.SetActive(false);
     Funds.SetActive(true);
     yield return new WaitForSeconds(2);
     Funds.SetActive(false);
+  }
+
+  IEnumerator UpgradedAlready()
+  {
+    Funds.SetActive(false);
+    Completed.SetActive(false);
+    Upgraded.SetActive(true);
+    yield return new WaitForSeconds(1);
+    Upgraded.SetActive(false);
+  }
+
+  IEnumerator CompletedAlready()
+  {
+    Funds.SetActive(false);
+    Upgraded.SetActive(false);
+    Completed.SetActive(true);
+    yield return new WaitForSeconds(1);
+    Completed.SetActive(false);
   }
 }
