@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class TechCenterController : MonoBehaviour
 {
 
+  public GameObject Factory;
   public GameObject PlayerResources;
   public GameObject PlayerRefinery;
   public GameObject Funds;
@@ -94,6 +95,8 @@ public class TechCenterController : MonoBehaviour
     {
       attack.GetComponent<Attack>().AttackRange = attack.GetComponent<Attack>().AttackRange + RangeDelta;
     }
+    Factory.GetComponent<FactoryBuildPlayer>().BasicAttackRange += RangeDelta;
+    Factory.GetComponent<FactoryBuildPlayer>().AdvancedAttackRange += RangeDelta;
     StartCoroutine(CompletedAlready());
     return;
   }
@@ -118,6 +121,9 @@ public class TechCenterController : MonoBehaviour
     {
       unit.GetComponent<NavMeshAgent>().speed = unit.GetComponent<NavMeshAgent>().speed + SpeedDelta;
     }
+    Factory.GetComponent<FactoryBuildPlayer>().BasicSpeed += SpeedDelta;
+    Factory.GetComponent<FactoryBuildPlayer>().AdvancedSpeed += SpeedDelta;
+    Factory.GetComponent<FactoryBuildPlayer>().HarvesterSpeed += SpeedDelta;
     StartCoroutine(CompletedAlready());
     return;
   }
@@ -142,6 +148,9 @@ public class TechCenterController : MonoBehaviour
     {
       unit.GetComponent<Health>().HealthLevel = unit.GetComponent<Health>().HealthLevel + StrengthDelta;
     }
+    Factory.GetComponent<FactoryBuildPlayer>().BasicHealthLevel += StrengthDelta;
+    Factory.GetComponent<FactoryBuildPlayer>().AdvancedHealthLevel += StrengthDelta;
+    Factory.GetComponent<FactoryBuildPlayer>().HarvesterHealthLevel += StrengthDelta;
     StartCoroutine(CompletedAlready());
     return;
   }
