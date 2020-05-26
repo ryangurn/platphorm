@@ -1580,6 +1580,7 @@ GameObject:
   - component: {fileID: 362980255}
   - component: {fileID: 362980257}
   - component: {fileID: 362980256}
+  - component: {fileID: 362980258}
   m_Layer: 5
   m_Name: PowerCenterPanel
   m_TagString: Untagged
@@ -1645,6 +1646,58 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 362980254}
   m_CullTransparentMesh: 0
+--- !u!114 &362980258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 362980254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cbb9850779e3bb4790fda6b1bca1458, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Canvas: {fileID: 508002698}
+  PlayerResources: {fileID: 47141255}
+  SpeedDelta: 1
+  SpeedLimit: 2
+  SpeedPerCost: 10
+  EfficiencyDelta: 1
+  EfficiencyLimit: 2
+  EfficiencyPerCost: 10
+  TaskDelta: 1
+  TaskLimit: 2
+  TaskPerCost: 10
+--- !u!1 &395807679 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2384332522641561808, guid: eeb1629bfbd4f604e8df0cc68c5dd84d,
+    type: 3}
+  m_PrefabInstance: {fileID: 8973292183417903712}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &395807682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 395807679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cbb9850779e3bb4790fda6b1bca1458, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Canvas: {fileID: 0}
+  PlayerResources: {fileID: 0}
+  SpeedDelta: 1
+  SpeedLimit: 2
+  SpeedPerCost: 300
+  EfficiencyDelta: 1
+  EfficiencyLimit: 2
+  EfficiencyPerCost: 300
+  TaskDelta: 1
+  TaskLimit: 2
+  TaskPerCost: 300
 --- !u!4 &395855728 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3778109309519788308, guid: 9517a9999bab42a4f83df7b6c33ab3e7,
@@ -1953,6 +2006,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b017350c986d0a4b9b6c4d9c463d66b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ConstructionSpeedMulti: 1
+  ConstructionEfficiencyMulti: 1
+  ConstructionTaskMulti: 1
+  HarvesterCost: 500
+  BasicCost: 300
+  AdvancedCost: 800
 --- !u!114 &508002704
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2653,7 +2712,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 625553629}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 362980258}
+        m_MethodName: ChangeSpeedOfFactory
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &625553629
@@ -7271,7 +7341,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1653666536}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 362980258}
+        m_MethodName: ChangeEfficiencyOfFactory
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!1 &1681490629

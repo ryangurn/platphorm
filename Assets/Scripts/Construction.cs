@@ -5,6 +5,14 @@ using UnityEngine;
 //this script attaches to the canvas
 public class Construction : MonoBehaviour
 {
+  public float ConstructionSpeedMulti = 1;
+  public float ConstructionEfficiencyMulti = 1;
+  public float ConstructionTaskMulti = 1;
+  public int HarvesterCost = 500;
+  public int BasicCost = 300;
+  public int AdvancedCost = 800;
+
+
   private FactoryBuildPlayer fbp; //this holds the factory for the player
   private bool queueFull = false; //can't build if we're busy, so we keep track
   private bool sufficientFunds = true;
@@ -19,7 +27,6 @@ public class Construction : MonoBehaviour
   {
     // get slots
     slots = GameObject.FindGameObjectsWithTag("PlayerSlots");
-
 
     // get buildings
     playerSupplyInventory = GameObject.FindGameObjectWithTag("PlayerSupplyInventory");
@@ -102,9 +109,9 @@ public class Construction : MonoBehaviour
   {
     if (unitType == "Basic")
     {
-      if (playerSupplyInventory.GetComponent<SupplyInventory>().Supplies >= 300)
+      if (playerSupplyInventory.GetComponent<SupplyInventory>().Supplies >= (int)ConstructionEfficiencyMulti*BasicCost)
       {
-        playerSupplyInventory.GetComponent<SupplyInventory>().Supplies -= 300;
+        playerSupplyInventory.GetComponent<SupplyInventory>().Supplies -= (int)ConstructionEfficiencyMulti*BasicCost;
         buildQueue.Add("Basic");
       }
       else
@@ -112,9 +119,9 @@ public class Construction : MonoBehaviour
     }
     else if (unitType == "Advanced")
     {
-      if (playerSupplyInventory.GetComponent<SupplyInventory>().Supplies >= 800)
+      if (playerSupplyInventory.GetComponent<SupplyInventory>().Supplies >= (int)ConstructionEfficiencyMulti*AdvancedCost)
       {
-        playerSupplyInventory.GetComponent<SupplyInventory>().Supplies -= 800;
+        playerSupplyInventory.GetComponent<SupplyInventory>().Supplies -= (int)ConstructionEfficiencyMulti*AdvancedCost;
         buildQueue.Add("Advanced");
 
       }
@@ -123,9 +130,9 @@ public class Construction : MonoBehaviour
     }
     else //Harvester
     {
-      if (playerSupplyInventory.GetComponent<SupplyInventory>().Supplies >= 500)
+      if (playerSupplyInventory.GetComponent<SupplyInventory>().Supplies >= (int)ConstructionEfficiencyMulti*HarvesterCost)
       {
-        playerSupplyInventory.GetComponent<SupplyInventory>().Supplies -= 500;
+        playerSupplyInventory.GetComponent<SupplyInventory>().Supplies -= (int)ConstructionEfficiencyMulti*HarvesterCost;
         buildQueue.Add("Harvester");
 
       }
@@ -139,7 +146,7 @@ public class Construction : MonoBehaviour
   private IEnumerator BuildBasic()
   {
 
-    yield return new WaitForSeconds(3);
+    yield return new WaitForSeconds(ConstructionSpeedMulti*3);
     fbp.SpawnBasic();
     buildQueue.RemoveAt(0);
 
@@ -149,7 +156,7 @@ public class Construction : MonoBehaviour
   private IEnumerator BuildAdvanced()
   {
 
-    yield return new WaitForSeconds(10);
+    yield return new WaitForSeconds(ConstructionSpeedMulti*10);
     fbp.SpawnAdvanced();
     buildQueue.RemoveAt(0);
     busy = false;
@@ -158,7 +165,7 @@ public class Construction : MonoBehaviour
   private IEnumerator BuildHarvester()
   {
 
-    yield return new WaitForSeconds(5);
+    yield return new WaitForSeconds(ConstructionSpeedMulti*5);
     fbp.SpawnHarvester();
     buildQueue.RemoveAt(0);
     busy = false;
