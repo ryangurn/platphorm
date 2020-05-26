@@ -863,39 +863,6 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 3534034400312882059}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &395807679 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2384332522641561808, guid: eeb1629bfbd4f604e8df0cc68c5dd84d,
-    type: 3}
-  m_PrefabInstance: {fileID: 8973292183417903712}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &395807682
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 395807679}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0cbb9850779e3bb4790fda6b1bca1458, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Canvas: {fileID: 0}
-  PlayerResources: {fileID: 0}
-  Funds: {fileID: 0}
-  SpeedText: {fileID: 0}
-  EfficiencyText: {fileID: 0}
-  TaskText: {fileID: 0}
-  SpeedDelta: 1
-  SpeedLimit: 2
-  SpeedPerCost: 300
-  EfficiencyDelta: 1
-  EfficiencyLimit: 2
-  EfficiencyPerCost: 300
-  TaskDelta: 1
-  TaskLimit: 2
-  TaskPerCost: 300
 --- !u!4 &395855728 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3778109309519788308, guid: 9517a9999bab42a4f83df7b6c33ab3e7,
