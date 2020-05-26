@@ -5,6 +5,8 @@ using UnityEngine;
 //this script attaches to the canvas
 public class Construction : MonoBehaviour
 {
+  public GameObject Funds;
+
   public float ConstructionSpeedMulti = 1;
   public float ConstructionEfficiencyMulti = 1;
   public float ConstructionTaskMulti = 1;
@@ -173,9 +175,9 @@ public class Construction : MonoBehaviour
 
   private IEnumerator NotSufficientFunds()
   {
-    sufficientFunds = false;
+    Funds.SetActive(true);
     yield return new WaitForSeconds(2);
-    sufficientFunds = true;
+    Funds.SetActive(false);
   }
   /*
   void OnGUI() //GUI objects

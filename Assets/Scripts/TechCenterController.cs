@@ -8,6 +8,7 @@ public class TechCenterController : MonoBehaviour
 
   public GameObject PlayerResources;
   public GameObject PlayerRefinery;
+  public GameObject Funds;
 
   public int RangeDelta = 1;
   public int RangeLimit = 2;
@@ -55,7 +56,11 @@ public class TechCenterController : MonoBehaviour
   public void ChangeRangeOfAttack()
   {
     if (RangeCounter >= RangeLimit) return;
-    if (PlayerResources.GetComponent<SupplyInventory>().Supplies < RangePerCost) return;
+    if (PlayerResources.GetComponent<SupplyInventory>().Supplies < RangePerCost)
+    {
+        StartCoroutine(InsufficientFunds());
+        return;
+    }
 
     PlayerResources.GetComponent<SupplyInventory>().Supplies -= RangePerCost;
     RangeCounter++;
@@ -70,7 +75,11 @@ public class TechCenterController : MonoBehaviour
   public void ChangeSpeedOfUnits()
   {
     if (SpeedCounter >= SpeedLimit) return;
-    if (PlayerResources.GetComponent<SupplyInventory>().Supplies < SpeedPerCost) return;
+    if (PlayerResources.GetComponent<SupplyInventory>().Supplies < SpeedPerCost)
+    {
+      StartCoroutine(InsufficientFunds());
+      return;
+    }
 
     PlayerResources.GetComponent<SupplyInventory>().Supplies -= SpeedPerCost;
     SpeedCounter++;
@@ -85,7 +94,11 @@ public class TechCenterController : MonoBehaviour
   public void ChangeStrengthOfUnits()
   {
     if (StrengthCounter >= StrengthLimit) return;
-    if (PlayerResources.GetComponent<SupplyInventory>().Supplies < StrengthPerCost) return;
+    if (PlayerResources.GetComponent<SupplyInventory>().Supplies < StrengthPerCost)
+    {
+      StartCoroutine(InsufficientFunds());
+      return;
+    }
 
     PlayerResources.GetComponent<SupplyInventory>().Supplies -= StrengthPerCost;
     StrengthCounter++;
@@ -100,7 +113,11 @@ public class TechCenterController : MonoBehaviour
   public void AddMultiplierToHarvester()
   {
     if (HarvestCounter >= HarvestLimit) return;
-    if (PlayerResources.GetComponent<SupplyInventory>().Supplies < HarvestPerCost) return;
+    if (PlayerResources.GetComponent<SupplyInventory>().Supplies < HarvestPerCost)
+    {
+      StartCoroutine(InsufficientFunds());
+      return;
+    }
 
     PlayerResources.GetComponent<SupplyInventory>().Supplies -= HarvestPerCost;
     HarvestCounter++;
@@ -108,5 +125,12 @@ public class TechCenterController : MonoBehaviour
     PlayerRefinery.GetComponent<DepositOre>().HarvesterMultiplier += HarvestDelta;
 
     return;
+  }
+
+  IEnumerator InsufficientFunds()
+  {
+    Funds.SetActive(true);
+    yield return new WaitForSeconds(2);
+    Funds.SetActive(false);
   }
 }

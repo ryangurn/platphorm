@@ -6,6 +6,7 @@ public class PowerPlantController : MonoBehaviour
 {
     public GameObject Canvas;
     public GameObject PlayerResources;
+    public GameObject Funds;
 
     public int SpeedDelta = 1;
     public int SpeedLimit = 2;
@@ -26,7 +27,11 @@ public class PowerPlantController : MonoBehaviour
     public void ChangeSpeedOfFactory()
     {
       if (SpeedCounter >= SpeedLimit) return;
-      if (PlayerResources.GetComponent<SupplyInventory>().Supplies < SpeedPerCost) return;
+      if (PlayerResources.GetComponent<SupplyInventory>().Supplies < SpeedPerCost)
+      {
+        StartCoroutine(InsufficientFunds());
+        return;
+      }
 
       PlayerResources.GetComponent<SupplyInventory>().Supplies -= SpeedPerCost;
       SpeedCounter++;
@@ -38,7 +43,11 @@ public class PowerPlantController : MonoBehaviour
     public void ChangeEfficiencyOfFactory()
     {
       if (EfficiencyCounter >= EfficiencyLimit) return;
-      if (PlayerResources.GetComponent<SupplyInventory>().Supplies < EfficiencyPerCost) return;
+      if (PlayerResources.GetComponent<SupplyInventory>().Supplies < EfficiencyPerCost)
+      {
+        StartCoroutine(InsufficientFunds());
+        return;
+      }
 
       PlayerResources.GetComponent<SupplyInventory>().Supplies -= EfficiencyPerCost;
       EfficiencyCounter++;
@@ -50,5 +59,12 @@ public class PowerPlantController : MonoBehaviour
     public void ChangeMultitaskingOfFactory()
     {
 
+    }
+
+    IEnumerator InsufficientFunds()
+    {
+      Funds.SetActive(true);
+      yield return new WaitForSeconds(2);
+      Funds.SetActive(false);
     }
 }
