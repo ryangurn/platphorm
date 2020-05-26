@@ -21,6 +21,7 @@ public class CameraController : MonoBehaviour
 	public bool CameraFrontBack = false;
 	public bool CameraZoom = false;
 	public bool EdgeControl = true;
+	public int InvertPan = 1;
 
 	private float m_shiftAdd = 250.0f; //multiplied by how long shift is held.  Basically running
 	private float m_maxShift = 1000.0f; //Maximum speed when holding shift
@@ -63,7 +64,7 @@ public class CameraController : MonoBehaviour
 
 		if ( Input.GetMouseButton(1) && !isLocked) //panning work
 		{
-			transform.Rotate(new Vector3(Input.GetAxis("Mouse Y") * MouseSpeed, -Input.GetAxis("Mouse X") * MouseSpeed, 0));
+			transform.Rotate(new Vector3(-InvertPan*Input.GetAxis("Mouse Y") * MouseSpeed, InvertPan*Input.GetAxis("Mouse X") * MouseSpeed, 0));
 			m_mouseX = transform.rotation.eulerAngles.x;
 			m_mouseY = transform.rotation.eulerAngles.y;
 			transform.rotation = Quaternion.Euler(m_mouseX, m_mouseY, 0);
@@ -298,6 +299,19 @@ public class CameraController : MonoBehaviour
 	public void ToggleEdgeControls(GameObject slide)
 	{
 		EdgeControl = slide.GetComponent<Toggle>().isOn;
+	}
+
+	public void ToggleInvertPan(GameObject toggle)
+	{
+		bool t = toggle.GetComponent<Toggle>().isOn;
+		if(t == true)
+		{
+			InvertPan = -1;
+		}
+		else
+		{
+			InvertPan = 1;
+		}
 	}
 
 }
