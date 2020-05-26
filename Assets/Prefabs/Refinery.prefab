@@ -82,6 +82,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MyTeam: Player
+  HarvesterMultiplier: 1
 --- !u!1 &2534517832420791087
 GameObject:
   m_ObjectHideFlags: 0

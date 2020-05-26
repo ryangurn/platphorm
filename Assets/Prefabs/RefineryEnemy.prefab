@@ -265,6 +265,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MyTeam: Enemy
+  HarvesterMultiplier: 1
 --- !u!1 &5087408641176206122
 GameObject:
   m_ObjectHideFlags: 0
