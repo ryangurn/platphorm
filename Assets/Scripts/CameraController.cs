@@ -297,14 +297,7 @@ public class CameraController : MonoBehaviour
 
 	public void ToggleEdgeControls(GameObject slide)
 	{
-		if(slide.GetComponent<Slider>().value == 0.0f)
-		{
-			EdgeControl = false;
-		}
-		else
-		{
-			EdgeControl = true;
-		}
+		EdgeControl = slide.GetComponent<Toggle>().isOn;
 	}
 
 }
