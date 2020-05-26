@@ -98,7 +98,7 @@ public class Construction : MonoBehaviour
 
   }
 
-  private void HaveSufficientFunds(string unitType) //this enqueues, as well as determines sufficient funding
+  public void HaveSufficientFunds(string unitType) //this enqueues, as well as determines sufficient funding
   {
     if (unitType == "Basic")
     {
@@ -170,7 +170,7 @@ public class Construction : MonoBehaviour
     yield return new WaitForSeconds(2);
     sufficientFunds = true;
   }
-
+  /*
   void OnGUI() //GUI objects
   {
     //don't paint the building gui if factory isn't selected
@@ -241,4 +241,5 @@ public class Construction : MonoBehaviour
     }
 
   }
+  */
 }

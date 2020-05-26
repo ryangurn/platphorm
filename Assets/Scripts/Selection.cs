@@ -7,7 +7,9 @@ using UnityEngine.UI;
 public class Selection : MonoBehaviour
 {
 	public bool isLocked = false;
-	public GameObject TechCenterUI;
+
+	public GameObject[] UIArray;
+	public int CurrentUI;
 
 	private Vector2 start = new Vector2(0, 0); //this inits the member variable to store the x, y of the initial click of the selection
 	private Vector2 cur = new Vector2(0, 0);  //inits member variable to store x, y of the current position of the mouse after initial click
@@ -46,22 +48,31 @@ public class Selection : MonoBehaviour
 		}
 	}
 
-	//rectangle that coincides with construction options when they're on the screen
-	private Rect constructionButtonLocation = new Rect(Screen.width / 2 - 300, Screen.height - 100, 600, 60);
-
 	void Update()
 	{
 		if (isLocked) { return; }
 
-		//quit if we clicked in the construction button area on the screen
-		if (constructionButtonLocation.Contains(new Vector2(Input.mousePosition.x, Screen.height - Input.mousePosition.y)) && playerFactory.GetComponent<FactoryBuildPlayer>().isSelected)
-		{
-			return;
-		}
-
 		//start selection when left button clicked
-		if (Input.GetMouseButtonDown(0) && !(Input.GetKey(KeyCode.LeftAlt) || Input.GetKey(KeyCode.RightAlt)))
+		if (Input.GetMouseButtonDown(0))
 		{
+			//Check if a building's UI is open
+			if (CurrentUI != -1)
+			{
+				//Using the current building's UI rect, construct a rectangle where it is on the screen
+				Rect UIRect = UIArray[CurrentUI].GetComponent<RectTransform>().rect;
+				Rect UILocation = new Rect(Screen.width / 2 - UIRect.width / 2, Screen.height - UIRect.height, UIRect.width, UIRect.height);
+				
+				//Check if the mouse cursor clicked down in this location, if so we do not need to select anything so we return
+				if(UILocation.Contains(new Vector2(Input.mousePosition.x, Screen.height - Input.mousePosition.y)))
+				{
+					return;
+				}
+				//We clicked outside of the UI box, so the selection should function normally, we reset current UI
+				else
+				{
+					CurrentUI = -1;
+				}
+			}
 
 			start.x = Input.mousePosition.x - 7f;
 			start.y = Screen.height - Input.mousePosition.y - 7f;
@@ -70,7 +81,7 @@ public class Selection : MonoBehaviour
 		}
 
 		// continue selection while left button is held down
-		if (Input.GetMouseButton(0))
+		if (CurrentUI == -1 && Input.GetMouseButton(0))
 		{
 			// update current mouse position coords
 			cur.x = Input.mousePosition.x + 7f;
@@ -78,7 +89,7 @@ public class Selection : MonoBehaviour
 		}
 
 		// when not clicking anymore
-		if (Input.GetMouseButtonUp(0))
+		if (CurrentUI == -1 && Input.GetMouseButtonUp(0))
 		{
 			visible = false;
 			bool unitSelected = false; //at least one unit is selected
@@ -152,11 +163,18 @@ public class Selection : MonoBehaviour
 		//for player factory at the moment
 		if (g == playerFactory)
 		{
-			g.GetComponent<FactoryBuildPlayer>().isSelected = selected;
+			UIArray[0].SetActive(selected);
+			CurrentUI = 0;
+		}
+		else if(g == playerPowerCenter)
+		{
+			UIArray[1].SetActive(selected);
+			CurrentUI = 1;
 		}
 		else if (g == playerTechCenter)
 		{
-			TechCenterUI.SetActive(selected);
+			UIArray[2].SetActive(selected);
+			CurrentUI = 2;
 		}
 	}
 

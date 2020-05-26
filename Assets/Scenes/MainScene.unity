@@ -277,7 +277,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d25c249f09c25c448bb6e1864e6548ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Supplies: 0
+  Supplies: 200
 --- !u!20 &52028042 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 4461282822026082859, guid: 332da4f06e14c0543bffc1497112ea1b,
@@ -1073,7 +1073,7 @@ GameObject:
   - component: {fileID: 204415702}
   - component: {fileID: 204415704}
   m_Layer: 5
-  m_Name: Item (2)
+  m_Name: ConstructAdvanced
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1178,7 +1178,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 204415702}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 508002703}
+        m_MethodName: HaveSufficientFunds
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Advanced
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!1 &254416858
@@ -5132,7 +5143,7 @@ GameObject:
   - component: {fileID: 1198576680}
   - component: {fileID: 1198576679}
   m_Layer: 5
-  m_Name: Item
+  m_Name: ConstructHarvester
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5200,7 +5211,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1198576680}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 508002703}
+        m_MethodName: HaveSufficientFunds
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Harvester
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1198576680
@@ -7315,7 +7337,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d25c249f09c25c448bb6e1864e6548ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Supplies: 2000
+  Supplies: 500
 --- !u!4 &1715651135 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6882475918712747044, guid: 6668ae3acd57a7a428eba997c722b690,
@@ -8388,12 +8410,47 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4461282822026082856, guid: 332da4f06e14c0543bffc1497112ea1b,
         type: 3}
+      propertyPath: UIArray.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4461282822026082856, guid: 332da4f06e14c0543bffc1497112ea1b,
+        type: 3}
       propertyPath: PauseMenu
       value: 
       objectReference: {fileID: 471234712}
     - target: {fileID: 4461282822026082856, guid: 332da4f06e14c0543bffc1497112ea1b,
         type: 3}
       propertyPath: TechCenterUI
+      value: 
+      objectReference: {fileID: 1430248916}
+    - target: {fileID: 4461282822026082856, guid: 332da4f06e14c0543bffc1497112ea1b,
+        type: 3}
+      propertyPath: FactoryUI
+      value: 
+      objectReference: {fileID: 1113598066}
+    - target: {fileID: 4461282822026082856, guid: 332da4f06e14c0543bffc1497112ea1b,
+        type: 3}
+      propertyPath: PowerCenterUI
+      value: 
+      objectReference: {fileID: 362980254}
+    - target: {fileID: 4461282822026082856, guid: 332da4f06e14c0543bffc1497112ea1b,
+        type: 3}
+      propertyPath: CurrentUI
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4461282822026082856, guid: 332da4f06e14c0543bffc1497112ea1b,
+        type: 3}
+      propertyPath: UIArray.Array.data[0]
+      value: 
+      objectReference: {fileID: 1113598066}
+    - target: {fileID: 4461282822026082856, guid: 332da4f06e14c0543bffc1497112ea1b,
+        type: 3}
+      propertyPath: UIArray.Array.data[1]
+      value: 
+      objectReference: {fileID: 362980254}
+    - target: {fileID: 4461282822026082856, guid: 332da4f06e14c0543bffc1497112ea1b,
+        type: 3}
+      propertyPath: UIArray.Array.data[2]
       value: 
       objectReference: {fileID: 1430248916}
     m_RemovedComponents: []
@@ -9478,7 +9535,7 @@ GameObject:
   - component: {fileID: 2135872030}
   - component: {fileID: 2135872032}
   m_Layer: 5
-  m_Name: Item (1)
+  m_Name: ConstructBasic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9583,7 +9640,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2135872030}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 508002703}
+        m_MethodName: HaveSufficientFunds
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Basic
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!1001 &2140302291
