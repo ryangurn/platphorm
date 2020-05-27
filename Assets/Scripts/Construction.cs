@@ -21,6 +21,7 @@ public class Construction : MonoBehaviour
   public GameObject HarvesterText;
   public GameObject BasicText;
   public GameObject AdvancedText;
+    public GameObject FullQueue;
 
 
   private FactoryBuildPlayer fbp; //this holds the factory for the player
@@ -126,39 +127,54 @@ public class Construction : MonoBehaviour
 
   }
 
-  public void HaveSufficientFunds(string unitType) //this enqueues, as well as determines sufficient funding
+  public void TryBuild(string unitType) //this enqueues, as well as determines sufficient funding
   {
     if (unitType == "Basic")
     {
-      if (playerSupplyInventory.GetComponent<SupplyInventory>().Supplies >= (int)(1/(Constant-ConstructionEfficiencyMulti))*BasicCost)
+      if (playerSupplyInventory.GetComponent<SupplyInventory>().Supplies >= (int)(1/(Constant-ConstructionEfficiencyMulti))*BasicCost
+                && !queueFull)
       {
         playerSupplyInventory.GetComponent<SupplyInventory>().Supplies -= (int)(1/(Constant-ConstructionEfficiencyMulti))*BasicCost;
         buildQueue.Add("Basic");
         StartCoroutine(CompletedAlready());
       }
+      else if (queueFull)
+       {
+                StartCoroutine(QueueFull());
+       }
       else
       StartCoroutine(InsufficientFunds());
     }
     else if (unitType == "Advanced")
     {
-      if (playerSupplyInventory.GetComponent<SupplyInventory>().Supplies >= (int)(1/(Constant-ConstructionEfficiencyMulti))*AdvancedCost)
+      if (playerSupplyInventory.GetComponent<SupplyInventory>().Supplies >= (int)(1/(Constant-ConstructionEfficiencyMulti))*AdvancedCost
+                && !queueFull)
       {
         playerSupplyInventory.GetComponent<SupplyInventory>().Supplies -= (int)(1/(Constant-ConstructionEfficiencyMulti))*AdvancedCost;
         buildQueue.Add("Advanced");
         StartCoroutine(CompletedAlready());
       }
-      else
+    else if (queueFull)
+    {
+        StartCoroutine(QueueFull());
+    }
+    else
       StartCoroutine(InsufficientFunds());
     }
     else //Harvester
     {
-      if (playerSupplyInventory.GetComponent<SupplyInventory>().Supplies >= (int)(1/(Constant-ConstructionEfficiencyMulti))*HarvesterCost)
+      if (playerSupplyInventory.GetComponent<SupplyInventory>().Supplies >= (int)(1/(Constant-ConstructionEfficiencyMulti))*HarvesterCost
+                && !queueFull)
       {
         playerSupplyInventory.GetComponent<SupplyInventory>().Supplies -= (int)(1/(Constant-ConstructionEfficiencyMulti))*HarvesterCost;
         buildQueue.Add("Harvester");
         StartCoroutine(CompletedAlready());
       }
-      else
+    else if (queueFull)
+    {
+        StartCoroutine(QueueFull());
+    }
+    else
       StartCoroutine(InsufficientFunds());
     }
   }
@@ -198,6 +214,7 @@ public class Construction : MonoBehaviour
     Upgraded.SetActive(false);
     Completed.SetActive(false);
     Funds.SetActive(true);
+    FullQueue.SetActive(false);
     yield return new WaitForSeconds(2);
     Funds.SetActive(false);
   }
@@ -207,6 +224,7 @@ public class Construction : MonoBehaviour
     Funds.SetActive(false);
     Completed.SetActive(false);
     Upgraded.SetActive(true);
+    FullQueue.SetActive(false);
     yield return new WaitForSeconds(1);
     Upgraded.SetActive(false);
   }
@@ -216,79 +234,90 @@ public class Construction : MonoBehaviour
     Funds.SetActive(false);
     Upgraded.SetActive(false);
     Completed.SetActive(true);
+    FullQueue.SetActive(false);
     yield return new WaitForSeconds(1);
     Completed.SetActive(false);
   }
-  /*
-  void OnGUI() //GUI objects
-  {
-    //don't paint the building gui if factory isn't selected
 
-    if (!fbp.isSelected)
-    return;
-
-    if (queueFull && sufficientFunds)
+    IEnumerator QueueFull()
     {
-      GUILayout.BeginArea(new Rect(Screen.width / 2 - 110,
-      Screen.height - 70,
-      220,
-      25), "Please Wait. Queue Full.", "box");
-
-      GUILayout.EndArea();
+        FullQueue.SetActive(true);
+        Funds.SetActive(false);
+        Upgraded.SetActive(false);
+        Completed.SetActive(false);
+        yield return new WaitForSeconds(1);
+        FullQueue.SetActive(false);
     }
-
-    else if (!queueFull && !sufficientFunds)
+    /*
+    void OnGUI() //GUI objects
     {
-      GUILayout.BeginArea(new Rect(Screen.width / 2 - 85,
-      Screen.height - 70,
-      170,
-      25), "Insufficient Funds.", "box");
+      //don't paint the building gui if factory isn't selected
 
-      GUILayout.EndArea();
-    }
+      if (!fbp.isSelected)
+      return;
 
-    else
-    {
-
-      GUILayout.BeginArea(new Rect(Screen.width / 2 - 260,
-      Screen.height - 70,
-      170,
-      30), "", "box");
-
-      if (GUILayout.Button("Construct Basic Unit-$300"))
+      if (queueFull && sufficientFunds)
       {
+        GUILayout.BeginArea(new Rect(Screen.width / 2 - 110,
+        Screen.height - 70,
+        220,
+        25), "Please Wait. Queue Full.", "box");
 
-        HaveSufficientFunds("Basic");
+        GUILayout.EndArea();
       }
 
-      GUILayout.EndArea();
-
-      GUILayout.BeginArea(new Rect(Screen.width / 2 - 75,
-      Screen.height - 70,
-      200,
-      30), "", "box");
-
-      if (GUILayout.Button("Construct Advanced Unit-$800"))
+      else if (!queueFull && !sufficientFunds)
       {
+        GUILayout.BeginArea(new Rect(Screen.width / 2 - 85,
+        Screen.height - 70,
+        170,
+        25), "Insufficient Funds.", "box");
 
-        HaveSufficientFunds("Advanced");
+        GUILayout.EndArea();
       }
 
-      GUILayout.EndArea();
-
-      GUILayout.BeginArea(new Rect(Screen.width / 2 + 135,
-      Screen.height - 70,
-      170,
-      30), "", "box");
-
-      if (GUILayout.Button("Construct Harvester-$500"))
+      else
       {
-        HaveSufficientFunds("Harvester");
+
+        GUILayout.BeginArea(new Rect(Screen.width / 2 - 260,
+        Screen.height - 70,
+        170,
+        30), "", "box");
+
+        if (GUILayout.Button("Construct Basic Unit-$300"))
+        {
+
+          HaveSufficientFunds("Basic");
+        }
+
+        GUILayout.EndArea();
+
+        GUILayout.BeginArea(new Rect(Screen.width / 2 - 75,
+        Screen.height - 70,
+        200,
+        30), "", "box");
+
+        if (GUILayout.Button("Construct Advanced Unit-$800"))
+        {
+
+          HaveSufficientFunds("Advanced");
+        }
+
+        GUILayout.EndArea();
+
+        GUILayout.BeginArea(new Rect(Screen.width / 2 + 135,
+        Screen.height - 70,
+        170,
+        30), "", "box");
+
+        if (GUILayout.Button("Construct Harvester-$500"))
+        {
+          HaveSufficientFunds("Harvester");
+        }
+
+        GUILayout.EndArea();
       }
 
-      GUILayout.EndArea();
     }
-
-  }
-  */
+    */
 }
