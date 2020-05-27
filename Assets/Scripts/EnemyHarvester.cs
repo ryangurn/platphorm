@@ -18,14 +18,15 @@ public class EnemyHarvester : MonoBehaviour
             }
         }
 
-        GameObject[] friendlies = GameObject.FindGameObjectsWithTag("Enemy"); //this is for the refinery
+        GameObject[] friendlies = GameObject.FindGameObjectsWithTag("EnemyBuilding"); //this is to find the refinery
+        float closestDistance = Mathf.Infinity;
         foreach (GameObject g in friendlies)
         {
-            if (g.GetComponent<DepositOre>())
+           if (g.GetComponent<DepositOre>() && Vector3.Distance(gameObject.transform.position, g.transform.position) < closestDistance)
             {
+                closestDistance = Vector3.Distance(gameObject.transform.position, g.transform.position);
                 refinery = g;
             }
-
         }
 
     }

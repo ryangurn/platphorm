@@ -18,17 +18,17 @@ public class FactoryBuildEnemy : MonoBehaviour
     {
         GameObject[] enemyUnits = GameObject.FindGameObjectsWithTag("Enemy"); //make sure we have an enemy harvester
 
-        int harvesterCount = 0;
+        int nearbyHarvesterCount = 0;
 
         foreach (GameObject g in enemyUnits)
         {
-            if (g.GetComponent<EnemyHarvester>() != null)
+            if (g.GetComponent<EnemyHarvester>() != null && Vector3.Distance(g.transform.position, gameObject.transform.position) < 40)
             {
-                harvesterCount++;
+                nearbyHarvesterCount++;
             }
         }
 
-        if (harvesterCount < 1 && enemySupplyInventory.GetComponent<SupplyInventory>().Supplies >= 500 && !busy) //if we don't and we can afford it, make one
+        if (nearbyHarvesterCount < 1 && enemySupplyInventory.GetComponent<SupplyInventory>().Supplies >= 500 && !busy) //if we don't and we can afford it, make one
         {
             enemySupplyInventory.GetComponent<SupplyInventory>().Supplies -= 500;
             StartCoroutine(SpawnHarvester());
@@ -43,7 +43,7 @@ public class FactoryBuildEnemy : MonoBehaviour
                 enemySupplyInventory.GetComponent<SupplyInventory>().Supplies -= 800;
                 StartCoroutine(SpawnAdvanced());
             }
-            else if (harvesterCount < 3)
+            else if (nearbyHarvesterCount < 3)
             {
                 enemySupplyInventory.GetComponent<SupplyInventory>().Supplies -= 500;
                 StartCoroutine(SpawnHarvester());              

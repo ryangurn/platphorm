@@ -3218,8 +3218,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1173955552}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 27.55, y: 12.92, z: -29.62}
-  m_LocalScale: {x: 2.3376, y: 1, z: 2.3199}
+  m_LocalPosition: {x: 27.55, y: 12.56, z: -29.62}
+  m_LocalScale: {x: 2.3376, y: 1, z: 2.3727937}
   m_Children: []
   m_Father: {fileID: 1167825881}
   m_RootOrder: 8
@@ -4236,7 +4236,7 @@ PrefabInstance:
     - target: {fileID: 3778109309519788309, guid: f6fb3b4510814ae43af779a1b1d6fc21,
         type: 3}
       propertyPath: m_TagString
-      value: Enemy
+      value: EnemyBuilding
       objectReference: {fileID: 0}
     - target: {fileID: 3778109309519788308, guid: f6fb3b4510814ae43af779a1b1d6fc21,
         type: 3}
