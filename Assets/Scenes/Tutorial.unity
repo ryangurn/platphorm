@@ -1678,6 +1678,7 @@ MonoBehaviour:
   HarvesterText: {fileID: 46205324}
   BasicText: {fileID: 1666631142}
   AdvancedText: {fileID: 1885874638}
+  FullQueue: {fileID: 0}
 --- !u!1 &527483870
 GameObject:
   m_ObjectHideFlags: 0
@@ -1793,9 +1794,6 @@ MonoBehaviour:
   - {fileID: 2073653075}
   - {fileID: 1195172264}
   - {fileID: 1292966251}
-  Sounds:
-  - {fileID: 1393453763}
-  - {fileID: 1080121811}
 --- !u!1 &584460882
 GameObject:
   m_ObjectHideFlags: 0
@@ -2163,7 +2161,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: PRESS `ESC` TO GO TO THE MAIN MENU
+  m_Text: PRESS `X` TO GO TO THE MAIN MENU
 --- !u!222 &617652888
 CanvasRenderer:
   m_ObjectHideFlags: 0

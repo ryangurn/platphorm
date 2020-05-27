@@ -55,6 +55,11 @@ public class CameraController : MonoBehaviour
 			}
 		}
 
+		if (Input.GetKeyUp(KeyCode.X))
+		{
+			SceneManager.LoadScene("Menu");
+		}
+
 		//right click panning
 		if (Input.GetMouseButtonDown(1) && !isLocked)  //start panning and lock scrolling
 		{
