@@ -34,7 +34,7 @@ public class PowerPlantController : MonoBehaviour
     {
       SpeedText.GetComponent<Text>().text = "+ FACTORY SPEED ("+SpeedPerCost+")";
       EfficiencyText.GetComponent<Text>().text = "+ FACTORY SPEED ("+EfficiencyPerCost+")";
-      TaskText.GetComponent<Text>().text = "FACTORY MULTITASK ("+TaskPerCost+")";
+      TaskText.GetComponent<Text>().text = "+ FACTORY MULTITASK ("+TaskPerCost+")";
     }
 
     void Start()
@@ -93,7 +93,23 @@ public class PowerPlantController : MonoBehaviour
 
     public void ChangeMultitaskingOfFactory()
     {
+        if (TaskCounter >= TaskLimit)
+        {
+            StartCoroutine(UpgradedAlready());
+            return;
+        }
+        if (PlayerResources.GetComponent<SupplyInventory>().Supplies < TaskPerCost)
+        {
+            StartCoroutine(InsufficientFunds());
+            return;
+        }
 
+        PlayerResources.GetComponent<SupplyInventory>().Supplies -= TaskPerCost;
+        TaskCounter++;
+
+        Canvas.GetComponent<Construction>().AddTask();
+        StartCoroutine(CompletedAlready());
+        return;
     }
 
     IEnumerator InsufficientFunds()

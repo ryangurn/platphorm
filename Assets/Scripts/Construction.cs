@@ -10,7 +10,7 @@ public class Construction : MonoBehaviour
   public GameObject Upgraded;
   public GameObject Completed;
 
-  private int Constant = 4;
+  private int constant = 1;
   public float ConstructionSpeedMulti = 1;
   public float ConstructionEfficiencyMulti = 1;
   public float ConstructionTaskMulti = 1;
@@ -30,18 +30,19 @@ public class Construction : MonoBehaviour
   private GameObject playerSupplyInventory;
   private List<string> buildQueue = new List<string>();
   private GameObject[] slots;
-  private bool busy = false;
+  private List<bool> busyQueue = new List<bool>();
 
   void UpdateText()
   {
-    HarvesterText.GetComponent<Text>().text = "HARVESTER ("+(1/(Constant-ConstructionEfficiencyMulti))*HarvesterCost+")";
-    BasicText.GetComponent<Text>().text = "BASIC UNIT ("+(1/(Constant-ConstructionEfficiencyMulti))*BasicCost+")";
-    AdvancedText.GetComponent<Text>().text = "ADVANCED UNIT ("+(1/(Constant-ConstructionEfficiencyMulti))*AdvancedCost+")";
+    HarvesterText.GetComponent<Text>().text = "HARVESTER ("+(constant/(ConstructionEfficiencyMulti) * HarvesterCost)+")";
+    BasicText.GetComponent<Text>().text = "BASIC UNIT ("+(constant/(ConstructionEfficiencyMulti) * BasicCost)+")";
+    AdvancedText.GetComponent<Text>().text = "ADVANCED UNIT ("+(constant/(ConstructionEfficiencyMulti) * AdvancedCost)+")";
   }
 
   //this starting function locates the player factory
   void Start()
   {
+    busyQueue.Add(false);
 
     UpdateText();
 
@@ -61,6 +62,11 @@ public class Construction : MonoBehaviour
     }
   }
 
+  public void AddTask()
+    {
+        busyQueue.Add(false); //make productive capacity one unit longer, and it starts out not busy (false)
+    }
+
   void FixedUpdate() //basic handler to check for work and update queue Count/size
   {
     UpdateText();
@@ -68,25 +74,28 @@ public class Construction : MonoBehaviour
     queueFull = buildQueue.Count > 4; //if it's 5, it's full
     string currentWork;
 
-
-    if (busy || buildQueue.Count == 0) //if we're busy, nothing else we can do
-    return;
-
-    currentWork = buildQueue[0]; //there's work to do
-    busy = true;
-
-    if (currentWork == "Basic")
+    for (int i = 0; i < busyQueue.Count; i++) //for each construction space
     {
-      StartCoroutine(BuildBasic());
-    }
-    else if (currentWork == "Advanced")
-    {
-      StartCoroutine(BuildAdvanced());
-    }
-    else
-    {
-      StartCoroutine(BuildHarvester());
-    }
+        if (buildQueue.Count < (i + 1) || busyQueue[i]) //check to make sure the queue has a pending unit that's not already under cunstruction
+            continue;
+
+
+        currentWork = buildQueue[i]; //there's work to do
+        busyQueue[i] = true;
+
+        if (currentWork == "Basic")
+        {
+            StartCoroutine(BuildBasic(i));
+        }
+        else if (currentWork == "Advanced")
+        {
+            StartCoroutine(BuildAdvanced(i));
+        }
+        else //if currentWork == "Harvester"
+        {
+            StartCoroutine(BuildHarvester(i));
+        }
+     }
 
   }
 
@@ -131,10 +140,10 @@ public class Construction : MonoBehaviour
   {
     if (unitType == "Basic")
     {
-      if (playerSupplyInventory.GetComponent<SupplyInventory>().Supplies >= (int)(1/(Constant-ConstructionEfficiencyMulti))*BasicCost
+      if (playerSupplyInventory.GetComponent<SupplyInventory>().Supplies >= (int)(constant / ConstructionEfficiencyMulti) * BasicCost
                 && !queueFull)
       {
-        playerSupplyInventory.GetComponent<SupplyInventory>().Supplies -= (int)(1/(Constant-ConstructionEfficiencyMulti))*BasicCost;
+        playerSupplyInventory.GetComponent<SupplyInventory>().Supplies -= (int)(constant / ConstructionEfficiencyMulti) * BasicCost;
         buildQueue.Add("Basic");
         StartCoroutine(CompletedAlready());
       }
@@ -147,10 +156,10 @@ public class Construction : MonoBehaviour
     }
     else if (unitType == "Advanced")
     {
-      if (playerSupplyInventory.GetComponent<SupplyInventory>().Supplies >= (int)(1/(Constant-ConstructionEfficiencyMulti))*AdvancedCost
+      if (playerSupplyInventory.GetComponent<SupplyInventory>().Supplies >= (int)(constant / ConstructionEfficiencyMulti) * AdvancedCost
                 && !queueFull)
       {
-        playerSupplyInventory.GetComponent<SupplyInventory>().Supplies -= (int)(1/(Constant-ConstructionEfficiencyMulti))*AdvancedCost;
+        playerSupplyInventory.GetComponent<SupplyInventory>().Supplies -= (int)(constant / ConstructionEfficiencyMulti) * AdvancedCost;
         buildQueue.Add("Advanced");
         StartCoroutine(CompletedAlready());
       }
@@ -163,10 +172,10 @@ public class Construction : MonoBehaviour
     }
     else //Harvester
     {
-      if (playerSupplyInventory.GetComponent<SupplyInventory>().Supplies >= (int)(1/(Constant-ConstructionEfficiencyMulti))*HarvesterCost
+      if (playerSupplyInventory.GetComponent<SupplyInventory>().Supplies >= (int)(constant / ConstructionEfficiencyMulti) * HarvesterCost
                 && !queueFull)
       {
-        playerSupplyInventory.GetComponent<SupplyInventory>().Supplies -= (int)(1/(Constant-ConstructionEfficiencyMulti))*HarvesterCost;
+        playerSupplyInventory.GetComponent<SupplyInventory>().Supplies -= (int)(constant / ConstructionEfficiencyMulti) * HarvesterCost;
         buildQueue.Add("Harvester");
         StartCoroutine(CompletedAlready());
       }
@@ -181,32 +190,32 @@ public class Construction : MonoBehaviour
 
 
   //all of these functions check if you have the right amount of money, and "build" the units if you do, set the NSF flag is you're out of funding
-  private IEnumerator BuildBasic()
+  private IEnumerator BuildBasic(int queuePos)
   {
 
-    yield return new WaitForSeconds((1/(Constant-ConstructionSpeedMulti))*3);
+    yield return new WaitForSeconds((constant / ConstructionEfficiencyMulti) * 3);
     fbp.SpawnBasic();
-    buildQueue.RemoveAt(0);
+    buildQueue.Remove("Basic");
 
-    busy = false;
+    busyQueue[queuePos] = false;
   }
 
-  private IEnumerator BuildAdvanced()
+  private IEnumerator BuildAdvanced(int queuePos)
   {
 
-    yield return new WaitForSeconds((1/(Constant-ConstructionSpeedMulti))*10);
+    yield return new WaitForSeconds((constant / ConstructionEfficiencyMulti) * 10);
     fbp.SpawnAdvanced();
-    buildQueue.RemoveAt(0);
-    busy = false;
+    buildQueue.Remove("Advanced");
+    busyQueue[queuePos] = false;
   }
 
-  private IEnumerator BuildHarvester()
+  private IEnumerator BuildHarvester(int queuePos)
   {
 
-    yield return new WaitForSeconds((1/(Constant-ConstructionSpeedMulti))*5);
+    yield return new WaitForSeconds((constant / ConstructionEfficiencyMulti) * 5);
     fbp.SpawnHarvester();
-    buildQueue.RemoveAt(0);
-    busy = false;
+    buildQueue.Remove("Harvester");
+    busyQueue[queuePos] = false;
   }
 
   IEnumerator InsufficientFunds()
