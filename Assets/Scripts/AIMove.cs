@@ -10,9 +10,21 @@ public class AIMove : MonoBehaviour
     private GameObject pursuing; //this is the immediate adversary of the enemy unit
     public float searchAndDestroyDistance = 7f;
 
-    void Start()
+    void Awake()
     {
-        rallyPoint = new Vector3(-42f, 5.5f, -.5f);
+        GameObject[] rallyPoints = GameObject.FindGameObjectsWithTag("EnemyRallyPoint");
+
+        float closestDistance = Mathf.Infinity;
+        foreach (GameObject rp in rallyPoints)
+        {
+            if (Vector3.Distance(gameObject.transform.position, rp.transform.position) < closestDistance)
+            {
+                closestDistance = Vector3.Distance(gameObject.transform.position, rp.transform.position);
+                rallyPoint = rp.transform.position;
+            }
+        }
+
+
         GetComponent<UnityEngine.AI.NavMeshAgent>().destination = rallyPoint;
     }
 

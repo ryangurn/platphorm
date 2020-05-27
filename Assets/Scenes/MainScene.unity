@@ -170,7 +170,7 @@ PrefabInstance:
     - target: {fileID: 6882475918712747044, guid: 6668ae3acd57a7a428eba997c722b690,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6882475918712747044, guid: 6668ae3acd57a7a428eba997c722b690,
         type: 3}
@@ -448,7 +448,7 @@ PrefabInstance:
     - target: {fileID: 3778109309519788308, guid: 88e1d80468f204744a9e4fdfbb5de8a3,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3778109309519788308, guid: 88e1d80468f204744a9e4fdfbb5de8a3,
         type: 3}
@@ -517,7 +517,7 @@ PrefabInstance:
     - target: {fileID: 6882475918712747044, guid: 6668ae3acd57a7a428eba997c722b690,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6882475918712747044, guid: 6668ae3acd57a7a428eba997c722b690,
         type: 3}
@@ -907,7 +907,7 @@ PrefabInstance:
     - target: {fileID: 6504108053561774446, guid: c7567a5cd43d542448b640dd8537ad3e,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6504108053561774446, guid: c7567a5cd43d542448b640dd8537ad3e,
         type: 3}
@@ -1354,6 +1354,45 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cbb9850779e3bb4790fda6b1bca1458, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &393076994
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 393076995}
+  - component: {fileID: 393076996}
+  m_Layer: 0
+  m_Name: RallyPoint
+  m_TagString: EnemyRallyPoint
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &393076995
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 393076994}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -39.76, y: 5.78, z: 4.33}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1255475587}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &393076996
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 393076994}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!4 &395855728 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3778109309519788308, guid: 9517a9999bab42a4f83df7b6c33ab3e7,
@@ -2096,6 +2135,45 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1378412084}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &713041942
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 713041943}
+  - component: {fileID: 713041944}
+  m_Layer: 0
+  m_Name: RallyPoint
+  m_TagString: EnemyRallyPoint
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &713041943
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 713041942}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 17.33, y: 12.98, z: -29.06}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1167825881}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &713041944
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 713041942}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!4 &769707173 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6504108053561774446, guid: c7567a5cd43d542448b640dd8537ad3e,
@@ -3102,6 +3180,7 @@ Transform:
   m_LocalPosition: {x: 43.4, y: -4.16, z: 27.273113}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 713041943}
   - {fileID: 137235789}
   - {fileID: 820131249}
   - {fileID: 1143255822}
@@ -3139,11 +3218,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1173955552}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 25.6, y: 13.01, z: -27.91}
+  m_LocalPosition: {x: 27.55, y: 12.92, z: -29.62}
   m_LocalScale: {x: 2.3376, y: 1, z: 2.3199}
   m_Children: []
   m_Father: {fileID: 1167825881}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!64 &1173955554
 MeshCollider:
@@ -3308,7 +3387,7 @@ PrefabInstance:
     - target: {fileID: 3778109309519788308, guid: f6fb3b4510814ae43af779a1b1d6fc21,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3778109309519788308, guid: f6fb3b4510814ae43af779a1b1d6fc21,
         type: 3}
@@ -3450,6 +3529,7 @@ Transform:
   - {fileID: 591345536}
   - {fileID: 1714377438}
   - {fileID: 136710948}
+  - {fileID: 393076995}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3979,7 +4059,7 @@ PrefabInstance:
     - target: {fileID: 3778109309519788308, guid: 4edb12cd65c57f846bd6a4c1664112be,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3778109309519788308, guid: 4edb12cd65c57f846bd6a4c1664112be,
         type: 3}
@@ -5055,7 +5135,7 @@ PrefabInstance:
     - target: {fileID: 3778109309519788308, guid: f43973346c01c4145a10403936a047dc,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 3778109309519788308, guid: f43973346c01c4145a10403936a047dc,
         type: 3}
