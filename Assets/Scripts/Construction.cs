@@ -21,8 +21,7 @@ public class Construction : MonoBehaviour
   public GameObject HarvesterText;
   public GameObject BasicText;
   public GameObject AdvancedText;
-    public GameObject FullQueue;
-
+  public GameObject FullQueue;
 
   private FactoryBuildPlayer fbp; //this holds the factory for the player
   private bool queueFull = false; //can't build if we're busy, so we keep track
