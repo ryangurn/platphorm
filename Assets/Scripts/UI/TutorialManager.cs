@@ -10,9 +10,6 @@ public class TutorialManager : MonoBehaviour
   public GameObject NextSound;
   public GameObject[] popups;
 
-  // sounds
-  public GameObject[] Sounds;
-
   private int popupIndex;
   private int changeCountHarvester;
   private int changeCountAttack;
@@ -66,8 +63,6 @@ public class TutorialManager : MonoBehaviour
 
     if (popupIndex == 0)
     {
-      AudioSource audio = Sounds[popupIndex].GetComponent<AudioSource>();
-      audio.Play();
       if (Camera.GetComponent<CameraController>().CameraFrontBack)
       {
         StartCoroutine(wait());
@@ -76,9 +71,6 @@ public class TutorialManager : MonoBehaviour
     }
     else if (popupIndex == 1)
     {
-      StartCoroutine(shortWait());
-      AudioSource audio = Sounds[popupIndex].GetComponent<AudioSource>();
-      audio.Play();
       if (Camera.GetComponent<CameraController>().CameraLeftRight)
       {
         StartCoroutine(wait());
