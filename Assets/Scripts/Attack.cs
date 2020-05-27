@@ -14,7 +14,7 @@ public class Attack : MonoBehaviour
 
         foreach (GameObject g in units)
         {
-            if (Vector3.Distance(g.transform.position, transform.position) < AttackRange) //if they're nearby, reduce their health and run their damage "animation"
+            if (Vector3.Distance(g.transform.position, transform.position) < AttackRange && g != null) //if they're nearby, reduce their health and run their damage "animation"
             {
                 g.GetComponent<Health>().HealthLevel -= HealthDecrement;
                 g.GetComponent<Health>().RunDamageAnimation();
