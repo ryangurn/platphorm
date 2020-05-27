@@ -26,7 +26,6 @@ public class Construction : MonoBehaviour
 
   private FactoryBuildPlayer fbp; //this holds the factory for the player
   private bool queueFull = false; //can't build if we're busy, so we keep track
-  private bool sufficientFunds = true;
   private GameObject playerSupplyInventory;
   private List<string> buildQueue = new List<string>();
   private GameObject[] slots;

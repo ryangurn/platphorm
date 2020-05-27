@@ -40,7 +40,7 @@ public class CameraController : MonoBehaviour
 	void Start()
 	{
 		SelectionLocked = GetComponent<Selection>();
-	}
+    }
 
 	void Update ()
 	{
@@ -296,7 +296,14 @@ public class CameraController : MonoBehaviour
 		ScrollSpeed = slide.GetComponent<Slider>().value;
 	}
 
-	public void ToggleEdgeControls(GameObject slide)
+    public void UpdateVolume(GameObject slide)
+    {
+        AudioListener.volume = slide.GetComponent<Slider>().value;
+
+
+    }
+
+    public void ToggleEdgeControls(GameObject slide)
 	{
 		EdgeControl = slide.GetComponent<Toggle>().isOn;
 	}

@@ -7,6 +7,12 @@ public class Attack : MonoBehaviour
     public string MyEnemy; //this component is shared, so we need to specify who were're trying to attack and damage
     public float HealthDecrement = 0.015f;
     public int AttackRange = 3;
+    private AudioSource attackSound;
+
+    void Awake()
+    {
+        attackSound = gameObject.GetComponent<AudioSource>();
+    }
 
     void FixedUpdate()
     {
@@ -18,6 +24,9 @@ public class Attack : MonoBehaviour
             {
                 g.GetComponent<Health>().HealthLevel -= HealthDecrement;
                 g.GetComponent<Health>().RunDamageAnimation();
+
+                if (!attackSound.isPlaying)
+                    attackSound.Play();
             }
         }
 

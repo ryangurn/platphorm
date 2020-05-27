@@ -4555,6 +4555,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1411021687951551623, guid: 332da4f06e14c0543bffc1497112ea1b,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 7ba7f422af9bc854fbf6541f9e98f2e6, type: 3}
+    - target: {fileID: 1411021687951551623, guid: 332da4f06e14c0543bffc1497112ea1b,
+        type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1411021687951551623, guid: 332da4f06e14c0543bffc1497112ea1b,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.35
+      objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Enabled
       value: 0
@@ -4757,6 +4772,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsKinematic
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6245768031732977763, guid: b5b482753d155ff46ad08c4b75304d77,
+        type: 3}
+      propertyPath: rolloffMode
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b5b482753d155ff46ad08c4b75304d77, type: 3}
