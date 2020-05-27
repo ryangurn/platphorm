@@ -356,8 +356,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: HaveSufficientFunds
+      - m_Target: {fileID: 4315865972816822520}
+        m_MethodName: TryBuild
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -601,6 +601,7 @@ GameObject:
   - component: {fileID: 8850358384466836107}
   - component: {fileID: 8850358384466836109}
   - component: {fileID: 8850358384466836108}
+  - component: {fileID: 4315865972816822520}
   m_Layer: 5
   m_Name: FactoryPanel
   m_TagString: Untagged
@@ -670,6 +671,31 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
+--- !u!114 &4315865972816822520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8850358384466836106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2b017350c986d0a4b9b6c4d9c463d66b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Funds: {fileID: 8850358385474339411}
+  Upgraded: {fileID: 3013429363326811766}
+  Completed: {fileID: 8487671901092681790}
+  ConstructionSpeedMulti: 1
+  ConstructionEfficiencyMulti: 1
+  ConstructionTaskMulti: 1
+  HarvesterCost: 500
+  BasicCost: 300
+  AdvancedCost: 800
+  HarvesterText: {fileID: 8850358384190019319}
+  BasicText: {fileID: 8850358385255058300}
+  AdvancedText: {fileID: 8850358384691190905}
+  FullQueue: {fileID: 223704836888201514}
 --- !u!1 &8850358384518186717
 GameObject:
   m_ObjectHideFlags: 0
@@ -789,8 +815,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: HaveSufficientFunds
+      - m_Target: {fileID: 4315865972816822520}
+        m_MethodName: TryBuild
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1158,8 +1184,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: HaveSufficientFunds
+      - m_Target: {fileID: 4315865972816822520}
+        m_MethodName: TryBuild
         m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
