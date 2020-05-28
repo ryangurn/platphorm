@@ -27,41 +27,45 @@ public class FactoryBuildEnemy : MonoBehaviour
                 nearbyHarvesterCount++;
             }
         }
+        if (busy) //can't do anything it we're busy
+            return;
 
-        if (nearbyHarvesterCount < 1 && enemySupplyInventory.GetComponent<SupplyInventory>().Supplies >= 500 && !busy) //if we don't and we can afford it, make one
+        if (nearbyHarvesterCount < 1) //if we don't have at least one harvester..
+        {
+            if (enemySupplyInventory.GetComponent<SupplyInventory>().Supplies >= 500) //make one if we can
+            {
+                enemySupplyInventory.GetComponent<SupplyInventory>().Supplies -= 500;
+                StartCoroutine(SpawnHarvester());
+            }
+            else //or save up
+                return;
+        }
+
+        int randomNum = Mathf.FloorToInt(Random.Range(0f, 100f)); //pick a random integer
+
+        if (enemySupplyInventory.GetComponent<SupplyInventory>().Supplies >= 800
+            && randomNum < 40) //if we can afford an advanced unit, there's a chance we make on, or a harvester
+        {           
+ 
+            enemySupplyInventory.GetComponent<SupplyInventory>().Supplies -= 800;
+            StartCoroutine(SpawnAdvanced());       
+
+        }
+        else if (enemySupplyInventory.GetComponent<SupplyInventory>().Supplies >= 500
+            && nearbyHarvesterCount < 3
+            && randomNum < 60 && randomNum > 40)
         {
             enemySupplyInventory.GetComponent<SupplyInventory>().Supplies -= 500;
             StartCoroutine(SpawnHarvester());
         }
 
-        if (!busy && enemySupplyInventory.GetComponent<SupplyInventory>().Supplies >= 800) //if we can afford an advanced unit, 50/50 chance we make one (or we make a basic unit)
-        {
-            int randomNum = Mathf.FloorToInt(Random.Range(0f, 100f));
-
-            if (randomNum < 50)
-            {
-                enemySupplyInventory.GetComponent<SupplyInventory>().Supplies -= 800;
-                StartCoroutine(SpawnAdvanced());
-            }
-            else if (nearbyHarvesterCount < 3)
-            {
-                enemySupplyInventory.GetComponent<SupplyInventory>().Supplies -= 500;
-                StartCoroutine(SpawnHarvester());              
-            }
-            else
-            {
-                enemySupplyInventory.GetComponent<SupplyInventory>().Supplies -= 300;
-                StartCoroutine(SpawnBasic());
-            }
-        }
-        else if (!busy && enemySupplyInventory.GetComponent<SupplyInventory>().Supplies >= 300) //couldn't afford advanced, so make basic
+        else if (enemySupplyInventory.GetComponent<SupplyInventory>().Supplies >= 300
+            && randomNum < 80 && randomNum > 60) 
         {
             enemySupplyInventory.GetComponent<SupplyInventory>().Supplies -= 300;
             StartCoroutine(SpawnBasic());
         }
-
     }
-
 
 
     public IEnumerator SpawnBasic() //this is used for creating a delay before making a unit
