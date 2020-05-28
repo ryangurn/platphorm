@@ -255,6 +255,14 @@ public class Construction : MonoBehaviour
         yield return new WaitForSeconds(1);
         FullQueue.SetActive(false);
     }
+
+    public bool PendingUnits()
+    {
+        if (buildQueue.Count > 0)
+            return true;
+        else
+            return false;
+    }
     /*
     void OnGUI() //GUI objects
     {

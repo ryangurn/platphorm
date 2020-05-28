@@ -7,7 +7,7 @@ public class FactoryBuildEnemy : MonoBehaviour
 {
     public GameObject BasicUnit, AdvancedUnit, Harvester; //these are links to prefab objects
     private GameObject enemySupplyInventory; 
-    private bool busy = false;
+    public bool busy = false;
 
     void Start()
     {

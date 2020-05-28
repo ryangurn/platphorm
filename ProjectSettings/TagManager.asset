@@ -15,6 +15,7 @@ TagManager:
   - EnemyBuilding
   - PlayerSlots
   - EnemyRallyPoint
+  - PlayerHealth
   layers:
   - Default
   - TransparentFX
