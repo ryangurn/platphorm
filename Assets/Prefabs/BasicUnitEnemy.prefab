@@ -162,7 +162,6 @@ MonoBehaviour:
   MyEnemy: Player
   HealthDecrement: 0.015
   AttackRange: 3
-  Volume: 0.5
 --- !u!114 &1571068118498993903
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -176,6 +175,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HealthLevel: 4
+  tm: {fileID: 9106799561471117745}
 --- !u!114 &2233681429435432142
 MonoBehaviour:
   m_ObjectHideFlags: 0

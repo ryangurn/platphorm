@@ -237,6 +237,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HealthLevel: 4
+  tm: {fileID: 7577342307876663248}
 --- !u!114 &7733140779523302072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -252,7 +253,6 @@ MonoBehaviour:
   MyEnemy: Player
   HealthDecrement: 0.015
   AttackRange: 3
-  Volume: 0.5
 --- !u!114 &6654872180268300523
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -548,7 +548,7 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1066910053003865102, guid: 7cc104c7909759c42b0cf85841836b34,
+    - target: {fileID: -2397996973257786244, guid: 7cc104c7909759c42b0cf85841836b34,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -558,7 +558,7 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: bd12ea0071eaf5c4680d5e8500c31733, type: 2}
-    - target: {fileID: -2397996973257786244, guid: 7cc104c7909759c42b0cf85841836b34,
+    - target: {fileID: 1066910053003865102, guid: 7cc104c7909759c42b0cf85841836b34,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 

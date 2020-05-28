@@ -5,10 +5,11 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     public float HealthLevel = 4; //everything has a default health level of 4
+    public TextMesh tm;
 
     void Update()
     {
-        TextMesh tm = GetComponentInChildren<TextMesh>();
+        // TextMesh tm = GetComponentInChildren<TextMesh>();
 
         if (Mathf.FloorToInt(HealthLevel) < 0)
         {
