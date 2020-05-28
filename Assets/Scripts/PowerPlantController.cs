@@ -33,7 +33,7 @@ public class PowerPlantController : MonoBehaviour
     void UpdateText()
     {
       SpeedText.GetComponent<Text>().text = "+ FACTORY SPEED ("+SpeedPerCost+")";
-      EfficiencyText.GetComponent<Text>().text = "+ FACTORY SPEED ("+EfficiencyPerCost+")";
+      EfficiencyText.GetComponent<Text>().text = "+ FACTORY EFFICIENCY ("+EfficiencyPerCost+")";
       TaskText.GetComponent<Text>().text = "+ FACTORY MULTITASK ("+TaskPerCost+")";
     }
 
