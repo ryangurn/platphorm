@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerHarvester : MonoBehaviour
 {
     private bool hasOrePileSet = false;
-    private Vector3 myOrePileLocation;
+    public Vector3 myOrePileLocation;
     private MeshRenderer fullSymbol;
     private GameObject refinery;
 
@@ -28,12 +28,37 @@ public class PlayerHarvester : MonoBehaviour
             {
                 refinery = g;
             }
-
         }
     }
 
     void FixedUpdate()
     {
+        GameObject[] ores = GameObject.FindGameObjectsWithTag("Ore");
+        //first task is setting an ore pile location by proximity to harvester
+        if (!hasOrePileSet) 
+        {
+            foreach (GameObject ore in ores)
+            {
+                if (Vector3.Distance(ore.transform.position, transform.position) < 3)
+                {
+                    myOrePileLocation = ore.transform.position;
+                    hasOrePileSet = true;
+                    break;
+                }
+            }
+        }
+        else //if it is set, let's make sure there's still ore there, else we are setting it for false
+        {
+            hasOrePileSet = false; //checking to make sure there is ore still available at the currently-set ore pile
+            foreach (GameObject ore in ores)
+            {
+                if (Vector3.Distance(ore.transform.position, myOrePileLocation) < 7)
+                {
+                    hasOrePileSet = true;
+                    break;
+                }
+            }
+        }
 
         if (fullSymbol.enabled) //if full, always go to the refinery and deposit when close enough
         {
@@ -48,48 +73,18 @@ public class PlayerHarvester : MonoBehaviour
         }
 
         else //if you're not full, then you're eligible to pick up ore. So we'll do that when close enough
-        {         
-            GameObject[] ores = GameObject.FindGameObjectsWithTag("Ore");
-            foreach (GameObject ore in ores)
+        {
+            GetComponent<UnityEngine.AI.NavMeshAgent>().destination = myOrePileLocation; //make sure you're heading to ore 
+
+            foreach (GameObject ore in ores) //then deposit and stop when we've picked it up
             {
                 if (Vector3.Distance(ore.transform.position, transform.position) < 3.5)
                 {
                     ore.GetComponent<OreRemaining>().OreContent -= 1;
                     fullSymbol.enabled = true;
-                    break;
+                    return;
                 }
-            }          
+            }                                   
         }
-
-        if (!hasOrePileSet) //if we don't have an ore pile set, we better get one. Once we're close to ore, this is set here
-        {
-            GameObject[] ores = GameObject.FindGameObjectsWithTag("Ore");
-            foreach (GameObject ore in ores)
-            {
-                if (Vector3.Distance(ore.transform.position, transform.position) < 3)
-                {
-                    myOrePileLocation = ore.transform.position;
-                    hasOrePileSet = true;
-                    break;
-                }
-            }
-        }
-
-        else if (!fullSymbol.enabled) //if we do know where to go for ore, head there, but only if we're empty
-        {
-            hasOrePileSet = false; //checking to make sure there is ore still available at the currently-set ore pile
-            GameObject[] ores = GameObject.FindGameObjectsWithTag("Ore");
-            foreach (GameObject ore in ores)
-            {
-                if (Vector3.Distance(ore.transform.position, myOrePileLocation) < 7)
-                {
-                    hasOrePileSet = true;
-                    break;
-                }
-            }        
-            GetComponent<UnityEngine.AI.NavMeshAgent>().destination = myOrePileLocation;
-        }
-
-
     }
 }

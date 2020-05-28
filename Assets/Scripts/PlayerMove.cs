@@ -29,7 +29,8 @@ public class PlayerMove : MonoBehaviour
             if (hit.point.Equals(Vector3.zero)) //if the move order is made to a place a ray can't be made for, just stay put
                 return;
             else
-                GetComponent<UnityEngine.AI.NavMeshAgent>().destination = hit.point; //otherwise, go to the point
+                DestinationSet(hit.point);
+            
         }
     }
 
@@ -39,6 +40,18 @@ public class PlayerMove : MonoBehaviour
         {
             GetComponent<UnityEngine.AI.NavMeshAgent>().destination = transform.position;
         }      
+    }
+
+    void DestinationSet(Vector3 location)
+    {
+        if (gameObject.GetComponent<PlayerHarvester>()) //if we are a harvester
+        {
+            gameObject.GetComponent<PlayerHarvester>().myOrePileLocation = location;
+        }
+        else
+        {
+            GetComponent<UnityEngine.AI.NavMeshAgent>().destination = location;
+        }
     }
 
 }
