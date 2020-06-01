@@ -4880,6 +4880,16 @@ PrefabInstance:
       propertyPath: m_AllowDynamicResolution
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5178945585046596352, guid: 332da4f06e14c0543bffc1497112ea1b,
+        type: 3}
+      propertyPath: PauseMenu
+      value: 
+      objectReference: {fileID: 1704989389}
+    - target: {fileID: 5178945585046596352, guid: 332da4f06e14c0543bffc1497112ea1b,
+        type: 3}
+      propertyPath: CameraMaxX
+      value: 90
+      objectReference: {fileID: 0}
     - target: {fileID: 4461282822026082858, guid: 332da4f06e14c0543bffc1497112ea1b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4984,7 +4994,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: 7ba7f422af9bc854fbf6541f9e98f2e6, type: 3}
+      objectReference: {fileID: 8300000, guid: 23150f61fec66114e98c61db8bd2c8ff, type: 3}
     - target: {fileID: 1411021687951551623, guid: 332da4f06e14c0543bffc1497112ea1b,
         type: 3}
       propertyPath: Loop
@@ -4994,16 +5004,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Volume
       value: 0.35
-      objectReference: {fileID: 0}
-    - target: {fileID: 5178945585046596352, guid: 332da4f06e14c0543bffc1497112ea1b,
-        type: 3}
-      propertyPath: PauseMenu
-      value: 
-      objectReference: {fileID: 1704989389}
-    - target: {fileID: 5178945585046596352, guid: 332da4f06e14c0543bffc1497112ea1b,
-        type: 3}
-      propertyPath: CameraMaxX
-      value: 90
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 332da4f06e14c0543bffc1497112ea1b, type: 3}
