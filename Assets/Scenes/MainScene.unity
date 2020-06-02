@@ -6234,6 +6234,11 @@ PrefabInstance:
       propertyPath: FactoryPanel
       value: 
       objectReference: {fileID: 1926771473}
+    - target: {fileID: 3534034399983718441, guid: 0f39a2293f359014ab87f6d7d3f8a410,
+        type: 3}
+      propertyPath: ConstructionQueue
+      value: 
+      objectReference: {fileID: 1926771473}
     - target: {fileID: 3534034400803144528, guid: 0f39a2293f359014ab87f6d7d3f8a410,
         type: 3}
       propertyPath: m_AnchorMin.y

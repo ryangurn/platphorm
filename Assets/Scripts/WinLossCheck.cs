@@ -8,7 +8,7 @@ public class WinLossCheck : MonoBehaviour
     public GameObject Win;
     public GameObject Lose;
 
-    public Construction playerConstructionScript;
+    public FactoryController playerConstructionScript;
     private List<FactoryBuildEnemy> enemyFactoryScripts = new List<FactoryBuildEnemy>();
 
     void Start()

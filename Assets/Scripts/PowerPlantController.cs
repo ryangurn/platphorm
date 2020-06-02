@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class PowerPlantController : MonoBehaviour
 {
-    public GameObject FactoryPanel;
+    public GameObject ConstructionQueue;
     public GameObject PlayerResources;
     public GameObject Funds;
     public GameObject Upgraded;
@@ -64,7 +64,7 @@ public class PowerPlantController : MonoBehaviour
       SpeedCounter++;
 
 
-      FactoryPanel.GetComponent<Construction>().ConstructionSpeedMulti += SpeedDelta;
+      ConstructionQueue.GetComponent<FactoryController>().ConstructionSpeedMulti += SpeedDelta;
       StartCoroutine(CompletedAlready());
       return;
     }
@@ -86,7 +86,7 @@ public class PowerPlantController : MonoBehaviour
       EfficiencyCounter++;
 
 
-      FactoryPanel.GetComponent<Construction>().ConstructionEfficiencyMulti += EfficiencyDelta;
+      ConstructionQueue.GetComponent<FactoryController>().ConstructionEfficiencyMulti += EfficiencyDelta;
       StartCoroutine(CompletedAlready());
       return;
     }
@@ -107,7 +107,7 @@ public class PowerPlantController : MonoBehaviour
         PlayerResources.GetComponent<SupplyInventory>().Supplies -= TaskPerCost;
         TaskCounter++;
 
-        FactoryPanel.GetComponent<Construction>().AddTask();
+        ConstructionQueue.GetComponent<FactoryController>().AddTask();
         StartCoroutine(CompletedAlready());
         return;
     }

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 //this script attaches to the canvas
-public class Construction : MonoBehaviour
+public class FactoryController : MonoBehaviour
 {
   public GameObject Funds;
   public GameObject Upgraded;
