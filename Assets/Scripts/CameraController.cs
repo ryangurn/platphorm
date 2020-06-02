@@ -54,6 +54,9 @@ public class CameraController : MonoBehaviour
 			}
 		}
 
+        if (PauseMenu.activeSelf) //prevent things from being selected when paused
+            return;
+
 		if (Input.GetKeyUp(KeyCode.X))
 		{
 			SceneManager.LoadScene("Menu");
