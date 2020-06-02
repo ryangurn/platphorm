@@ -5,7 +5,12 @@ using UnityEngine;
 //attaches to canvas
 public class UITextBillboard : MonoBehaviour
 {
-    public Camera cameraTransform;
+    private GameObject cameraTransform;
+
+    void Awake()
+    {
+        cameraTransform = GameObject.FindGameObjectWithTag("MainCamera");
+    }
 
     void Update()
     {

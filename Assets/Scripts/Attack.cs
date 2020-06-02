@@ -26,9 +26,15 @@ public class Attack : MonoBehaviour
                 g.GetComponent<Health>().RunDamageAnimation();
 
                 if (!attackSound.isPlaying)
-                    attackSound.Play();
+                    StartCoroutine(playSound());
             }
         }
 
+    }
+
+    IEnumerator playSound()
+    {
+        yield return new WaitForSeconds(.3f);
+        attackSound.Play();
     }
 }
