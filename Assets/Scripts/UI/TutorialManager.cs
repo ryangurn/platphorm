@@ -9,6 +9,7 @@ public class TutorialManager : MonoBehaviour
   public GameObject TimeObject;
   public GameObject NextSound;
   public GameObject[] popups;
+  public GameObject PauseMenu;
 
   private int popupIndex;
   private int changeCountHarvester;
@@ -19,6 +20,7 @@ public class TutorialManager : MonoBehaviour
   private List<GameObject> attackingUnits = new List<GameObject>();
   private bool PanLock = false;
   private bool ScrollLock = false;
+    private bool hasPaused = false;
   float time = 2.5f;
 
   void UpdateUnits()
@@ -100,21 +102,12 @@ public class TutorialManager : MonoBehaviour
         StartCoroutine(wait());
       }
     }
-    else if (popupIndex == 4)
+    else if (popupIndex == 4 && Input.GetKeyDown(KeyCode.P) && !hasPaused)
     {
-      if (Camera.GetComponent<CameraController>().isLocked)
-      {
-        StartCoroutine(wait());
-      }
+        hasPaused = true;
+        StartCoroutine(pauseWait());
     }
     else if (popupIndex == 5)
-    {
-      if (!Camera.GetComponent<CameraController>().isLocked)
-      {
-        StartCoroutine(wait());
-      }
-    }
-    else if (popupIndex == 6)
     {
       bool move = false;
       foreach(GameObject unit in units)
@@ -139,7 +132,7 @@ public class TutorialManager : MonoBehaviour
         StartCoroutine(wait());
       }
     }
-    else if (popupIndex == 7)
+    else if (popupIndex == 6)
     {
       bool unselected = true;
       foreach(GameObject unit in units)
@@ -164,7 +157,7 @@ public class TutorialManager : MonoBehaviour
         StartCoroutine(wait());
       }
     }
-    else if (popupIndex == 8)
+    else if (popupIndex == 7)
     {
       // do the same thing for the harvester
       foreach (GameObject harvest in harvesters) {
@@ -181,7 +174,7 @@ public class TutorialManager : MonoBehaviour
         StartCoroutine(wait());
       }
     }
-    else if (popupIndex == 9)
+    else if (popupIndex == 8)
     {
       // do the same thing for the harvester
       foreach (GameObject attack in attackingUnits) {
@@ -221,4 +214,12 @@ public class TutorialManager : MonoBehaviour
   {
       yield return new WaitForSeconds(1.0f);
   }
+
+    IEnumerator pauseWait()
+    {
+        AudioSource audio = NextSound.GetComponent<AudioSource>();
+        audio.Play();
+        yield return new WaitForSeconds(.2f);
+        popupIndex++;
+    }
 }
