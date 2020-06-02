@@ -14,6 +14,8 @@ public class TechCenterController : MonoBehaviour
   public GameObject Upgraded;
   public GameObject Completed;
 
+  private AudioSource upgradeSound;
+
   public int RangeDelta = 1;
   public int RangeLimit = 2;
   public int RangePerCost = 300;
@@ -47,6 +49,7 @@ public class TechCenterController : MonoBehaviour
   void Start()
   {
     UpdateText();
+    upgradeSound = gameObject.GetComponent<AudioSource>();
     units = GameObject.FindGameObjectsWithTag("Player");
     foreach (GameObject unit in units)
     {
@@ -141,6 +144,8 @@ public class TechCenterController : MonoBehaviour
       return;
     }
 
+ 
+
     PlayerResources.GetComponent<SupplyInventory>().Supplies -= StrengthPerCost;
     StrengthCounter++;
 
@@ -196,6 +201,11 @@ public class TechCenterController : MonoBehaviour
 
   IEnumerator CompletedAlready()
   {
+
+    if (!upgradeSound.isPlaying)
+    {
+        upgradeSound.Play();
+    }
     Funds.SetActive(false);
     Upgraded.SetActive(false);
     Completed.SetActive(true);

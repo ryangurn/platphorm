@@ -8,9 +8,11 @@ public class FactoryBuildEnemy : MonoBehaviour
     public GameObject BasicUnit, AdvancedUnit, Harvester; //these are links to prefab objects
     private GameObject enemySupplyInventory; 
     public bool busy = false;
+    private AudioSource finishedSound;
 
     void Start()
     {
+        finishedSound = gameObject.GetComponent<AudioSource>();
         enemySupplyInventory = GameObject.FindGameObjectWithTag("EnemySupplyInventory");
     }
 
@@ -70,8 +72,10 @@ public class FactoryBuildEnemy : MonoBehaviour
 
     public IEnumerator SpawnBasic() //this is used for creating a delay before making a unit
     {
+        
         busy = true;
         yield return new WaitForSeconds(5);
+        FinishedSound();
         Vector3 pos = transform.position;
         float x = pos.x - Random.Range(.5f, 5f);
         float y = pos.y;
@@ -85,8 +89,10 @@ public class FactoryBuildEnemy : MonoBehaviour
 
     private IEnumerator SpawnAdvanced()
     {
+        
         busy = true;
         yield return new WaitForSeconds(10);
+        FinishedSound();
         Vector3 pos = transform.position;
         float x = pos.x - Random.Range(.5f, 5f);
         float y = pos.y;
@@ -98,8 +104,10 @@ public class FactoryBuildEnemy : MonoBehaviour
 
     private IEnumerator SpawnHarvester()
     {
+        
         busy = true;
         yield return new WaitForSeconds(3);
+        FinishedSound();
         Vector3 pos = transform.position;
         float x = pos.x - Random.Range(.5f, 5f);
         float y = pos.y;
@@ -107,5 +115,13 @@ public class FactoryBuildEnemy : MonoBehaviour
 
         Instantiate(Harvester, new Vector3(x, y, z), Quaternion.Euler(0.0f, 0f, 0.0f));
         busy = false;
+    }
+
+    private void FinishedSound()
+    {
+        if (!finishedSound.isPlaying)
+        {
+            finishedSound.Play();
+        }
     }
 }

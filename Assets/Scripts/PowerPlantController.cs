@@ -15,6 +15,8 @@ public class PowerPlantController : MonoBehaviour
     public GameObject EfficiencyText;
     public GameObject TaskText;
 
+    private AudioSource upgradeSound;
+
     public int SpeedDelta = 1;
     public int SpeedLimit = 2;
     public int SpeedPerCost = 300;
@@ -40,6 +42,7 @@ public class PowerPlantController : MonoBehaviour
     void Start()
     {
       UpdateText();
+      upgradeSound = gameObject.GetComponent<AudioSource>();
     }
 
     void FixedUpdate()
@@ -59,6 +62,7 @@ public class PowerPlantController : MonoBehaviour
         StartCoroutine(InsufficientFunds());
         return;
       }
+
 
       PlayerResources.GetComponent<SupplyInventory>().Supplies -= SpeedPerCost;
       SpeedCounter++;
@@ -82,7 +86,8 @@ public class PowerPlantController : MonoBehaviour
         return;
       }
 
-      PlayerResources.GetComponent<SupplyInventory>().Supplies -= EfficiencyPerCost;
+
+    PlayerResources.GetComponent<SupplyInventory>().Supplies -= EfficiencyPerCost;
       EfficiencyCounter++;
 
 
@@ -103,6 +108,7 @@ public class PowerPlantController : MonoBehaviour
             StartCoroutine(InsufficientFunds());
             return;
         }
+
 
         PlayerResources.GetComponent<SupplyInventory>().Supplies -= TaskPerCost;
         TaskCounter++;
@@ -132,7 +138,11 @@ public class PowerPlantController : MonoBehaviour
 
     IEnumerator CompletedAlready()
     {
-      Funds.SetActive(false);
+    if (!upgradeSound.isPlaying)
+    {
+        upgradeSound.Play();
+    }
+    Funds.SetActive(false);
       Upgraded.SetActive(false);
       Completed.SetActive(true);
       yield return new WaitForSeconds(1);

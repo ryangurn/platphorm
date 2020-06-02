@@ -34,7 +34,7 @@ public class Attack : MonoBehaviour
 
     IEnumerator playSound()
     {
-        yield return new WaitForSeconds(.3f);
         attackSound.Play();
+        yield return new WaitForSeconds(.3f);       
     }
 }

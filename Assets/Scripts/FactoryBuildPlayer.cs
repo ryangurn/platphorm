@@ -18,9 +18,12 @@ public class FactoryBuildPlayer : MonoBehaviour
     public float HarvesterSpeed;
     public float HarvesterHealthLevel;
 
+    private AudioSource finishedSound;
+
     void Start()
     {
-      BasicAttackRange = BasicUnit.GetComponent<Attack>().AttackRange;
+        finishedSound = gameObject.GetComponent<AudioSource>();
+        BasicAttackRange = BasicUnit.GetComponent<Attack>().AttackRange;
       BasicSpeed = BasicUnit.GetComponent<NavMeshAgent>().speed;
       BasicHealthLevel = BasicUnit.GetComponent<Health>().HealthLevel;
       AdvancedAttackRange = AdvancedUnit.GetComponent<Attack>().AttackRange;
@@ -32,7 +35,7 @@ public class FactoryBuildPlayer : MonoBehaviour
 
     public void SpawnBasic()
     {
-
+        FinishedSound();
         Vector3 pos = transform.position;
         float x = pos.x - Random.Range(.5f, 5f);
         float y = pos.y;
@@ -46,7 +49,7 @@ public class FactoryBuildPlayer : MonoBehaviour
 
     public void SpawnAdvanced()
     {
-
+        FinishedSound();
         Vector3 pos = transform.position;
         float x = pos.x - Random.Range(.5f, 5f);
         float y = pos.y;
@@ -60,7 +63,7 @@ public class FactoryBuildPlayer : MonoBehaviour
 
     public void SpawnHarvester()
     {
-
+        FinishedSound();
         Vector3 pos = transform.position;
         float x = pos.x - Random.Range(.5f, 5f);
         float y = pos.y;
@@ -69,5 +72,13 @@ public class FactoryBuildPlayer : MonoBehaviour
         GameObject n = Instantiate(Harvester, new Vector3(x, y, z), Quaternion.Euler(0.0f, 0f, 0.0f));
         n.GetComponent<NavMeshAgent>().speed = HarvesterSpeed;
         n.GetComponent<Health>().HealthLevel = HarvesterHealthLevel;
+    }
+
+    private void FinishedSound()
+    {
+        if (!finishedSound.isPlaying)
+        {
+            finishedSound.Play();
+        }
     }
 }
