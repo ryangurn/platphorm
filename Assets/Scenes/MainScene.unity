@@ -390,7 +390,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d25c249f09c25c448bb6e1864e6548ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Supplies: 20000
+  Supplies: 0
 --- !u!20 &52028042 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 4461282822026082859, guid: 332da4f06e14c0543bffc1497112ea1b,
