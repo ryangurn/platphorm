@@ -110,8 +110,8 @@ public class TutorialManager : MonoBehaviour
       if (Camera.GetComponent<CameraController>().isLocked)
       {
         StartCoroutine(wait());
+        Camera.GetComponent<CameraController>().pauseTime = 0.0f;
       }
-
     }
     else if (popupIndex == 5)
     {
