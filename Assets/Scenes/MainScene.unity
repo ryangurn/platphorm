@@ -6095,6 +6095,12 @@ PrefabInstance:
       propertyPath: FullQueue
       value: 
       objectReference: {fileID: 510456561}
+    - target: {fileID: 8219423559488893173, guid: 0de0eeccd2cafd5489553e347dad783a,
+        type: 3}
+      propertyPath: BasicUnit
+      value: 
+      objectReference: {fileID: 3778109309519788309, guid: f5edeb32540d90c4e9c8e62206353001,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0de0eeccd2cafd5489553e347dad783a, type: 3}
 --- !u!1001 &3534034400312882059
@@ -6753,6 +6759,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 508002702}
     m_Modifications:
+    - target: {fileID: 5141016771651997494, guid: 90dcf600651425c418d9dbf6263136f8,
+        type: 3}
+      propertyPath: QueueController
+      value: 
+      objectReference: {fileID: 1926771475}
     - target: {fileID: 8850358384466836106, guid: 90dcf600651425c418d9dbf6263136f8,
         type: 3}
       propertyPath: m_Name
@@ -6947,31 +6958,46 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1926771475}
+      objectReference: {fileID: 0}
     - target: {fileID: 8850358383579316440, guid: 90dcf600651425c418d9dbf6263136f8,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: TryBuild
+      value: BuildBasic
+      objectReference: {fileID: 0}
+    - target: {fileID: 8850358383579316440, guid: 90dcf600651425c418d9dbf6263136f8,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8850358384518186719, guid: 90dcf600651425c418d9dbf6263136f8,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1926771475}
+      objectReference: {fileID: 0}
     - target: {fileID: 8850358384518186719, guid: 90dcf600651425c418d9dbf6263136f8,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: TryBuild
+      value: BuildHarvester
+      objectReference: {fileID: 0}
+    - target: {fileID: 8850358384518186719, guid: 90dcf600651425c418d9dbf6263136f8,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8850358385510756384, guid: 90dcf600651425c418d9dbf6263136f8,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1926771475}
+      objectReference: {fileID: 0}
     - target: {fileID: 8850358385510756384, guid: 90dcf600651425c418d9dbf6263136f8,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: TryBuild
+      value: BuildAdvanced
+      objectReference: {fileID: 0}
+    - target: {fileID: 8850358385510756384, guid: 90dcf600651425c418d9dbf6263136f8,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 90dcf600651425c418d9dbf6263136f8, type: 3}

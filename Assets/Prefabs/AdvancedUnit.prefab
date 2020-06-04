@@ -104,8 +104,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9e179def87980b47a03d08f364744e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cameraTransform: {fileID: 4461282822026082859, guid: 332da4f06e14c0543bffc1497112ea1b,
-    type: 3}
 --- !u!1 &2797905783436443627
 GameObject:
   m_ObjectHideFlags: 0
@@ -291,7 +289,7 @@ NavMeshAgent:
   m_AgentTypeID: 0
   m_Radius: 0.6
   m_Speed: 5
-  m_Acceleration: 8
+  m_Acceleration: 5
   avoidancePriority: 50
   m_AngularSpeed: 500
   m_StoppingDistance: 0
@@ -732,7 +730,7 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: -2397996973257786244, guid: 7cc104c7909759c42b0cf85841836b34,
+    - target: {fileID: 1066910053003865102, guid: 7cc104c7909759c42b0cf85841836b34,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -742,7 +740,7 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: bd12ea0071eaf5c4680d5e8500c31733, type: 2}
-    - target: {fileID: 1066910053003865102, guid: 7cc104c7909759c42b0cf85841836b34,
+    - target: {fileID: -2397996973257786244, guid: 7cc104c7909759c42b0cf85841836b34,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 

@@ -20,7 +20,7 @@ public class TechCenterController : MonoBehaviour
   public int RangeLimit = 2;
   public int RangePerCost = 300;
 
-  public float SpeedDelta = 1.5f;
+  public float SpeedDelta = .5f;
   public int SpeedLimit = 2;
   public int SpeedPerCost = 300;
 
