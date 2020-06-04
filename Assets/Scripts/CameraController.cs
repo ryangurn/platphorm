@@ -16,11 +16,13 @@ public class CameraController : MonoBehaviour
 	public float MouseSpeed = 3.5f;
 	public float KeyboardSpeed = 50.0f; //regular speed
 	public float ScrollSpeed = 1.0f;
+	public float pauseTime = 0.0f;
 
 	public bool CameraLeftRight = false;
 	public bool CameraFrontBack = false;
 	public bool CameraZoom = false;
 	public bool EdgeControl = true;
+	public bool isLocked = false;
 	public int InvertPan = 1;
 
 	private float m_shiftAdd = 250.0f; //multiplied by how long shift is held.  Basically running
@@ -39,23 +41,23 @@ public class CameraController : MonoBehaviour
 	void Start()
 	{
 		SelectionLocked = GetComponent<Selection>();
-    }
+	}
 
 	void Update ()
 	{
 		if (Input.GetKeyUp(KeyCode.P)) //escape menu
 		{
 			if (PauseMenu.activeSelf) {
-                unPause();
+				unPause();
 				PauseMenu.SetActive(false);
 			} else {
-                Pause();
+				Pause();
 				PauseMenu.SetActive(true);
 			}
 		}
 
-        if (PauseMenu.activeSelf) //prevent things from being selected when paused
-            return;
+		if (PauseMenu.activeSelf) //prevent things from being selected when paused
+		return;
 
 		if (Input.GetKeyUp(KeyCode.X))
 		{
@@ -122,15 +124,15 @@ public class CameraController : MonoBehaviour
 		newPosition.z = Mathf.Clamp(transform.position.z, CameraMinZ, CameraMaxZ);
 		transform.position = newPosition;
 
-        //rotation clamp
-        Vector3 rotation = transform.rotation.eulerAngles;
+		//rotation clamp
+		Vector3 rotation = transform.rotation.eulerAngles;
 
-        if (200f < rotation.x && rotation.x < 360f)
-            rotation.x = Mathf.Clamp(rotation.x, 360f, Mathf.Infinity);
-        else
-            rotation.x = Mathf.Clamp(rotation.x, 0f, 40f);
+		if (200f < rotation.x && rotation.x < 360f)
+		rotation.x = Mathf.Clamp(rotation.x, 360f, Mathf.Infinity);
+		else
+		rotation.x = Mathf.Clamp(rotation.x, 0f, 40f);
 
-        transform.rotation = Quaternion.Euler(rotation);
+		transform.rotation = Quaternion.Euler(rotation);
 
 
 
@@ -266,7 +268,7 @@ public class CameraController : MonoBehaviour
 					break;
 
 				}
-                //the height component is ajusted based on how steep the camera angel is in euler angels
+				//the height component is ajusted based on how steep the camera angel is in euler angels
 				Ray ray = Camera.main.ScreenPointToRay(new Vector2(Screen.width / 2 + offsetContainer[0], Screen.height * transform.rotation.eulerAngles[0] / 90 + offsetContainer[1]));
 				Physics.Raycast(ray, out hit);
 
@@ -288,14 +290,14 @@ public class CameraController : MonoBehaviour
 		ScrollSpeed = slide.GetComponent<Slider>().value;
 	}
 
-    public void UpdateVolume(GameObject slide)
-    {
-        AudioListener.volume = slide.GetComponent<Slider>().value;
+	public void UpdateVolume(GameObject slide)
+	{
+		AudioListener.volume = slide.GetComponent<Slider>().value;
 
 
-    }
+	}
 
-    public void ToggleEdgeControls(GameObject slide)
+	public void ToggleEdgeControls(GameObject slide)
 	{
 		EdgeControl = slide.GetComponent<Toggle>().isOn;
 	}
@@ -313,14 +315,16 @@ public class CameraController : MonoBehaviour
 		}
 	}
 
-    private void Pause()
-    {
-        Time.timeScale = 0;
-    }
+	private void Pause()
+	{
+		isLocked = true;
+		Time.timeScale = pauseTime;
+	}
 
-    public void unPause()
-    {
-        Time.timeScale = 1;
-    }
+	public void unPause()
+	{
+		isLocked = false;
+		Time.timeScale = 1;
+	}
 
 }

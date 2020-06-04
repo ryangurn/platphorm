@@ -11,20 +11,22 @@ public class TutorialManager : MonoBehaviour
   public GameObject[] popups;
   public GameObject PauseMenu;
 
-  private int popupIndex;
+  public int popupIndex;
   private int changeCountHarvester;
   private int changeCountAttack;
 
   private GameObject[] units;
+  private GameObject[] buildings;
   private List<GameObject> harvesters = new List<GameObject>();
   private List<GameObject> attackingUnits = new List<GameObject>();
   private bool PanLock = false;
   private bool ScrollLock = false;
-    private bool hasPaused = false;
+  private bool hasPaused = false;
   float time = 2.5f;
 
   void UpdateUnits()
   {
+    buildings = GameObject.FindGameObjectsWithTag("PlayerBuilding");
     units = GameObject.FindGameObjectsWithTag("Player");
     foreach (GameObject unit in units)
     {
@@ -102,12 +104,23 @@ public class TutorialManager : MonoBehaviour
         StartCoroutine(wait());
       }
     }
-    else if (popupIndex == 4 && Input.GetKeyDown(KeyCode.P) && !hasPaused)
+    else if (popupIndex == 4)
     {
-        hasPaused = true;
-        StartCoroutine(pauseWait());
+      Camera.GetComponent<CameraController>().pauseTime = 1.0f; // i need gametime to progress
+      if (Camera.GetComponent<CameraController>().isLocked)
+      {
+        StartCoroutine(wait());
+      }
+
     }
     else if (popupIndex == 5)
+    {
+      if (!Camera.GetComponent<CameraController>().isLocked)
+      {
+        StartCoroutine(wait());
+      }
+    }
+    else if (popupIndex == 6)
     {
       bool move = false;
       foreach(GameObject unit in units)
@@ -132,7 +145,7 @@ public class TutorialManager : MonoBehaviour
         StartCoroutine(wait());
       }
     }
-    else if (popupIndex == 6)
+    else if (popupIndex == 7)
     {
       bool unselected = true;
       foreach(GameObject unit in units)
@@ -157,7 +170,7 @@ public class TutorialManager : MonoBehaviour
         StartCoroutine(wait());
       }
     }
-    else if (popupIndex == 7)
+    else if (popupIndex == 8)
     {
       // do the same thing for the harvester
       foreach (GameObject harvest in harvesters) {
@@ -174,7 +187,7 @@ public class TutorialManager : MonoBehaviour
         StartCoroutine(wait());
       }
     }
-    else if (popupIndex == 8)
+    else if (popupIndex == 9)
     {
       // do the same thing for the harvester
       foreach (GameObject attack in attackingUnits) {
@@ -190,6 +203,33 @@ public class TutorialManager : MonoBehaviour
       {
         StartCoroutine(wait());
       }
+    }
+    else if (popupIndex == 10)
+    {
+
+      bool unselected = false;
+      foreach(GameObject building in buildings)
+      {
+        // get the mesh renders
+        MeshRenderer[] buildingChildren = building.GetComponentsInChildren<MeshRenderer>();
+        foreach (MeshRenderer mr in buildingChildren)
+        {
+          if (mr.gameObject.name == "SelectedSymbol")
+          {
+
+            if(mr.enabled)
+            {
+              unselected = true;
+            }
+          }
+        }
+      }
+
+      if(unselected)
+      {
+        StartCoroutine(wait());
+      }
+
     }
 
     UpdateUnits();
@@ -212,14 +252,14 @@ public class TutorialManager : MonoBehaviour
 
   IEnumerator shortWait()
   {
-      yield return new WaitForSeconds(1.0f);
+    yield return new WaitForSeconds(1.0f);
   }
 
-    IEnumerator pauseWait()
-    {
-        AudioSource audio = NextSound.GetComponent<AudioSource>();
-        audio.Play();
-        yield return new WaitForSeconds(.2f);
-        popupIndex++;
-    }
+  IEnumerator pauseWait()
+  {
+    AudioSource audio = NextSound.GetComponent<AudioSource>();
+    audio.Play();
+    yield return new WaitForSeconds(.2f);
+    popupIndex++;
+  }
 }
