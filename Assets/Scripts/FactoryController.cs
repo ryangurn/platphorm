@@ -218,14 +218,15 @@ public class FactoryController : MonoBehaviour
 
   IEnumerator InsufficientFunds()
   {
-    Upgraded.SetActive(false);
+    //Upgraded.SetActive(false);
     Completed.SetActive(false);
     Funds.SetActive(true);
+    Funds.GetComponent<AudioSource>().Play();
     FullQueue.SetActive(false);
     yield return new WaitForSeconds(2);
     Funds.SetActive(false);
   }
-
+/* I don't think this is used
   IEnumerator UpgradedAlready()
   {
     Funds.SetActive(false);
@@ -234,13 +235,14 @@ public class FactoryController : MonoBehaviour
     FullQueue.SetActive(false);
     yield return new WaitForSeconds(1);
     Upgraded.SetActive(false);
-  }
+  }*/
 
   IEnumerator CompletedAlready()
   {
     Funds.SetActive(false);
-    Upgraded.SetActive(false);
+    //Upgraded.SetActive(false);
     Completed.SetActive(true);
+    Completed.GetComponent<AudioSource>().Play();
     FullQueue.SetActive(false);
     yield return new WaitForSeconds(1);
     Completed.SetActive(false);
@@ -249,8 +251,9 @@ public class FactoryController : MonoBehaviour
     IEnumerator QueueFull()
     {
         FullQueue.SetActive(true);
+        FullQueue.GetComponent<AudioSource>().Play();
         Funds.SetActive(false);
-        Upgraded.SetActive(false);
+        //Upgraded.SetActive(false);
         Completed.SetActive(false);
         yield return new WaitForSeconds(1);
         FullQueue.SetActive(false);
@@ -263,76 +266,5 @@ public class FactoryController : MonoBehaviour
         else
             return false;
     }
-    /*
-    void OnGUI() //GUI objects
-    {
-      //don't paint the building gui if factory isn't selected
 
-      if (!fbp.isSelected)
-      return;
-
-      if (queueFull && sufficientFunds)
-      {
-        GUILayout.BeginArea(new Rect(Screen.width / 2 - 110,
-        Screen.height - 70,
-        220,
-        25), "Please Wait. Queue Full.", "box");
-
-        GUILayout.EndArea();
-      }
-
-      else if (!queueFull && !sufficientFunds)
-      {
-        GUILayout.BeginArea(new Rect(Screen.width / 2 - 85,
-        Screen.height - 70,
-        170,
-        25), "Insufficient Funds.", "box");
-
-        GUILayout.EndArea();
-      }
-
-      else
-      {
-
-        GUILayout.BeginArea(new Rect(Screen.width / 2 - 260,
-        Screen.height - 70,
-        170,
-        30), "", "box");
-
-        if (GUILayout.Button("Construct Basic Unit-$300"))
-        {
-
-          HaveSufficientFunds("Basic");
-        }
-
-        GUILayout.EndArea();
-
-        GUILayout.BeginArea(new Rect(Screen.width / 2 - 75,
-        Screen.height - 70,
-        200,
-        30), "", "box");
-
-        if (GUILayout.Button("Construct Advanced Unit-$800"))
-        {
-
-          HaveSufficientFunds("Advanced");
-        }
-
-        GUILayout.EndArea();
-
-        GUILayout.BeginArea(new Rect(Screen.width / 2 + 135,
-        Screen.height - 70,
-        170,
-        30), "", "box");
-
-        if (GUILayout.Button("Construct Harvester-$500"))
-        {
-          HaveSufficientFunds("Harvester");
-        }
-
-        GUILayout.EndArea();
-      }
-
-    }
-    */
 }

@@ -21,7 +21,6 @@ public class TutorialManager : MonoBehaviour
   private List<GameObject> attackingUnits = new List<GameObject>();
   private bool PanLock = false;
   private bool ScrollLock = false;
-  private bool hasPaused = false;
   float time = 2.5f;
 
   void UpdateUnits()

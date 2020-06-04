@@ -15,8 +15,6 @@ public class PowerPlantController : MonoBehaviour
     public GameObject EfficiencyText;
     public GameObject TaskText;
 
-    private AudioSource upgradeSound;
-
     public int SpeedDelta = 1;
     public int SpeedLimit = 2;
     public int SpeedPerCost = 300;
@@ -42,7 +40,6 @@ public class PowerPlantController : MonoBehaviour
     void Start()
     {
       UpdateText();
-      upgradeSound = gameObject.GetComponent<AudioSource>();
     }
 
     void FixedUpdate()
@@ -123,6 +120,7 @@ public class PowerPlantController : MonoBehaviour
       Upgraded.SetActive(false);
       Completed.SetActive(false);
       Funds.SetActive(true);
+      Funds.GetComponent<AudioSource>().Play();
       yield return new WaitForSeconds(2);
       Funds.SetActive(false);
     }
@@ -132,19 +130,17 @@ public class PowerPlantController : MonoBehaviour
       Funds.SetActive(false);
       Completed.SetActive(false);
       Upgraded.SetActive(true);
-      yield return new WaitForSeconds(1);
+      Upgraded.GetComponent<AudioSource>().Play();
+      yield return new WaitForSeconds(2);
       Upgraded.SetActive(false);
     }
 
     IEnumerator CompletedAlready()
     {
-    if (!upgradeSound.isPlaying)
-    {
-        upgradeSound.Play();
-    }
-    Funds.SetActive(false);
+      Funds.SetActive(false);
       Upgraded.SetActive(false);
       Completed.SetActive(true);
+      Completed.GetComponent<AudioSource>().Play();
       yield return new WaitForSeconds(1);
       Completed.SetActive(false);
     }

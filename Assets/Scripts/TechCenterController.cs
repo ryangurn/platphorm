@@ -14,8 +14,6 @@ public class TechCenterController : MonoBehaviour
   public GameObject Upgraded;
   public GameObject Completed;
 
-  private AudioSource upgradeSound;
-
   public int RangeDelta = 1;
   public int RangeLimit = 2;
   public int RangePerCost = 300;
@@ -49,7 +47,6 @@ public class TechCenterController : MonoBehaviour
   void Start()
   {
     UpdateText();
-    upgradeSound = gameObject.GetComponent<AudioSource>();
     units = GameObject.FindGameObjectsWithTag("Player");
     foreach (GameObject unit in units)
     {
@@ -186,6 +183,7 @@ public class TechCenterController : MonoBehaviour
     Upgraded.SetActive(false);
     Completed.SetActive(false);
     Funds.SetActive(true);
+    Funds.GetComponent<AudioSource>().Play();
     yield return new WaitForSeconds(2);
     Funds.SetActive(false);
   }
@@ -195,20 +193,18 @@ public class TechCenterController : MonoBehaviour
     Funds.SetActive(false);
     Completed.SetActive(false);
     Upgraded.SetActive(true);
-    yield return new WaitForSeconds(1);
+    Upgraded.GetComponent<AudioSource>().Play();
+    yield return new WaitForSeconds(2);
     Upgraded.SetActive(false);
   }
 
   IEnumerator CompletedAlready()
   {
 
-    if (!upgradeSound.isPlaying)
-    {
-        upgradeSound.Play();
-    }
     Funds.SetActive(false);
     Upgraded.SetActive(false);
     Completed.SetActive(true);
+    Completed.GetComponent<AudioSource>().Play();
     yield return new WaitForSeconds(1);
     Completed.SetActive(false);
   }
