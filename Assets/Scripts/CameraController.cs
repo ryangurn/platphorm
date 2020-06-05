@@ -56,7 +56,7 @@ public class CameraController : MonoBehaviour
 			}
 		}
 
-		if (PauseMenu.activeSelf) //prevent things from being selected when paused
+		if (isLocked) //prevent things from being selected when paused
 		    return;       
 
 		if (Input.GetKeyUp(KeyCode.X)) //exit the level to  menu
@@ -319,13 +319,15 @@ public class CameraController : MonoBehaviour
 	private void Pause()
 	{
 		isLocked = true;
+        SelectionLocked.Lock();
 		Time.timeScale = pauseTime;
 	}
 
 	public void unPause()
 	{
 		isLocked = false;
-		Time.timeScale = 1;
+        SelectionLocked.Unlock();
+        Time.timeScale = 1;
 	}
 
 }
