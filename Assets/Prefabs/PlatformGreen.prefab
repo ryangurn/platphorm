@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: -927199367670048503, guid: 57b199b7b5bb5214a856482d835d20be,
         type: 3}
       propertyPath: m_Name
-      value: octplat
+      value: PlatformGreen
       objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: 57b199b7b5bb5214a856482d835d20be,
         type: 3}

@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 9182886373204898843, guid: 795ce805b53f09d48bc2189f71bc2c68,
         type: 3}
       propertyPath: m_Name
-      value: octplat
+      value: PlatformSnow
       objectReference: {fileID: 0}
     - target: {fileID: 5272434611370182152, guid: 795ce805b53f09d48bc2189f71bc2c68,
         type: 3}
@@ -72,5 +72,6 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 1e463093c6d39d94786bab3eef196b83, type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8844659255137686846, guid: 795ce805b53f09d48bc2189f71bc2c68, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 795ce805b53f09d48bc2189f71bc2c68, type: 3}
