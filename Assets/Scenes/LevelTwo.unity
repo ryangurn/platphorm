@@ -4294,7 +4294,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Funds: {fileID: 1914480631}
-  Upgraded: {fileID: 0}
   Completed: {fileID: 755509782}
   ConstructionSpeedMulti: 1
   ConstructionEfficiencyMulti: 1
@@ -5292,7 +5291,7 @@ PrefabInstance:
     - target: {fileID: 1602918138126457843, guid: 0de0eeccd2cafd5489553e347dad783a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.88
+      value: 5.03
       objectReference: {fileID: 0}
     - target: {fileID: 1602918138126457843, guid: 0de0eeccd2cafd5489553e347dad783a,
         type: 3}
@@ -6319,7 +6318,7 @@ PrefabInstance:
     - target: {fileID: 1679139055203314371, guid: eeb1629bfbd4f604e8df0cc68c5dd84d,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.99
+      value: 5.08
       objectReference: {fileID: 0}
     - target: {fileID: 1679139055203314371, guid: eeb1629bfbd4f604e8df0cc68c5dd84d,
         type: 3}
