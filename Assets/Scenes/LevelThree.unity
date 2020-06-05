@@ -5773,7 +5773,7 @@ PrefabInstance:
     - target: {fileID: 5178945585046596352, guid: 332da4f06e14c0543bffc1497112ea1b,
         type: 3}
       propertyPath: CameraMaxZ
-      value: 65
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 4461282822026082858, guid: 332da4f06e14c0543bffc1497112ea1b,
         type: 3}
