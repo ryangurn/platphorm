@@ -230,33 +230,6 @@ public class TutorialManager : MonoBehaviour
       }
 
     }
-    else if (popupIndex == 11) {
-      bool selected = false;
-      foreach(GameObject building in buildings)
-      {
-        if (building.name == "Factory")
-        {
-          // get the mesh renders
-          MeshRenderer[] buildingChildren = building.GetComponentsInChildren<MeshRenderer>();
-          foreach (MeshRenderer mr in buildingChildren)
-          {
-            if (mr.gameObject.name == "SelectedSymbol")
-            {
-
-              if(mr.enabled)
-              {
-                selected = true;
-              }
-            }
-          }
-        }
-      }
-
-      if(selected)
-      {
-        StartCoroutine(wait());
-      }
-    }
 
     UpdateUnits();
   }
