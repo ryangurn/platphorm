@@ -38,12 +38,15 @@ public class CameraController : MonoBehaviour
 	private float CameraHeight = 12.0f; //cam height relative to ground
 	private Quaternion originalPan; //this keeps track of where we were before we started panning. If the pan wasn't that much, the user probably meant to move a unit
 
-	void Start()
+	void Awake()
 	{
 		SelectionLocked = GetComponent<Selection>();
+        unPause();
 	}
 
-	void Update ()
+
+
+    void Update ()
 	{
 		if (Input.GetKeyUp(KeyCode.P)) //escape menu
 		{
