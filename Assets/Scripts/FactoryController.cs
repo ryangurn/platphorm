@@ -68,6 +68,18 @@ public class FactoryController : MonoBehaviour
   {
     UpdateText();
 
+    if (Input.GetKeyUp(KeyCode.Alpha1) || Input.GetKeyUp(KeyCode.Keypad1)) {
+      TryBuild("Basic");
+    }
+
+    if (Input.GetKeyUp(KeyCode.Alpha2) || Input.GetKeyUp(KeyCode.Keypad2)) {
+      TryBuild("Advanced");
+    }
+
+    if (Input.GetKeyUp(KeyCode.Alpha3) || Input.GetKeyUp(KeyCode.Keypad3)) {
+      TryBuild("Harvester");
+    }
+
     queueFull = buildQueue.Count > 4; //if it's 5, it's full
     string currentWork;
 
