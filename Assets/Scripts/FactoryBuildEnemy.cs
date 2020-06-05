@@ -9,15 +9,30 @@ public class FactoryBuildEnemy : MonoBehaviour
     private GameObject enemySupplyInventory; 
     public bool busy = false;
     private AudioSource finishedSound;
+    private List<FactoryBuildEnemy> enemyFactoryScripts = new List<FactoryBuildEnemy>(); //other enemy factories, but not this one
+    public bool MyTurn = false;
 
     void Start()
     {
         finishedSound = gameObject.GetComponent<AudioSource>();
         enemySupplyInventory = GameObject.FindGameObjectWithTag("EnemySupplyInventory");
+
+        GameObject[] enemyBuildings = GameObject.FindGameObjectsWithTag("EnemyBuilding");
+
+        foreach (GameObject building in enemyBuildings)
+        {
+            if (building != gameObject && building.GetComponent<FactoryBuildEnemy>()) //if the building isn't the current building, but has a script for enemy construction, add that script to the list
+                enemyFactoryScripts.Add(building.GetComponent<FactoryBuildEnemy>());
+      
+        }
     }
 
     void FixedUpdate()
     {
+        if (!MyTurn) //give way to the other factory/ies
+            return;
+
+
         GameObject[] enemyUnits = GameObject.FindGameObjectsWithTag("Enemy"); //make sure we have an enemy harvester
 
         int nearbyHarvesterCount = 0;
@@ -38,19 +53,21 @@ public class FactoryBuildEnemy : MonoBehaviour
             {
                 enemySupplyInventory.GetComponent<SupplyInventory>().Supplies -= 500;
                 StartCoroutine(SpawnHarvester());
+                MyTurn = false;
             }
             else //or save up
                 return;
         }
 
-        int randomNum = Mathf.FloorToInt(Random.Range(0f, 100f)); //pick a random integer
+        int randomNum = Random.Range(0, 100); //pick a random integer
 
         if (enemySupplyInventory.GetComponent<SupplyInventory>().Supplies >= 800
             && randomNum < 40) //if we can afford an advanced unit, there's a chance we make on, or a harvester
         {           
  
             enemySupplyInventory.GetComponent<SupplyInventory>().Supplies -= 800;
-            StartCoroutine(SpawnAdvanced());       
+            StartCoroutine(SpawnAdvanced());
+            MyTurn = false;
 
         }
         else if (enemySupplyInventory.GetComponent<SupplyInventory>().Supplies >= 500
@@ -59,6 +76,7 @@ public class FactoryBuildEnemy : MonoBehaviour
         {
             enemySupplyInventory.GetComponent<SupplyInventory>().Supplies -= 500;
             StartCoroutine(SpawnHarvester());
+            MyTurn = false;
         }
 
         else if (enemySupplyInventory.GetComponent<SupplyInventory>().Supplies >= 300
@@ -66,6 +84,17 @@ public class FactoryBuildEnemy : MonoBehaviour
         {
             enemySupplyInventory.GetComponent<SupplyInventory>().Supplies -= 300;
             StartCoroutine(SpawnBasic());
+            MyTurn = false;
+        }
+
+
+        if (!MyTurn) //we built something, so let another factory build
+        {
+
+            randomNum = Random.Range(0, enemyFactoryScripts.Count); //pick a random enemy factory and give it exclusive access to build
+
+            enemyFactoryScripts[randomNum].MyTurn = true;
+       
         }
     }
 
