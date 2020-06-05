@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class FactoryController : MonoBehaviour
 {
   public GameObject Funds;
-  public GameObject Upgraded;
   public GameObject Completed;
 
   private int constant = 1;
@@ -61,9 +60,9 @@ public class FactoryController : MonoBehaviour
   }
 
   public void AddTask()
-    {
-        busyQueue.Add(false); //make productive capacity one unit longer, and it starts out not busy (false)
-    }
+  {
+    busyQueue.Add(false); //make productive capacity one unit longer, and it starts out not busy (false)
+  }
 
   void FixedUpdate() //basic handler to check for work and update queue Count/size
   {
@@ -74,26 +73,26 @@ public class FactoryController : MonoBehaviour
 
     for (int i = 0; i < busyQueue.Count; i++) //for each construction space
     {
-        if (buildQueue.Count < (i + 1) || busyQueue[i]) //check to make sure the queue has a pending unit that's not already under cunstruction
-            continue;
+      if (buildQueue.Count < (i + 1) || busyQueue[i]) //check to make sure the queue has a pending unit that's not already under cunstruction
+      continue;
 
 
-        currentWork = buildQueue[i]; //there's work to do
-        busyQueue[i] = true;
+      currentWork = buildQueue[i]; //there's work to do
+      busyQueue[i] = true;
 
-        if (currentWork == "Basic")
-        {
-            StartCoroutine(BuildBasic(i));
-        }
-        else if (currentWork == "Advanced")
-        {
-            StartCoroutine(BuildAdvanced(i));
-        }
-        else //if currentWork == "Harvester"
-        {
-            StartCoroutine(BuildHarvester(i));
-        }
-     }
+      if (currentWork == "Basic")
+      {
+        StartCoroutine(BuildBasic(i));
+      }
+      else if (currentWork == "Advanced")
+      {
+        StartCoroutine(BuildAdvanced(i));
+      }
+      else //if currentWork == "Harvester"
+      {
+        StartCoroutine(BuildHarvester(i));
+      }
+    }
 
   }
 
@@ -127,9 +126,9 @@ public class FactoryController : MonoBehaviour
 
     for (; i < 5; i++) //for the rest of the slots, make them blank
     {
-        slots[i].transform.GetChild(0).gameObject.SetActive(false);
-        slots[i].transform.GetChild(1).gameObject.SetActive(false);
-        slots[i].transform.GetChild(2).gameObject.SetActive(false);
+      slots[i].transform.GetChild(0).gameObject.SetActive(false);
+      slots[i].transform.GetChild(1).gameObject.SetActive(false);
+      slots[i].transform.GetChild(2).gameObject.SetActive(false);
     }
 
   }
@@ -139,49 +138,49 @@ public class FactoryController : MonoBehaviour
     if (unitType == "Basic")
     {
       if (playerSupplyInventory.GetComponent<SupplyInventory>().Supplies >= (int)(constant / ConstructionEfficiencyMulti) * BasicCost
-                && !queueFull)
+      && !queueFull)
       {
         playerSupplyInventory.GetComponent<SupplyInventory>().Supplies -= (int)(constant / ConstructionEfficiencyMulti) * BasicCost;
         buildQueue.Add("Basic");
         StartCoroutine(CompletedAlready());
       }
       else if (queueFull)
-       {
-                StartCoroutine(QueueFull());
-       }
+      {
+        StartCoroutine(QueueFull());
+      }
       else
       StartCoroutine(InsufficientFunds());
     }
     else if (unitType == "Advanced")
     {
       if (playerSupplyInventory.GetComponent<SupplyInventory>().Supplies >= (int)(constant / ConstructionEfficiencyMulti) * AdvancedCost
-                && !queueFull)
+      && !queueFull)
       {
         playerSupplyInventory.GetComponent<SupplyInventory>().Supplies -= (int)(constant / ConstructionEfficiencyMulti) * AdvancedCost;
         buildQueue.Add("Advanced");
         StartCoroutine(CompletedAlready());
       }
-    else if (queueFull)
-    {
+      else if (queueFull)
+      {
         StartCoroutine(QueueFull());
-    }
-    else
+      }
+      else
       StartCoroutine(InsufficientFunds());
     }
     else //Harvester
     {
       if (playerSupplyInventory.GetComponent<SupplyInventory>().Supplies >= (int)(constant / ConstructionEfficiencyMulti) * HarvesterCost
-                && !queueFull)
+      && !queueFull)
       {
         playerSupplyInventory.GetComponent<SupplyInventory>().Supplies -= (int)(constant / ConstructionEfficiencyMulti) * HarvesterCost;
         buildQueue.Add("Harvester");
         StartCoroutine(CompletedAlready());
       }
-    else if (queueFull)
-    {
+      else if (queueFull)
+      {
         StartCoroutine(QueueFull());
-    }
-    else
+      }
+      else
       StartCoroutine(InsufficientFunds());
     }
   }
@@ -226,16 +225,6 @@ public class FactoryController : MonoBehaviour
     yield return new WaitForSeconds(2);
     Funds.SetActive(false);
   }
-/* I don't think this is used
-  IEnumerator UpgradedAlready()
-  {
-    Funds.SetActive(false);
-    Completed.SetActive(false);
-    Upgraded.SetActive(true);
-    FullQueue.SetActive(false);
-    yield return new WaitForSeconds(1);
-    Upgraded.SetActive(false);
-  }*/
 
   IEnumerator CompletedAlready()
   {
@@ -248,23 +237,23 @@ public class FactoryController : MonoBehaviour
     Completed.SetActive(false);
   }
 
-    IEnumerator QueueFull()
-    {
-        FullQueue.SetActive(true);
-        FullQueue.GetComponent<AudioSource>().Play();
-        Funds.SetActive(false);
-        //Upgraded.SetActive(false);
-        Completed.SetActive(false);
-        yield return new WaitForSeconds(1);
-        FullQueue.SetActive(false);
-    }
+  IEnumerator QueueFull()
+  {
+    FullQueue.SetActive(true);
+    FullQueue.GetComponent<AudioSource>().Play();
+    Funds.SetActive(false);
+    //Upgraded.SetActive(false);
+    Completed.SetActive(false);
+    yield return new WaitForSeconds(1);
+    FullQueue.SetActive(false);
+  }
 
-    public bool PendingUnits()
-    {
-        if (buildQueue.Count > 0)
-            return true;
-        else
-            return false;
-    }
+  public bool PendingUnits()
+  {
+    if (buildQueue.Count > 0)
+    return true;
+    else
+    return false;
+  }
 
 }
