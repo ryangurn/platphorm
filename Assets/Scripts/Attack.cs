@@ -5,6 +5,7 @@ using UnityEngine;
 public class Attack : MonoBehaviour
 {
     public string MyEnemy; //this component is shared, so we need to specify who were're trying to attack and damage
+    public string MyTeam;
     public float HealthDecrement = 0.015f;
     public int AttackRange = 3;
     private AudioSource attackSound;
@@ -26,15 +27,25 @@ public class Attack : MonoBehaviour
                 g.GetComponent<Health>().RunDamageAnimation();
 
                 if (!attackSound.isPlaying)
-                    StartCoroutine(playSound());
+                    TrySound();
             }
         }
 
     }
 
-    IEnumerator playSound()
+    private void TrySound()
     {
+        GameObject[] units = GameObject.FindGameObjectsWithTag(MyTeam); //look for all friendly units
+
+        foreach (GameObject g in units)
+        {
+            if (Vector3.Distance(g.transform.position, transform.position) < AttackRange) //if a friendly is within attack range, it's also attacking, so check if its sound is playing
+            {
+                if (g.GetComponent<AudioSource>().isPlaying) //stop if it is
+                    return;
+            }
+        }//if we reach the end, play the sound
+
         attackSound.Play();
-        yield return new WaitForSeconds(.3f);       
     }
 }

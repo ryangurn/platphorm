@@ -325,6 +325,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MyEnemy: Enemy
+  MyTeam: Player
   HealthDecrement: 0.015
   AttackRange: 3
 --- !u!114 &4720224248707268349
