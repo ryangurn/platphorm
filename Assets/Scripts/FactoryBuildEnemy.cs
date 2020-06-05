@@ -6,7 +6,7 @@ using UnityEngine;
 public class FactoryBuildEnemy : MonoBehaviour
 {
     public GameObject BasicUnit, AdvancedUnit, Harvester; //these are links to prefab objects
-    private GameObject enemySupplyInventory; 
+    private SupplyInventory enemySupplyScript; 
     public bool busy = false;
     private AudioSource finishedSound;
     private List<FactoryBuildEnemy> enemyFactoryScripts = new List<FactoryBuildEnemy>(); //other enemy factories, but not this one
@@ -15,27 +15,26 @@ public class FactoryBuildEnemy : MonoBehaviour
     void Start()
     {
         finishedSound = gameObject.GetComponent<AudioSource>();
-        enemySupplyInventory = GameObject.FindGameObjectWithTag("EnemySupplyInventory");
+        enemySupplyScript = GameObject.FindGameObjectWithTag("EnemySupplyInventory").GetComponent<SupplyInventory>();
 
         GameObject[] enemyBuildings = GameObject.FindGameObjectsWithTag("EnemyBuilding");
 
         foreach (GameObject building in enemyBuildings)
         {
             if (building != gameObject && building.GetComponent<FactoryBuildEnemy>()) //if the building isn't the current building, but has a script for enemy construction, add that script to the list
-                enemyFactoryScripts.Add(building.GetComponent<FactoryBuildEnemy>());
-      
+                enemyFactoryScripts.Add(building.GetComponent<FactoryBuildEnemy>());  
         }
     }
 
     void FixedUpdate()
     {
-        if (!MyTurn) //give way to the other factory/ies
+        if (!MyTurn || busy) //give way to the other factory/ies if it's not our turn. Also, stop if we're busy
             return;
-
 
         GameObject[] enemyUnits = GameObject.FindGameObjectsWithTag("Enemy"); //make sure we have an enemy harvester
 
         int nearbyHarvesterCount = 0;
+        int randomNum = Random.Range(0, 100); //for odds of what we'll try to make
 
         foreach (GameObject g in enemyUnits)
         {
@@ -44,67 +43,41 @@ public class FactoryBuildEnemy : MonoBehaviour
                 nearbyHarvesterCount++;
             }
         }
-        if (busy) //can't do anything it we're busy
-            return;
 
-        if (nearbyHarvesterCount < 1) //if we don't have at least one harvester..
+        if (nearbyHarvesterCount < 1                       //if we don't have at least one harvester, we need to build one
+            || nearbyHarvesterCount < 3 && randomNum%10 == 0) //or if we have fewer than 3, 10% chance we build another
         {
-            if (enemySupplyInventory.GetComponent<SupplyInventory>().Supplies >= 500) //make one if we can
-            {
-                enemySupplyInventory.GetComponent<SupplyInventory>().Supplies -= 500;
-                StartCoroutine(SpawnHarvester());
-                MyTurn = false;
-            }
-            else //or save up
-                return;
-        }
-
-        int randomNum = Random.Range(0, 100); //pick a random integer
-
-        if (enemySupplyInventory.GetComponent<SupplyInventory>().Supplies >= 800
-            && randomNum < 40) //if we can afford an advanced unit, there's a chance we make on, or a harvester
-        {           
- 
-            enemySupplyInventory.GetComponent<SupplyInventory>().Supplies -= 800;
-            StartCoroutine(SpawnAdvanced());
-            MyTurn = false;
-
-        }
-        else if (enemySupplyInventory.GetComponent<SupplyInventory>().Supplies >= 500
-            && nearbyHarvesterCount < 3
-            && randomNum < 60 && randomNum > 40)
-        {
-            enemySupplyInventory.GetComponent<SupplyInventory>().Supplies -= 500;
             StartCoroutine(SpawnHarvester());
-            MyTurn = false;
         }
 
-        else if (enemySupplyInventory.GetComponent<SupplyInventory>().Supplies >= 300
-            && randomNum < 80 && randomNum > 60) 
-        {
-            enemySupplyInventory.GetComponent<SupplyInventory>().Supplies -= 300;
+        else if (randomNum < 60) //build advanced unit 60% chance if we have 3 harvesters, 54% if we have 1-2, no chance if no harvester
+        {      
+            StartCoroutine(SpawnAdvanced());
+        }
+        else //build basic unit 40% chance if we have 3 harvesters, 36% if we have 1-2, no chance if no harvester
+        { 
             StartCoroutine(SpawnBasic());
-            MyTurn = false;
         }
-
-
-        if (!MyTurn) //we built something, so let another factory build
-        {
-
-            randomNum = Random.Range(0, enemyFactoryScripts.Count); //pick a random enemy factory and give it exclusive access to build
-
-            enemyFactoryScripts[randomNum].MyTurn = true;
-       
-        }
+        
     }
 
 
     public IEnumerator SpawnBasic() //this is used for creating a delay before making a unit
     {
-        
         busy = true;
+        while (enemySupplyScript.Supplies < 300) //save up until we can get a basic unit   
+            yield return new WaitForSeconds(1); 
+        
+        enemySupplyScript.Supplies -= 300;
+
+        int randomNum = Random.Range(0, enemyFactoryScripts.Count); //hand off construction to other factory/ies
+        MyTurn = false;
+        enemyFactoryScripts[randomNum].MyTurn = true;
+
+        //start building basic
         yield return new WaitForSeconds(5);
-        FinishedSound();
+
+        FinishedSound(); //done
         Vector3 pos = transform.position;
         float x = pos.x - Random.Range(.5f, 5f);
         float y = pos.y;
@@ -115,13 +88,22 @@ public class FactoryBuildEnemy : MonoBehaviour
     }
 
 
-
     private IEnumerator SpawnAdvanced()
     {
-        
         busy = true;
+        while (enemySupplyScript.Supplies < 800) //save up until we can get an advanced unit   
+            yield return new WaitForSeconds(1);
+
+        enemySupplyScript.Supplies -= 800;
+
+        int randomNum = Random.Range(0, enemyFactoryScripts.Count); //hand off construction to other factory/ies
+        MyTurn = false;
+        enemyFactoryScripts[randomNum].MyTurn = true;
+
+        //start work on advanced
         yield return new WaitForSeconds(10);
-        FinishedSound();
+
+        FinishedSound(); //done
         Vector3 pos = transform.position;
         float x = pos.x - Random.Range(.5f, 5f);
         float y = pos.y;
@@ -133,10 +115,21 @@ public class FactoryBuildEnemy : MonoBehaviour
 
     private IEnumerator SpawnHarvester()
     {
-        
         busy = true;
+        while (enemySupplyScript.Supplies < 500) //save up until we can get a harvester  
+            yield return new WaitForSeconds(1);
+
+        enemySupplyScript.Supplies -= 500;
+
+        int randomNum = Random.Range(0, enemyFactoryScripts.Count); //hand off construction to other factory/ies
+        MyTurn = false;
+        enemyFactoryScripts[randomNum].MyTurn = true;
+
+        //start work on harvester
         yield return new WaitForSeconds(3);
-        FinishedSound();
+
+
+        FinishedSound(); //done
         Vector3 pos = transform.position;
         float x = pos.x - Random.Range(.5f, 5f);
         float y = pos.y;

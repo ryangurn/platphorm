@@ -39,7 +39,7 @@ public class Attack : MonoBehaviour
 
         foreach (GameObject g in units)
         {
-            if (Vector3.Distance(g.transform.position, transform.position) < AttackRange) //if a friendly is within attack range, it's also attacking, so check if its sound is playing
+            if (Vector3.Distance(g.transform.position, transform.position) < AttackRange && g.GetComponent<AudioSource>()) //if a friendly (with audio source) is within attack range it doesn't need to play it's own attack sound
             {
                 if (g.GetComponent<AudioSource>().isPlaying) //stop if it is
                     return;
