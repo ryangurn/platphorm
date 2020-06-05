@@ -7,12 +7,12 @@ public class MainMenu : MonoBehaviour
 {
     public void One()
     {
-        SceneManager.LoadScene("MainScene");
+        SceneManager.LoadScene("LevelOne");
     }
 
     public void Two()
     {
-      SceneManager.LoadScene("MainScene");
+      SceneManager.LoadScene("LevelOne");
     }
 
     public void Menu()

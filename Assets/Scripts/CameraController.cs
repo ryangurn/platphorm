@@ -57,17 +57,17 @@ public class CameraController : MonoBehaviour
 		}
 
 		if (isLocked) //prevent things from being selected when paused
-		    return;       
+		return;
 
 		if (Input.GetKeyUp(KeyCode.X)) //exit the level to  menu
 		{
 			SceneManager.LoadScene("Menu");
 		}
 
-        float priorGroundHeight = transform.position.y - CameraHeight; //before we change our look or camera height, we need to know what the ground height used to be for later
+		float priorGroundHeight = transform.position.y - CameraHeight; //before we change our look or camera height, we need to know what the ground height used to be for later
 
-        //right click panning
-        if (Input.GetMouseButtonDown(1))  //start panning and lock scrolling
+		//right click panning
+		if (Input.GetMouseButtonDown(1))  //start panning and lock scrolling
 		{
 			originalPan = transform.rotation; //referenced to later to see if we were panning or just ordering a unit by right-click
 			isPanning = true;
@@ -97,7 +97,7 @@ public class CameraController : MonoBehaviour
 			StartCoroutine(EdgeScrollLockout());
 		}
 
-		//camera gross movement 
+		//camera gross movement
 		Vector3 p = GetBaseInput(); //base input (wasd and edge scroll)
 
 		if (Input.GetKey (KeyCode.LeftShift))  //use left shift to slow movement
@@ -116,13 +116,13 @@ public class CameraController : MonoBehaviour
 		p = p * Time.deltaTime;
 
 		Vector3 clampedPosition;
-        clampedPosition.y = transform.position.y; //y isn't clamped here since we only look at relative height for it
+		clampedPosition.y = transform.position.y; //y isn't clamped here since we only look at relative height for it
 
-        //translation from GetBaseInput
-        transform.Translate(p); //add in the wasd and edge scrol input
+		//translation from GetBaseInput
+		transform.Translate(p); //add in the wasd and edge scrol input
 
 		//clamp
-		clampedPosition.x = Mathf.Clamp(transform.position.x, CameraMinX, CameraMaxX); //bounds checking and adjustment is oob        
+		clampedPosition.x = Mathf.Clamp(transform.position.x, CameraMinX, CameraMaxX); //bounds checking and adjustment is oob
 		clampedPosition.z = Mathf.Clamp(transform.position.z, CameraMinZ, CameraMaxZ);
 		transform.position = clampedPosition;
 
@@ -130,41 +130,41 @@ public class CameraController : MonoBehaviour
 		Vector3 rotation = transform.rotation.eulerAngles;
 
 		if (200f < rotation.x && rotation.x < 360f)
-		    rotation.x = Mathf.Clamp(rotation.x, 360f, Mathf.Infinity);
+		rotation.x = Mathf.Clamp(rotation.x, 360f, Mathf.Infinity);
 		else
-		    rotation.x = Mathf.Clamp(rotation.x, 5f, 40f);
+		rotation.x = Mathf.Clamp(rotation.x, 5f, 40f);
 
 		transform.rotation = Quaternion.Euler(rotation);
 
-        //mouse scroll wheel (for height)
+		//mouse scroll wheel (for height)
 		Vector3 priorPosition = transform.position; //take note of the position before we do scrolling adjustment. a simple clamp won't work now since the camera height is relative
 
 		transform.Translate(new Vector3(0, 0, HeightAdjust())); //HeightAdjust() function takes mousewheel input
 
-        float priorCameraHeight = CameraHeight;
-        CameraHeight += (transform.position.y - priorPosition.y); //add difference in camera y to the Camera height
+		float priorCameraHeight = CameraHeight;
+		CameraHeight += (transform.position.y - priorPosition.y); //add difference in camera y to the Camera height
 
-        //if any parameters are exceeded, return to location and camera height before using the scroll wheel
-        if (transform.position.x < CameraMinX || transform.position.x > CameraMaxX
-            || transform.position.z < CameraMinZ || transform.position.z > CameraMaxZ
-            || (CameraHeight < CameraMinHeight || CameraHeight > CameraMaxHeight))
-        {
-            transform.position = priorPosition;
-            CameraHeight = priorCameraHeight;          
-        }
+		//if any parameters are exceeded, return to location and camera height before using the scroll wheel
+		if (transform.position.x < CameraMinX || transform.position.x > CameraMaxX
+		|| transform.position.z < CameraMinZ || transform.position.z > CameraMaxZ
+		|| (CameraHeight < CameraMinHeight || CameraHeight > CameraMaxHeight))
+		{
+			transform.position = priorPosition;
+			CameraHeight = priorCameraHeight;
+		}
 
 
-        //adjust for terrain
-        Vector3 finalPosition;
-        finalPosition.x = transform.position.x;
-        finalPosition.z = transform.position.z;
+		//adjust for terrain
+		Vector3 finalPosition;
+		finalPosition.x = transform.position.x;
+		finalPosition.z = transform.position.z;
 
-        transform.Translate(new Vector3(0, 0, GroundHeightAdjust(priorGroundHeight) / 2));
-        finalPosition.y = transform.position.y;
+		transform.Translate(new Vector3(0, 0, GroundHeightAdjust(priorGroundHeight) / 2));
+		finalPosition.y = transform.position.y;
 
-        transform.position = finalPosition;
+		transform.position = finalPosition;
 
-    }
+	}
 
 	private Vector3 GetBaseInput()
 	{
@@ -319,15 +319,15 @@ public class CameraController : MonoBehaviour
 	private void Pause()
 	{
 		isLocked = true;
-        SelectionLocked.Lock();
+		SelectionLocked.Lock();
 		Time.timeScale = pauseTime;
 	}
 
 	public void unPause()
 	{
 		isLocked = false;
-        SelectionLocked.Unlock();
-        Time.timeScale = 1;
+		SelectionLocked.Unlock();
+		Time.timeScale = 1;
 	}
 
 }

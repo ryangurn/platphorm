@@ -42,6 +42,7 @@ public class TutorialManager : MonoBehaviour
   // Start is called before the first frame update
   void Start()
   {
+    Camera.GetComponent<CameraController>().pauseTime = 1.0f;
     changeCountHarvester = 0;
     changeCountAttack = 0;
     UpdateUnits();
