@@ -159,7 +159,7 @@ public class CameraController : MonoBehaviour
         finalPosition.x = transform.position.x;
         finalPosition.z = transform.position.z;
 
-        transform.Translate(new Vector3(0, 0, GroundHeightAdjust(priorGroundHeight)));
+        transform.Translate(new Vector3(0, 0, GroundHeightAdjust(priorGroundHeight) / 4));
         finalPosition.y = transform.position.y;
 
         transform.position = finalPosition;
@@ -285,7 +285,7 @@ public class CameraController : MonoBehaviour
 
 			}
 		}
-		return 0.0f; //this shouldn't happen as there should always be a ground object the raycast can find
+		return priorGroundHeight; //this shouldn't happen as there should always be a ground object the raycast can find
 	}
 
 	public void UpdateScrollSpeed(GameObject slide)
