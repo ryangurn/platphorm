@@ -42,7 +42,7 @@ public class TutorialManager : MonoBehaviour
   // Start is called before the first frame update
   void Start()
   {
-    Camera.GetComponent<CameraController>().pauseTime = 1.0f;
+    // Camera.GetComponent<CameraController>().pauseTime = 1.0f;
     changeCountHarvester = 0;
     changeCountAttack = 0;
     UpdateUnits();
@@ -106,11 +106,11 @@ public class TutorialManager : MonoBehaviour
     }
     else if (popupIndex == 4)
     {
-      Camera.GetComponent<CameraController>().pauseTime = 1.0f; // i need gametime to progress
+      // Camera.GetComponent<CameraController>().pauseTime = 1.0f; // i need gametime to progress
       if (Camera.GetComponent<CameraController>().isLocked)
       {
         StartCoroutine(wait());
-        Camera.GetComponent<CameraController>().pauseTime = 0.0f;
+        // Camera.GetComponent<CameraController>().pauseTime = 0.0f;
       }
     }
     else if (popupIndex == 5)
