@@ -16,7 +16,7 @@ public class CameraController : MonoBehaviour
 	public float MouseSpeed = 3.5f;
 	public float KeyboardSpeed = 50.0f; //regular speed
 	public float ScrollSpeed = 1.0f;
-	public float pauseTime = 0.0f;
+	// public float pauseTime = 0.0f;
 
 	public bool CameraLeftRight = false;
 	public bool CameraFrontBack = false;
@@ -320,14 +320,14 @@ public class CameraController : MonoBehaviour
 	{
 		isLocked = true;
 		SelectionLocked.Lock();
-		Time.timeScale = pauseTime;
+		// Time.timeScale = pauseTime;
 	}
 
 	public void unPause()
 	{
 		isLocked = false;
 		SelectionLocked.Unlock();
-		Time.timeScale = 1;
+		// Time.timeScale = 1;
 	}
 
 }
