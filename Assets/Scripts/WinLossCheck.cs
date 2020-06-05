@@ -9,36 +9,15 @@ public class WinLossCheck : MonoBehaviour
     public GameObject Lose;
 
     public FactoryController playerConstructionScript;
-    private List<FactoryBuildEnemy> enemyFactoryScripts = new List<FactoryBuildEnemy>();
 
     void Start()
     {
-        GameObject[] enemyBuildings = GameObject.FindGameObjectsWithTag("EnemyBuilding");
-
-        foreach (GameObject building in enemyBuildings)
-        {
-            if (building.GetComponent<FactoryBuildEnemy>())
-                enemyFactoryScripts.Add(building.GetComponent<FactoryBuildEnemy>());
-        }
-
+        //Deleted broken mechanic.
     }
     //set the win active when conditions below are met
     void FixedUpdate()
     {
-        bool enemyBusy = false;
-
-        foreach (FactoryBuildEnemy script in enemyFactoryScripts)
-        {
-            if (script.busy)
-            {
-                enemyBusy = true;
-                break;
-            }
-        }
-
-        if (GameObject.FindGameObjectWithTag("EnemySupplyInventory").GetComponent<SupplyInventory>().Supplies < 300
-            && !GameObject.FindGameObjectWithTag("EnemyHealth").GetComponentInChildren<UIHealth>().HasUnits
-            && !enemyBusy)
+        if (!GameObject.FindGameObjectWithTag("EnemyHealth").GetComponentInChildren<UIHealth>().HasUnits)
         {
             Win.SetActive(true);
         }

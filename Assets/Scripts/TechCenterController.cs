@@ -41,12 +41,12 @@ public class TechCenterController : MonoBehaviour
   public GameObject HarvesterText;
 
   private GameObject[] units;
-  private List<GameObject> harvesters = new List<GameObject>();
   private List<GameObject> attackUnits = new List<GameObject>();
 
   void Start()
   {
     UpdateText();
+    /*
     units = GameObject.FindGameObjectsWithTag("Player");
     foreach (GameObject unit in units)
     {
@@ -59,6 +59,7 @@ public class TechCenterController : MonoBehaviour
       }
 
     }
+    */
   }
 
   void UpdateText()
@@ -86,6 +87,17 @@ public class TechCenterController : MonoBehaviour
     {
         StartCoroutine(InsufficientFunds());
         return;
+    }
+
+    //Updates attackUnits to include all new units as well
+    attackUnits = new List<GameObject>();
+    units = GameObject.FindGameObjectsWithTag("Player");
+    foreach (GameObject unit in units)
+    {
+      if (unit.name != "Harvester" && unit.name != "ResourceGatherer(Clone)" ) {
+        attackUnits.Add(unit);
+      }
+
     }
 
     PlayerResources.GetComponent<SupplyInventory>().Supplies -= RangePerCost;
@@ -117,6 +129,7 @@ public class TechCenterController : MonoBehaviour
     PlayerResources.GetComponent<SupplyInventory>().Supplies -= SpeedPerCost;
     SpeedCounter++;
 
+    units = GameObject.FindGameObjectsWithTag("Player");
     foreach (GameObject unit in units)
     {
       unit.GetComponent<NavMeshAgent>().speed = unit.GetComponent<NavMeshAgent>().speed + SpeedDelta;
@@ -146,6 +159,7 @@ public class TechCenterController : MonoBehaviour
     PlayerResources.GetComponent<SupplyInventory>().Supplies -= StrengthPerCost;
     StrengthCounter++;
 
+    units = GameObject.FindGameObjectsWithTag("Player");
     foreach (GameObject unit in units)
     {
       unit.GetComponent<Health>().HealthLevel = unit.GetComponent<Health>().HealthLevel + StrengthDelta;
