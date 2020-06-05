@@ -70,9 +70,12 @@ public class FactoryBuildEnemy : MonoBehaviour
         
         enemySupplyScript.Supplies -= 300;
 
-        int randomNum = Random.Range(0, enemyFactoryScripts.Count); //hand off construction to other factory/ies
-        MyTurn = false;
-        enemyFactoryScripts[randomNum].MyTurn = true;
+        if (!(enemyFactoryScripts.Count == 0))
+        {
+            int randomNum = Random.Range(0, enemyFactoryScripts.Count); //hand off construction to other factory/ies
+            MyTurn = false;
+            enemyFactoryScripts[randomNum].MyTurn = true;
+        }
 
         //start building basic
         yield return new WaitForSeconds(5);
@@ -96,9 +99,12 @@ public class FactoryBuildEnemy : MonoBehaviour
 
         enemySupplyScript.Supplies -= 800;
 
-        int randomNum = Random.Range(0, enemyFactoryScripts.Count); //hand off construction to other factory/ies
-        MyTurn = false;
-        enemyFactoryScripts[randomNum].MyTurn = true;
+        if (!(enemyFactoryScripts.Count == 0))
+        {
+            int randomNum = Random.Range(0, enemyFactoryScripts.Count); //hand off construction to other factory/ies
+            MyTurn = false;
+            enemyFactoryScripts[randomNum].MyTurn = true;
+        }
 
         //start work on advanced
         yield return new WaitForSeconds(10);
@@ -121,10 +127,13 @@ public class FactoryBuildEnemy : MonoBehaviour
 
         enemySupplyScript.Supplies -= 500;
 
-        int randomNum = Random.Range(0, enemyFactoryScripts.Count); //hand off construction to other factory/ies
-        MyTurn = false;
-        enemyFactoryScripts[randomNum].MyTurn = true;
+        if (!(enemyFactoryScripts.Count == 0))
+        {
+            int randomNum = Random.Range(0, enemyFactoryScripts.Count); //hand off construction to other factory/ies
+            MyTurn = false;
 
+            enemyFactoryScripts[randomNum].MyTurn = true;
+        }
         //start work on harvester
         yield return new WaitForSeconds(3);
 
