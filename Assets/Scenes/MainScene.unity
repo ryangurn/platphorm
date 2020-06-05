@@ -2052,6 +2052,11 @@ PrefabInstance:
       propertyPath: cameraTransform
       value: 
       objectReference: {fileID: 52028042}
+    - target: {fileID: 2495250849165078902, guid: 88e1d80468f204744a9e4fdfbb5de8a3,
+        type: 3}
+      propertyPath: MyTurn
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 88e1d80468f204744a9e4fdfbb5de8a3, type: 3}
 --- !u!4 &681963247 stripped
