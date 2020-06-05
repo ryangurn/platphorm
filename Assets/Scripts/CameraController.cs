@@ -132,7 +132,7 @@ public class CameraController : MonoBehaviour
 		if (200f < rotation.x && rotation.x < 360f)
 		    rotation.x = Mathf.Clamp(rotation.x, 360f, Mathf.Infinity);
 		else
-		    rotation.x = Mathf.Clamp(rotation.x, 0f, 40f);
+		    rotation.x = Mathf.Clamp(rotation.x, 5f, 40f);
 
 		transform.rotation = Quaternion.Euler(rotation);
 
@@ -159,7 +159,7 @@ public class CameraController : MonoBehaviour
         finalPosition.x = transform.position.x;
         finalPosition.z = transform.position.z;
 
-        transform.Translate(new Vector3(0, 0, GroundHeightAdjust(priorGroundHeight) / 4));
+        transform.Translate(new Vector3(0, 0, GroundHeightAdjust(priorGroundHeight) / 2));
         finalPosition.y = transform.position.y;
 
         transform.position = finalPosition;

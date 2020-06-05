@@ -1523,7 +1523,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Win: {fileID: 255922526}
   Lose: {fileID: 632177755}
-  playerConstructionScript: {fileID: 0}
+  playerConstructionScript: {fileID: 1926771475}
 --- !u!1 &510456561 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 223704836888201514, guid: 90dcf600651425c418d9dbf6263136f8,
