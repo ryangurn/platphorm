@@ -57,21 +57,23 @@ public class CameraController : MonoBehaviour
 		}
 
 		if (PauseMenu.activeSelf) //prevent things from being selected when paused
-		return;
+		    return;       
 
-		if (Input.GetKeyUp(KeyCode.X))
+		if (Input.GetKeyUp(KeyCode.X)) //exit the level to  menu
 		{
 			SceneManager.LoadScene("Menu");
 		}
 
-		//right click panning
-		if (Input.GetMouseButtonDown(1))  //start panning and lock scrolling
+        float priorGroundHeight = transform.position.y - CameraHeight; //before we change our look or camera height, we need to know what the ground height used to be for later
+
+        //right click panning
+        if (Input.GetMouseButtonDown(1))  //start panning and lock scrolling
 		{
 			originalPan = transform.rotation; //referenced to later to see if we were panning or just ordering a unit by right-click
 			isPanning = true;
 		}
 
-		if ( Input.GetMouseButton(1)) //panning work
+		if ( Input.GetMouseButton(1)) //user is panning....
 		{
 			transform.Rotate(new Vector3(-InvertPan*Input.GetAxis("Mouse Y") * MouseSpeed, InvertPan*Input.GetAxis("Mouse X") * MouseSpeed, 0));
 			m_mouseX = transform.rotation.eulerAngles.x;
@@ -95,8 +97,8 @@ public class CameraController : MonoBehaviour
 			StartCoroutine(EdgeScrollLockout());
 		}
 
-		//camera movement besides panning
-		Vector3 p = GetBaseInput(); //base input is wasd and edge scroll
+		//camera gross movement 
+		Vector3 p = GetBaseInput(); //base input (wasd and edge scroll)
 
 		if (Input.GetKey (KeyCode.LeftShift))  //use left shift to slow movement
 		{
@@ -111,54 +113,58 @@ public class CameraController : MonoBehaviour
 			m_totalRun = Mathf.Clamp(m_totalRun * 0.5f, 1f, 1000f);
 			p = p * KeyboardSpeed;
 		}
-
 		p = p * Time.deltaTime;
-		Vector3 newPosition = transform.position;
 
-		//translation from GetBaseInput
-		transform.Translate(p); //add in the wasd and edge scrol input
+		Vector3 clampedPosition;
+        clampedPosition.y = transform.position.y; //y isn't clamped here since we only look at relative height for it
 
+        //translation from GetBaseInput
+        transform.Translate(p); //add in the wasd and edge scrol input
 
 		//clamp
-		newPosition.x = Mathf.Clamp(transform.position.x, CameraMinX, CameraMaxX); //bounds checking and adjustment is oob
-		newPosition.z = Mathf.Clamp(transform.position.z, CameraMinZ, CameraMaxZ);
-		transform.position = newPosition;
+		clampedPosition.x = Mathf.Clamp(transform.position.x, CameraMinX, CameraMaxX); //bounds checking and adjustment is oob        
+		clampedPosition.z = Mathf.Clamp(transform.position.z, CameraMinZ, CameraMaxZ);
+		transform.position = clampedPosition;
 
 		//rotation clamp
 		Vector3 rotation = transform.rotation.eulerAngles;
 
 		if (200f < rotation.x && rotation.x < 360f)
-		rotation.x = Mathf.Clamp(rotation.x, 360f, Mathf.Infinity);
+		    rotation.x = Mathf.Clamp(rotation.x, 360f, Mathf.Infinity);
 		else
-		rotation.x = Mathf.Clamp(rotation.x, 0f, 40f);
+		    rotation.x = Mathf.Clamp(rotation.x, 0f, 40f);
 
 		transform.rotation = Quaternion.Euler(rotation);
 
-
-
+        //mouse scroll wheel (for height)
 		Vector3 priorPosition = transform.position; //take note of the position before we do scrolling adjustment. a simple clamp won't work now since the camera height is relative
 
 		transform.Translate(new Vector3(0, 0, HeightAdjust())); //HeightAdjust() function takes mousewheel input
 
-		//if any parameters are exceeded, return to prior otherwise keep new y difference and add it to camera height
-		if (transform.position.x < CameraMinX || transform.position.x > CameraMaxX)
-		transform.position = priorPosition;
-		else if (transform.position.z < CameraMinZ || transform.position.z > CameraMaxZ)
-		transform.position = priorPosition;
-		else if ((CameraHeight + transform.position.y - priorPosition.y) < CameraMinHeight)
-		transform.position = priorPosition;
-		else if ((CameraHeight + transform.position.y - priorPosition.y) > CameraMaxHeight)
-		transform.position = priorPosition;
-		else
-		CameraHeight = (CameraHeight + transform.position.y - priorPosition.y);
+        float priorCameraHeight = CameraHeight;
+        CameraHeight += (transform.position.y - priorPosition.y); //add difference in camera y to the Camera height
 
-		newPosition.x = transform.position.x;
-		newPosition.y = CameraHeight + GetGroundHeight();
-		newPosition.z = transform.position.z;
+        //if any parameters are exceeded, return to location and camera height before using the scroll wheel
+        if (transform.position.x < CameraMinX || transform.position.x > CameraMaxX
+            || transform.position.z < CameraMinZ || transform.position.z > CameraMaxZ
+            || (CameraHeight < CameraMinHeight || CameraHeight > CameraMaxHeight))
+        {
+            transform.position = priorPosition;
+            CameraHeight = priorCameraHeight;          
+        }
 
-		transform.position = newPosition;
 
-	}
+        //adjust for terrain
+        Vector3 finalPosition;
+        finalPosition.x = transform.position.x;
+        finalPosition.z = transform.position.z;
+
+        transform.Translate(new Vector3(0, 0, GroundHeightAdjust(priorGroundHeight)));
+        finalPosition.y = transform.position.y;
+
+        transform.position = finalPosition;
+
+    }
 
 	private Vector3 GetBaseInput()
 	{
@@ -201,7 +207,7 @@ public class CameraController : MonoBehaviour
 
 	private float HeightAdjust() //mouse scroll wheel input
 	{
-		if ( (Input.GetAxis("Mouse ScrollWheel") > 0))
+		if ( (Input.GetAxis("Mouse ScrollWheel") > 0) )
 		{
 			return 3f;
 		}
@@ -221,7 +227,7 @@ public class CameraController : MonoBehaviour
 		isPanning = false;
 	}
 
-	private float GetGroundHeight() //this does the raycasting for figuring out the ground height
+	private float GroundHeightAdjust(float priorGroundHeight) //this does the raycasting for figuring out the ground height
 	{
 		RaycastHit hit;
 		int[] offsetContainer = new int[2];
@@ -229,7 +235,6 @@ public class CameraController : MonoBehaviour
 		//starting offset at 1, to prevent redundant calculations
 		for (int offset = 1; offset < 2000; offset++ ) //we limit the possible places a "Ground" object can be to 2000 pixels in each direction
 		{
-
 			for (int i = 0; i < 8; i++) //this stages the offsetContainer for which of the 8 directions we check for ground in
 			{
 				switch (i)
@@ -275,15 +280,13 @@ public class CameraController : MonoBehaviour
 				//if we're looking at the ground, that's it. Otherwise, keep looking
 				if (hit.collider != null && hit.collider.gameObject.tag == "Ground")
 				{
-					return hit.point.y;
+					return priorGroundHeight - hit.point.y;
 				}
 
 			}
 		}
 		return 0.0f; //this shouldn't happen as there should always be a ground object the raycast can find
-
 	}
-
 
 	public void UpdateScrollSpeed(GameObject slide)
 	{
@@ -293,8 +296,6 @@ public class CameraController : MonoBehaviour
 	public void UpdateVolume(GameObject slide)
 	{
 		AudioListener.volume = slide.GetComponent<Slider>().value;
-
-
 	}
 
 	public void ToggleEdgeControls(GameObject slide)
